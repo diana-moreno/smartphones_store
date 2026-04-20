@@ -1,5 +1,7 @@
+import AppRoutes from './routes';
+
 const App = () => {
-  return <h1>Smartphones store</h1>;
+  return <AppRoutes />;
 };
 
 export default App;
