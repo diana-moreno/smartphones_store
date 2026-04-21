@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { ProductCard } from './ProductCard';
 import type { ProductSummary } from '../model/product';
+import { ProductCard } from './ProductCard/ProductCard';
 
 interface ProductListProps {
   products: ProductSummary[];

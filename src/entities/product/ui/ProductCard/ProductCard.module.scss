@@ -1,0 +1,38 @@
+@use '../../../../app/styles/modules' as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: rem(12px);
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 312 / 257;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: rem(12px);
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: rem(4px);
+}
+
+.brand {
+  @include font($fs: rem(14px), $co: $co-gray-500);
+}
+
+.name {
+  @include font($fs: rem(16px), $fw: $fw-medium);
+}
+
+.price {
+  @include font($fs: rem(14px), $co: $co-gray-500);
+}
