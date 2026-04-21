@@ -1,0 +1,10 @@
+// Aquí tienen que ir cosas que acabaran en el .css que usarán
+// las aplicaciones
+
+// 03. Generic
+@forward '03.generic/generic.reset';
+@forward '03.generic/generic.normalize';
+@forward '03.generic/generic.fonts';
+
+// 04. Elements
+@forward '04.elements/elements.tags';

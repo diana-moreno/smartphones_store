@@ -1,0 +1,6 @@
+// Exponer variables y mixins para usar desde archivos CSS Modules (*.module.scss).
+// En componentes: @use '../../../app/styles/modules' as *;
+
+@forward '01.settings/settings.global';
+@forward '02.tools/tools.breakpoints';
+@forward '02.tools/tools.mixins';

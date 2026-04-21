@@ -1,0 +1,49 @@
+@use '../01.settings/settings.global' as *;
+@use '../02.tools/tools.mixins' as *;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include font($fw: $fw-semibold, $lh: 1.2);
+}
+
+h1 {
+  @include font($fs: rem(24px));
+}
+
+h2 {
+  @include font($fs: rem(20px));
+}
+
+h3 {
+  @include font($fs: rem(18px));
+}
+
+h4 {
+  @include font($fs: rem(16px));
+}
+
+h5 {
+  @include font($fs: rem(14px));
+}
+
+h6 {
+  @include font($fs: rem(12px));
+}
+
+a {
+  @include font($co: $co-black);
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

@@ -1,0 +1,21 @@
+@use '../01.settings/settings.global' as *;
+@use '../02.tools/tools.mixins' as *;
+
+html {
+  font-size: $fs-root;
+  line-height: 1.5;
+}
+
+body {
+  @include font($ff: $ff-body, $co: $co-black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $co-white;
+}
+
+button,
+input,
+textarea,
+select {
+  @include font($ff: inherit, $fs: inherit, $lh: inherit);
+}
