@@ -1,16 +1,17 @@
 @use '../../../../app/styles/modules' as *;
 
 .list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 361px);
   justify-content: center;
+  margin: 24px 0 80px 0;
 }
 
 .item {
   width: 361px;
   height: 344px;
-  border: 0.5px solid $co-gray;
   padding: 16px;
+  border: 1px solid $co-black;
 }
 
 .link {
@@ -18,6 +19,11 @@
 }
 
 @include tablet {
+  .list {
+    grid-template-columns: repeat(auto-fill, 377px);
+    margin: 48px 0 80px 0;
+  }
+
   .item {
     width: 377px;
     height: 377px;
@@ -25,6 +31,11 @@
 }
 
 @include desktop {
+  .list {
+    grid-template-columns: repeat(auto-fill, 344px);
+    margin: 48px 0 147px 0;
+  }
+
   .item {
     width: 344px;
     height: 344px;
