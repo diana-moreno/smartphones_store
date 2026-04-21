@@ -5,9 +5,13 @@ if (!baseUrl || !apiKey) {
   throw new Error('VITE_API_BASE_URL and VITE_API_KEY must be defined');
 }
 
-export const get = async <T>(path: string): Promise<T> => {
+export const get = async <T>(
+  path: string,
+  signal?: AbortSignal
+): Promise<T> => {
   const response = await fetch(`${baseUrl}${path}`, {
     headers: { 'x-api-key': apiKey },
+    signal,
   });
   if (!response.ok) {
     throw Object.assign(new Error(`API ${response.status}`), {
