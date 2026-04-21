@@ -1,38 +1,26 @@
 @use '../../../../app/styles/modules' as *;
 
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: rem(12px);
-}
-
 .image {
   width: 100%;
+  max-width: 300px;
   aspect-ratio: 312 / 257;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .info {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: rem(12px);
-}
-
-.textWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: rem(4px);
 }
 
 .brand {
-  @include font($fs: rem(14px), $co: $co-gray-500);
+  @include font($fs: rem(10px), $fw: $fw-small, $co: $co-gray, $lh: rem(10px));
+  text-transform: uppercase;
+  margin-bottom: 4px;
 }
 
-.name {
-  @include font($fs: rem(16px), $fw: $fw-medium);
-}
-
+.name,
 .price {
-  @include font($fs: rem(14px), $co: $co-gray-500);
+  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
+  text-transform: uppercase;
 }
