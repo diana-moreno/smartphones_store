@@ -1,0 +1,27 @@
+@use 'sass:math';
+
+// COLORS
+$co-black: #000000;
+$co-white: #ffffff;
+
+$co-gray: #79736d;
+
+// Font
+$fs-root: 16px;
+
+$ff-body: Helvetica, Arial, sans-serif;
+
+$fw-small: 300;
+$fw-normal: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+// Convert px to rem based on the root font-size
+@function rem($size) {
+  @return math.div($size, $fs-root) * 1rem;
+}
+
+// Breakpoints (mobile-first)
+$bp-tablet: 834px;
+$bp-desktop: 1920px;

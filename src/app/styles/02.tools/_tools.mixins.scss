@@ -1,0 +1,31 @@
+@mixin font(
+  $ff: false,
+  $fs: false,
+  $fw: false,
+  $fst: false,
+  $lh: false,
+  $co: false,
+  $ls: false
+) {
+  @if $ff {
+    font-family: $ff;
+  }
+  @if $fs {
+    font-size: $fs;
+  }
+  @if $fw {
+    font-weight: $fw;
+  }
+  @if $fst {
+    font-style: $fst;
+  }
+  @if $lh {
+    line-height: $lh;
+  }
+  @if $co {
+    color: $co;
+  }
+  @if $ls {
+    letter-spacing: $ls;
+  }
+}

@@ -1,0 +1,15 @@
+@use '../01.settings/settings.global' as *;
+
+// Mobile-first: base styles target mobile, these mixins "upgrade" to larger viewports.
+
+@mixin tablet {
+  @media (min-width: $bp-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $bp-desktop) {
+    @content;
+  }
+}

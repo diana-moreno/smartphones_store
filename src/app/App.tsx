@@ -1,7 +1,12 @@
 import AppRoutes from './routes';
+import { CartProvider } from '../entities/cart/model/cartContext';
 
 const App = () => {
-  return <AppRoutes />;
+  return (
+    <CartProvider>
+      <AppRoutes />
+    </CartProvider>
+  );
 };
 
 export default App;

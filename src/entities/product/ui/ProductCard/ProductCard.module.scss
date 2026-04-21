@@ -1,0 +1,26 @@
+@use '../../../../app/styles/modules' as *;
+
+.image {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 312 / 257;
+  object-fit: contain;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.brand {
+  @include font($fs: rem(10px), $fw: $fw-small, $co: $co-gray, $lh: rem(10px));
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.name,
+.price {
+  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
+  text-transform: uppercase;
+}
