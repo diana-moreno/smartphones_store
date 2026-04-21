@@ -1,0 +1,19 @@
+@use '../../../app/styles/modules.scss' as *;
+
+.header {
+  margin: 28px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cartLink {
+  display: flex;
+  align-items: baseline;
+  text-decoration: none;
+}
+
+.cartCount {
+  margin-left: 6px;
+  @include font($fs: rem(16px), $fw: $fw-small, $co: $co-black, $lh: rem(16px));
+}
