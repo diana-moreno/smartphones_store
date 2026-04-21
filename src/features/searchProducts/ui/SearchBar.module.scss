@@ -1,9 +1,11 @@
+@use '../../../app/styles/modules' as *;
+
 .form {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid $co-black;
 }
 
 .label {
@@ -13,8 +15,7 @@
 
 .input {
   flex: 1;
-  padding: 0.75rem 0;
-  font: inherit;
+  padding: 20px 0;
   background: none;
   border: 0;
   outline: none;
@@ -29,6 +30,5 @@
   background: none;
   border: 0;
   cursor: pointer;
-  font: inherit;
   line-height: 1;
 }

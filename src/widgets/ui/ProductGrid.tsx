@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getProducts } from '../../entities/product/api/productApi';
 import type { ProductSummary } from '../../entities/product/model/product';
-import { ProductList } from '../../entities/product/ui/ProductList';
+import { ProductList } from '../../entities/product/ui/ProductList/ProductList';
 import { SearchBar } from '../../features/searchProducts/ui/SearchBar';
 
 const DEBOUNCE_MS = 300;
