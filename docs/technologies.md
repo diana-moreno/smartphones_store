@@ -36,3 +36,14 @@ npm run test:unit        # Ejecuta los tests unitarios una vez
 npm run test:unit:watch  # Ejecuta los tests unitarios en modo watch
 npm run test:e2e         # Ejecuta los tests e2e
 ```
+
+## Variables de entorno
+
+Las variables se definen en `.env.local` (no commiteado). Usa `.env.example` como plantilla:
+
+| Variable            | Descripción                                             |
+| ------------------- | ------------------------------------------------------- |
+| `VITE_API_BASE_URL` | URL base de la API REST de móviles                      |
+| `VITE_API_KEY`      | Clave enviada en el header `x-api-key` de cada petición |
+
+Nota: Vite inlinea las variables `VITE_*` en el bundle del cliente en build-time, por lo que son visibles en el JavaScript descargado. Esto es inherente a las SPA sin backend proxy.
