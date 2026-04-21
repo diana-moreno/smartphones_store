@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import type { ProductSummary } from '../model/product';
-import { ProductCard } from './ProductCard/ProductCard';
+import type { ProductSummary } from '../../model/product';
+import { ProductCard } from '../ProductCard/ProductCard';
+import styles from './ProductList.module.scss';
 
 interface ProductListProps {
   products: ProductSummary[];
@@ -8,10 +9,10 @@ interface ProductListProps {
 
 export const ProductList: React.FC<ProductListProps> = ({ products }) => {
   return (
-    <ul>
+    <ul className={styles.list}>
       {products.map((product) => (
-        <li key={product.id}>
-          <Link to={`/products/${product.id}`}>
+        <li key={product.id} className={styles.item}>
+          <Link to={`/products/${product.id}`} className={styles.link}>
             <ProductCard product={product} />
           </Link>
         </li>

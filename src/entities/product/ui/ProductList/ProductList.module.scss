@@ -1,0 +1,32 @@
+@use '../../../../app/styles/modules' as *;
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item {
+  width: 361px;
+  height: 344px;
+  border: 0.5px solid $co-gray;
+  padding: 16px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+@include tablet {
+  .item {
+    width: 377px;
+    height: 377px;
+  }
+}
+
+@include desktop {
+  .item {
+    width: 344px;
+    height: 344px;
+  }
+}
