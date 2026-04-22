@@ -1,0 +1,25 @@
+@use '../../../../app/styles/modules' as *;
+
+.button {
+  all: unset;
+  width: 20px;
+  height: 20px;
+  padding: 1px;
+  margin-right: 16px;
+  outline: 1px solid $co-gray-300;
+  outline-offset: 2px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.selected {
+  outline: 1px solid $co-black;
+  outline-offset: 2px;
+}
+
+.selectedName {
+  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
+  margin-top: 8px;
+}

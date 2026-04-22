@@ -1,5 +1,5 @@
 import AppRoutes from './routes';
-import { CartProvider } from '../entities/cart/model/cartContext';
+import { CartProvider } from '../entities/cart/model/CartProvider';
 
 const App = () => {
   return (
