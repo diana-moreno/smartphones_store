@@ -3,6 +3,11 @@ import type { ProductSummary } from '../../../entities/product/model/product';
 import { ProductCard } from '../../../entities/product/ui/ProductCard/ProductCard';
 import styles from './SimilarProducts.module.scss';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/scrollbar';
+import { Scrollbar } from 'swiper/modules';
+
 interface SimilarProductsProps {
   products: ProductSummary[];
 }
@@ -13,19 +18,26 @@ export const SimilarProducts: React.FC<SimilarProductsProps> = ({
   if (products.length === 0) return null;
 
   return (
-    <section aria-labelledby="similar-heading">
+    <section aria-labelledby="similar-heading" className={styles.list}>
       <h2 id="similar-heading" className={styles.title}>
         Similar items
       </h2>
-      <ul className={styles.list}>
+      <Swiper
+        modules={[Scrollbar]}
+        spaceBetween={0}
+        slidesPerView={5}
+        scrollbar={{ draggable: true }}
+      >
         {products.map((product) => (
-          <li key={product.id} className={styles.item}>
-            <Link to={`/products/${product.id}`} className={styles.link}>
-              <ProductCard product={product} />
-            </Link>
-          </li>
+          <SwiperSlide>
+            <li key={product.id} className={styles.item}>
+              <Link to={`/products/${product.id}`} className={styles.link}>
+                <ProductCard product={product} />
+              </Link>
+            </li>
+          </SwiperSlide>
         ))}
-      </ul>
+      </Swiper>
     </section>
   );
 };

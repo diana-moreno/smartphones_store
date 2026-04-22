@@ -1,7 +1,6 @@
 @use '../../../app/styles/modules' as *;
 
 .list {
-  display: flex;
   margin-bottom: 40px;
 }
 
@@ -11,15 +10,33 @@
   margin-bottom: 40px;
 }
 
+.link {
+  text-decoration: none;
+}
+
 .item {
   border: 1px solid $co-black;
   border-left: 0;
+}
 
-  &:first-child {
+// Overwriting the default styles of Swiper
+
+:global(.swiper-slide:first-child) {
+  .item {
     border-left: 1px solid $co-black;
   }
 }
 
-.link {
-  text-decoration: none;
+:global(.swiper .swiper-wrapper) {
+  height: 334px;
+}
+
+:global(.swiper-horizontal > .swiper-wrapper + .swiper-scrollbar) {
+  background: $co-gray-300;
+  height: 1px;
+  border-radius: 0;
+}
+:global(.swiper-horizontal > .swiper-wrapper + .swiper-scrollbar-drag) {
+  background: $co-black;
+  border-radius: 0;
 }
