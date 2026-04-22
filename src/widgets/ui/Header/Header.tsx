@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../../../entities/cart/model/useCart';
 import logo from '../../assets/logo.svg';
-import bagIcon from '../../assets/bagIcon.svg';
+import bagIconInactive from '../../assets/bagIconInactive.svg';
+import bagIconActive from '../../assets/bagIconActive.svg';
 import styles from './Header.module.scss';
 
 export const Header: React.FC = () => {
   const { count } = useCart();
+  const hasItems = count > 0;
 
   return (
     <header className={styles.header}>
@@ -17,7 +19,7 @@ export const Header: React.FC = () => {
         aria-label={`Carrito, ${count} productos`}
         className={styles.cartLink}
       >
-        <img src={bagIcon} alt="" />
+        <img src={hasItems ? bagIconActive : bagIconInactive} alt="bag icon" />
         <span aria-hidden="true" className={styles.cartCount}>
           {count}
         </span>
