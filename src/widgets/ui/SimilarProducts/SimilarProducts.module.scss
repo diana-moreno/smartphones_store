@@ -1,0 +1,25 @@
+@use '../../../app/styles/modules' as *;
+
+.list {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.title {
+  @include font($fs: rem(20px), $fw: $fw-small, $co: $co-black, $lh: rem(20px));
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.item {
+  border: 1px solid $co-black;
+  border-left: 0;
+
+  &:first-child {
+    border-left: 1px solid $co-black;
+  }
+}
+
+.link {
+  text-decoration: none;
+}
