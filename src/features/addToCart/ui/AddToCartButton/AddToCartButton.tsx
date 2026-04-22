@@ -4,7 +4,7 @@ import type {
   ProductDetail,
   StorageOption,
 } from '../../../../entities/product/model/product';
-import styles from './AddToCartButton.module.scss';
+import { Button } from '../../../../shared/ui/Button/Button';
 
 interface AddToCartButtonProps {
   product: ProductDetail;
@@ -34,13 +34,8 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   };
 
   return (
-    <button
-      type="button"
-      onClick={handleClick}
-      disabled={disabled}
-      className={styles.button}
-    >
+    <Button onClick={handleClick} disabled={disabled}>
       Añadir
-    </button>
+    </Button>
   );
 };
