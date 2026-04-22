@@ -1,0 +1,42 @@
+@use '../../../app/styles/modules' as *;
+
+.panel {
+  display: block;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.title {
+  @include font($fs: rem(24px), $fw: $fw-small, $co: $co-black, $lh: rem(24px));
+  text-transform: uppercase;
+  margin-bottom: 11px;
+}
+
+.price {
+  @include font($fs: rem(20px), $fw: $fw-small, $co: $co-black, $lh: rem(20px));
+  margin-bottom: 64px;
+}
+
+@include tablet {
+  .panel {
+    display: flex;
+  }
+
+  .title {
+    @include font($fs: rem(20px), $lh: rem(20px));
+  }
+
+  .price {
+    @include font($fs: rem(14px), $lh: rem(14px));
+    margin-bottom: 40px;
+  }
+}
+
+@include desktop {
+  .panel {
+  }
+}

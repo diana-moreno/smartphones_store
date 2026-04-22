@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
+import { useCart } from '../../../entities/cart/model/useCart';
 import logo from '../../assets/logo.svg';
 import bagIcon from '../../assets/bagIcon.svg';
 import styles from './Header.module.scss';
 
-interface HeaderProps {
-  cartCount?: number;
-}
+export const Header: React.FC = () => {
+  const { count } = useCart();
 
-export const Header: React.FC<HeaderProps> = ({ cartCount = 0 }) => {
   return (
     <header className={styles.header}>
       <Link to="/" aria-label="home">
@@ -15,12 +14,12 @@ export const Header: React.FC<HeaderProps> = ({ cartCount = 0 }) => {
       </Link>
       <Link
         to="/cart"
-        aria-label={`Carrito, ${cartCount} productos`}
+        aria-label={`Carrito, ${count} productos`}
         className={styles.cartLink}
       >
         <img src={bagIcon} alt="" />
         <span aria-hidden="true" className={styles.cartCount}>
-          {cartCount}
+          {count}
         </span>
       </Link>
     </header>

@@ -1,0 +1,17 @@
+@use '../../../../app/styles/modules' as *;
+
+.button {
+  height: 65px;
+  width: 95px;
+  @include font($fs: rem(14px), $fw: $fw-small, $co: $co-black, $lh: rem(14px));
+  background-color: $co-white;
+  border: 1px solid $co-gray-300;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.selected {
+  border: 1px solid $co-black;
+}

@@ -1,0 +1,21 @@
+@use '../../../../app/styles/modules' as *;
+
+.button {
+  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-white, $lh: rem(16px));
+  width: 100%;
+  padding: 20px 0;
+  letter-spacing: 8%;
+  background: $co-black;
+  border: 0;
+  text-transform: uppercase;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    color: $co-gray-200;
+    background: $co-gray-100;
+    cursor: not-allowed;
+  }
+}
