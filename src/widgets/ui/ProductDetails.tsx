@@ -3,6 +3,7 @@ import { getProductById } from '../../entities/product/api/productApi';
 import type { ProductDetail } from '../../entities/product/model/product';
 import { ProductSpecifications } from '../../entities/product/ui/ProductSpecifications/ProductSpecifications';
 import { ProductPurchasePanel } from './ProductPurchasePanel/ProductPurchasePanel';
+import { SimilarProducts } from './SimilarProducts/SimilarProducts';
 
 interface ProductDetailsProps {
   id: string;
@@ -38,6 +39,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ id }) => {
     <>
       <ProductPurchasePanel product={productDetail} />
       <ProductSpecifications productDetail={productDetail} />
+      <SimilarProducts products={productDetail.similarProducts} />
     </>
   );
 };
