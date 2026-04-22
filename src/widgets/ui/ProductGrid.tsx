@@ -3,8 +3,10 @@ import { getProducts } from '../../entities/product/api/productApi';
 import type { ProductSummary } from '../../entities/product/model/product';
 import { ProductList } from '../../entities/product/ui/ProductList/ProductList';
 import { SearchBar } from '../../features/searchProducts/ui/SearchBar';
+import { trimImageUrl } from '../../shared/lib/trimImageUrl';
 
 const DEBOUNCE_MS = 300;
+const MAX_PRODUCTS = 20;
 
 export const ProductGrid: React.FC = () => {
   const [search, setSearch] = useState('');
@@ -20,7 +22,14 @@ export const ProductGrid: React.FC = () => {
       setError(null);
       try {
         const data = await getProducts(search, controller.signal);
-        setProducts(data);
+        const visible = data.slice(0, MAX_PRODUCTS);
+        const withTrimmed = await Promise.all(
+          visible.map(async (p) => ({
+            ...p,
+            imageUrl: await trimImageUrl(p.imageUrl),
+          }))
+        );
+        setProducts(withTrimmed);
       } catch (e) {
         setError(e instanceof Error ? e.message : 'Error inesperado');
       } finally {
