@@ -1,0 +1,9 @@
+@use '../../../../app/styles/modules' as *;
+
+.button {
+  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-red, $lh: rem(12px));
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}

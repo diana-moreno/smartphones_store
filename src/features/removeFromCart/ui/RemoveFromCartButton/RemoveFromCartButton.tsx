@@ -1,0 +1,22 @@
+import { useCart } from '../../../../entities/cart/model/useCart';
+import styles from './RemoveFromCartButton.module.scss';
+
+interface RemoveFromCartButtonProps {
+  itemId: string;
+}
+
+export const RemoveFromCartButton: React.FC<RemoveFromCartButtonProps> = ({
+  itemId,
+}) => {
+  const { removeItem } = useCart();
+
+  return (
+    <button
+      type="button"
+      onClick={() => removeItem(itemId)}
+      className={styles.button}
+    >
+      Eliminar
+    </button>
+  );
+};
