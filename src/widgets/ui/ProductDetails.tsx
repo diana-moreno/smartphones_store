@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getProductById } from '../../entities/product/api/productApi';
 import type { ProductDetail } from '../../entities/product/model/product';
 import { ProductSpecifications } from '../../entities/product/ui/ProductSpecifications/ProductSpecifications';
+import { ProductPurchasePanel } from './ProductPurchasePanel/ProductPurchasePanel';
 
 interface ProductDetailsProps {
   id: string;
@@ -34,9 +35,9 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ id }) => {
   if (!productDetail) return null;
 
   return (
-    <section>
-      {/* // imagen y selectores */}
+    <>
+      <ProductPurchasePanel product={productDetail} />
       <ProductSpecifications productDetail={productDetail} />
-    </section>
+    </>
   );
 };
