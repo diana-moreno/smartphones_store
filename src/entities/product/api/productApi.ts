@@ -5,12 +5,15 @@ const GENERIC_ERROR =
   'No ha sido posible cargar los datos. Inténtalo de nuevo más tarde.';
 
 export const getProducts = async (
-  search?: string,
+  search: string,
+  limit: number,
   signal?: AbortSignal
 ): Promise<ProductSummary[]> => {
-  const query = search ? `?search=${encodeURIComponent(search)}` : '';
   try {
-    return await get<ProductSummary[]>(`/products${query}`, signal);
+    return await get<ProductSummary[]>(
+      `/products?search=${search}&limit=${limit}`,
+      signal
+    );
   } catch (e) {
     const status = (e as { status?: number }).status;
     if (status === 401) {

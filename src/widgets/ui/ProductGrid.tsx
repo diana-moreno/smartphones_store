@@ -3,14 +3,16 @@ import { getProducts } from '../../entities/product/api/productApi';
 import type { ProductSummary } from '../../entities/product/model/product';
 import { ProductList } from '../../entities/product/ui/ProductList/ProductList';
 import { SearchBar } from '../../features/searchProducts/ui/SearchBar';
+import { useLoading } from '../../app/loading/useLoading';
 
 const DEBOUNCE_MS = 300;
+const MAX_PRODUCTS = 20;
 
 export const ProductGrid: React.FC = () => {
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState<ProductSummary[]>([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { isLoading, setLoading } = useLoading();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -19,7 +21,7 @@ export const ProductGrid: React.FC = () => {
       setLoading(true);
       setError(null);
       try {
-        const data = await getProducts(search, controller.signal);
+        const data = await getProducts(search, MAX_PRODUCTS, controller.signal);
         setProducts(data);
       } catch (e) {
         setError(e instanceof Error ? e.message : 'Error inesperado');
@@ -32,13 +34,13 @@ export const ProductGrid: React.FC = () => {
       clearTimeout(timeoutId);
       controller.abort();
     };
-  }, [search]);
+  }, [search, setLoading]);
 
   return (
     <section>
       <SearchBar value={search} onChange={setSearch} />
       {error && <p role="alert">{error}</p>}
-      {!loading && !error && <ProductList products={products} />}
+      {!isLoading && !error && <ProductList products={products} />}
     </section>
   );
 };

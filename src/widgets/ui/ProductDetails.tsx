@@ -4,6 +4,7 @@ import type { ProductDetail } from '../../entities/product/model/product';
 import { ProductSpecifications } from '../../entities/product/ui/ProductSpecifications/ProductSpecifications';
 import { ProductPurchasePanel } from './ProductPurchasePanel/ProductPurchasePanel';
 import { SimilarProducts } from './SimilarProducts/SimilarProducts';
+import { useLoading } from '../../app/loading/useLoading';
 
 interface ProductDetailsProps {
   id: string;
@@ -13,8 +14,8 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ id }) => {
   const [productDetail, setProductDetail] = useState<ProductDetail | null>(
     null
   );
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { isLoading, setLoading } = useLoading();
 
   useEffect(() => {
     (async () => {
@@ -29,11 +30,10 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ id }) => {
         setLoading(false);
       }
     })();
-  }, [id]);
+  }, [id, setLoading]);
 
-  if (loading) return null;
+  if (isLoading || !productDetail) return null;
   if (error) return <p role="alert">{error}</p>;
-  if (!productDetail) return null;
 
   return (
     <>
