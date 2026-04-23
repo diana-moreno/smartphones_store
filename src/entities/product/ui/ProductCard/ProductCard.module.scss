@@ -4,14 +4,40 @@
   padding: 15px;
   width: $productCard-width-mobile;
   height: $productCard-height-mobile;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: $co-black;
+    transform: translateY(100%);
+    transition: transform 0.5s ease-out;
+    z-index: 0;
+  }
+
+  &:hover::after {
+    transform: translateY(0);
+  }
+}
+
+.card:hover .brand,
+.card:hover .name,
+.card:hover .price {
+  color: $co-white;
 }
 
 .imageWrapper {
   width: 100%;
+  height: 288px;
+  position: relative;
+  z-index: 1;
 }
 
 .image {
   width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -19,18 +45,22 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  position: relative;
+  z-index: 1;
 }
 
 .brand {
   @include font($fs: rem(10px), $fw: $fw-small, $co: $co-gray, $lh: rem(10px));
   text-transform: uppercase;
   margin-bottom: 4px;
+  transition: color 0.2s ease-in;
 }
 
 .name,
 .price {
   @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
   text-transform: uppercase;
+  transition: color 0.2s ease-in;
 }
 
 @include tablet {
