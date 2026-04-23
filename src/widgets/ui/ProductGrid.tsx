@@ -3,7 +3,6 @@ import { getProducts } from '../../entities/product/api/productApi';
 import type { ProductSummary } from '../../entities/product/model/product';
 import { ProductList } from '../../entities/product/ui/ProductList/ProductList';
 import { SearchBar } from '../../features/searchProducts/ui/SearchBar';
-import { trimImageUrl } from '../../shared/lib/trimImageUrl';
 
 const DEBOUNCE_MS = 300;
 const MAX_PRODUCTS = 20;
@@ -11,29 +10,18 @@ const MAX_PRODUCTS = 20;
 export const ProductGrid: React.FC = () => {
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState<ProductSummary[]>([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
 
     const timeoutId = setTimeout(async () => {
-      setLoading(true);
       setError(null);
       try {
         const data = await getProducts(search, controller.signal);
-        const visible = data.slice(0, MAX_PRODUCTS);
-        const withTrimmed = await Promise.all(
-          visible.map(async (p) => ({
-            ...p,
-            imageUrl: await trimImageUrl(p.imageUrl),
-          }))
-        );
-        setProducts(withTrimmed);
+        setProducts(data.slice(0, MAX_PRODUCTS));
       } catch (e) {
         setError(e instanceof Error ? e.message : 'Error inesperado');
-      } finally {
-        setLoading(false);
       }
     }, DEBOUNCE_MS);
 
@@ -47,7 +35,7 @@ export const ProductGrid: React.FC = () => {
     <section>
       <SearchBar value={search} onChange={setSearch} />
       {error && <p role="alert">{error}</p>}
-      {!loading && !error && <ProductList products={products} />}
+      {!error && <ProductList products={products} />}
     </section>
   );
 };

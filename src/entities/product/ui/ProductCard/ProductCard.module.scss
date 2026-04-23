@@ -6,6 +6,15 @@
   aspect-ratio: 312 / 257;
   object-fit: contain;
 }
+.imageSkeleton {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 312 / 257;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // background-color: $co-black;
+}
 
 .info {
   display: flex;

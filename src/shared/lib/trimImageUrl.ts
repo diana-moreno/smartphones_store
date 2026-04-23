@@ -61,7 +61,7 @@ const trimLoadedImage = (image: HTMLImageElement): string | null => {
   return out.toDataURL('image/png');
 };
 
-export const trimImageUrl = (src: string): Promise<string> =>
+const trimImagePromise = (src: string): Promise<string> =>
   new Promise((resolve) => {
     const image = new Image();
     image.crossOrigin = 'anonymous';
@@ -76,3 +76,26 @@ export const trimImageUrl = (src: string): Promise<string> =>
     image.onerror = () => resolve(src);
     image.src = src;
   });
+
+type CacheEntry =
+  | { status: 'pending'; promise: Promise<void> }
+  | { status: 'done'; value: string }
+  | { status: 'error'; value: string };
+
+const cache = new Map<string, CacheEntry>();
+
+export const readTrimmedImage = (src: string): string => {
+  let entry = cache.get(src);
+
+  if (!entry) {
+    const promise = trimImagePromise(src).then(
+      (value) => { cache.set(src, { status: 'done', value }); },
+      () => { cache.set(src, { status: 'error', value: src }); }
+    );
+    entry = { status: 'pending', promise };
+    cache.set(src, entry);
+  }
+
+  if (entry.status === 'pending') throw entry.promise;
+  return entry.value;
+};
