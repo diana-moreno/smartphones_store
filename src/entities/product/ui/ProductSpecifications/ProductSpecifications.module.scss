@@ -32,7 +32,7 @@
 }
 
 .description {
-  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
+  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(14px));
 }
 
 @include tablet {
