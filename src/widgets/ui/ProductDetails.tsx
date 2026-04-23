@@ -14,15 +14,13 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ id }) => {
   const [productDetail, setProductDetail] = useState<ProductDetail | null>(
     null
   );
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { startTask, stopTask } = useLoading();
+  const { isLoading, setLoading } = useLoading();
 
   useEffect(() => {
     (async () => {
       setLoading(true);
       setError(null);
-      startTask();
       try {
         const data = await getProductById(id);
         setProductDetail(data);
@@ -30,12 +28,11 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ id }) => {
         setError(e instanceof Error ? e.message : 'Error inesperado');
       } finally {
         setLoading(false);
-        stopTask();
       }
     })();
-  }, [id, startTask, stopTask]);
+  }, [id, setLoading]);
 
-  if (loading || !productDetail) return null;
+  if (isLoading || !productDetail) return null;
   if (error) return <p role="alert">{error}</p>;
 
   return (
