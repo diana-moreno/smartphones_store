@@ -42,7 +42,7 @@
 }
 
 :global(.swiper .swiper-wrapper) {
-  height: calc(344px + 40px);
+  height: calc(#{$productCard-height-mobile} + 40px);
 }
 
 :global(.swiper-horizontal > .swiper-wrapper + .swiper-scrollbar) {
@@ -60,32 +60,32 @@
 :global(.swiper .swiper-wrapper .swiper-slide),
 :global(.swiper .swiper-wrapper .swiper-slide-active),
 .item {
-  height: 344px;
-  width: 344px;
+  height: $productCard-height-mobile;
+  width: $productCard-width-mobile;
 }
 
 @include tablet {
   :global(.swiper .swiper-wrapper) {
-    height: calc(377px + 40px);
+    height: calc(#{$productCard-height-tablet} + 40px);
   }
 
   :global(.swiper .swiper-wrapper .swiper-slide),
   :global(.swiper .swiper-wrapper .swiper-slide-active),
   .item {
-    height: 377px;
-    width: 377px;
+    height: $productCard-height-tablet;
+    width: $productCard-width-tablet;
   }
 }
 
 @include desktop {
   :global(.swiper .swiper-wrapper) {
-    height: calc(344px + 40px);
+    height: calc(#{$productCard-height-desktop} + 40px);
   }
 
   :global(.swiper .swiper-wrapper .swiper-slide),
   :global(.swiper .swiper-wrapper .swiper-slide-active),
   .item {
-    height: 344px;
-    width: 344px;
+    height: $productCard-height-desktop;
+    width: $productCard-width-desktop;
   }
 }

@@ -13,7 +13,7 @@ h3,
 h4,
 h5,
 h6 {
-  @include font($fw: $fw-semibold, $lh: 1.2);
+  @include font($fw: 600, $lh: 1.2);
 }
 
 h1 {
