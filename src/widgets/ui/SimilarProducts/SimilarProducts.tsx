@@ -25,8 +25,8 @@ export const SimilarProducts: React.FC<SimilarProductsProps> = ({
       <Swiper
         modules={[Scrollbar]}
         spaceBetween={0}
-        slidesPerView={5}
         scrollbar={{ draggable: true }}
+        slidesPerView={'auto'}
       >
         {products.map((product) => (
           <SwiperSlide>

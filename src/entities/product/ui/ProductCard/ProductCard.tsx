@@ -7,12 +7,14 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <article>
-      <img
-        src={product.imageUrl}
-        alt={`${product.brand} ${product.name}`}
-        className={styles.image}
-      />
+    <article className={styles.card}>
+      <div className={styles.imageWrapper}>
+        <img
+          src={product.imageUrl}
+          alt={`${product.brand} ${product.name}`}
+          className={styles.image}
+        />
+      </div>
       <div className={styles.info}>
         <div>
           <p className={styles.brand}>{product.brand}</p>

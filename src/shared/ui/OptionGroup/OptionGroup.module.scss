@@ -7,9 +7,9 @@
 }
 
 .legend {
-  @include font($fs: rem(14px), $fw: $fw-small, $co: $co-black, $lh: rem(14px));
+  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
 .list {
@@ -17,4 +17,11 @@
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+@include desktop {
+  .legend {
+    @include font($fs: rem(14px), $lh: rem(14px));
+    margin-bottom: 24px;
+  }
 }

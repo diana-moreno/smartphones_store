@@ -33,6 +33,6 @@ export const ColorSelector: React.FC<ColorSelectorProps> = ({
         );
       })}
     </OptionGroup>
-    {selected && <p className={styles.selectedName}>{selected}</p>}
+    <p className={styles.selectedName}>{selected}</p>
   </div>
 );
