@@ -10,12 +10,20 @@
 
 .label {
   visibility: hidden;
+  width: 0;
   height: 0;
+  display: block;
 }
 
-.input {
-  flex: 1;
-  padding: 20px 0;
+.searcher {
+  @include font(
+    $fs: rem(16px),
+    $fw: $fw-small,
+    $co: $co-gray-400,
+    $lh: rem(16px)
+  );
+  width: 100%;
+  padding: 8px 0;
   background: none;
   border: 0;
   outline: none;
@@ -25,10 +33,16 @@
   }
 }
 
+.hasValue {
+  @include font($co: $co-black);
+}
+
 .clear {
   padding: 0;
   background: none;
   border: 0;
-  cursor: pointer;
-  line-height: 1;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

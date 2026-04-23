@@ -1,4 +1,5 @@
 import styles from './SearchBar.module.scss';
+import shape from '../assets/shape.svg';
 
 interface SearchBarProps {
   value: string;
@@ -9,7 +10,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ value, onChange }) => {
   return (
     <form role="search" className={styles.form}>
       <label htmlFor="product-search" className={styles.label}>
-        Buscar productos
+        Search for a smartphone...
       </label>
       <input
         id="product-search"
@@ -17,7 +18,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ value, onChange }) => {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Search for a smartphone..."
-        className={styles.input}
+        className={`${styles.searcher} ${value ? styles.hasValue : ''}`}
       />
       {value && (
         <button
@@ -26,7 +27,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ value, onChange }) => {
           aria-label="Limpiar búsqueda"
           className={styles.clear}
         >
-          X
+          <img src={shape} alt="close icon" />
         </button>
       )}
     </form>
