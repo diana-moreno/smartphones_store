@@ -38,7 +38,7 @@ export const ProductGrid: React.FC = () => {
 
   return (
     <section>
-      <SearchBar value={search} onChange={setSearch} />
+      <SearchBar value={search} onChange={setSearch} totalResults={products.length} />
       {error && <p role="alert">{error}</p>}
       {!isLoading && !error && <ProductList products={products} />}
     </section>

@@ -46,3 +46,9 @@
     cursor: pointer;
   }
 }
+
+.results {
+  text-transform: uppercase;
+  margin-top: 16px;
+  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
+}
