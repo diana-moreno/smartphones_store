@@ -26,14 +26,7 @@ export const SimilarProducts: React.FC<SimilarProductsProps> = ({
         modules={[Scrollbar]}
         spaceBetween={0}
         scrollbar={{ draggable: true }}
-        // slidesPerView={5}
         slidesPerView={'auto'}
-        // breakpoints={{
-        //   // 0: { slidesPerView: 1 },
-        //   393: { slidesPerView: 1 },
-        //   834: { slidesPerView: 2 },
-        //   1920: { slidesPerView: 3 },
-        // }}
       >
         {products.map((product) => (
           <SwiperSlide>
