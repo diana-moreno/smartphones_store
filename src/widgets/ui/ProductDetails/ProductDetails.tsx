@@ -40,7 +40,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ id }) => {
     <div className={styles.wrapper}>
       <ProductPurchasePanel product={productDetail} />
       <ProductSpecifications productDetail={productDetail} />
-      <SimilarProducts products={productDetail.similarProducts} />
+      {/* <SimilarProducts products={productDetail.similarProducts} /> */}
     </div>
   );
 };

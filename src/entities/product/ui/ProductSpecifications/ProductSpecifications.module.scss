@@ -1,5 +1,9 @@
 @use '../../../../app/styles/modules' as *;
 
+.section {
+  margin-top: 80px;
+}
+
 .title {
   @include font($fs: rem(20px), $fw: $fw-small, $co: $co-black, $lh: rem(20px));
   text-transform: uppercase;
@@ -12,8 +16,8 @@
 
 .row {
   display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 48px;
+  grid-template-columns: 150px 1fr;
+  gap: 12px;
   padding: 16px 0;
   border-bottom: 1px solid $co-black;
 
@@ -25,10 +29,25 @@
 .label {
   @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
   text-transform: uppercase;
-  // margin: 0;
 }
 
 .description {
   @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
-  // margin: 0;
+}
+
+@include tablet {
+  .row {
+    grid-template-columns: 300px 1fr;
+    gap: 48px;
+  }
+
+  .section {
+    margin-top: 88px;
+  }
+}
+
+@include desktop {
+  .section {
+    margin-top: 154px;
+  }
 }

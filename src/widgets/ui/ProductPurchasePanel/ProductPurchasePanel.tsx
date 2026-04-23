@@ -60,11 +60,13 @@ export const ProductPurchasePanel: React.FC<ProductPurchasePanelProps> = ({
             label="Color. Pick your favourite."
           />
         </div>
-        <AddToCartButton
-          product={product}
-          selectedColor={selectedColor}
-          selectedStorage={selectedStorage}
-        />
+        <div className={styles.addButton}>
+          <AddToCartButton
+            product={product}
+            selectedColor={selectedColor}
+            selectedStorage={selectedStorage}
+          />
+        </div>
       </div>
     </section>
   );

@@ -2,6 +2,8 @@
 
 .list {
   margin-bottom: 40px;
+  max-width: 92vw;
+  margin-top: 80px;
 }
 
 .title {
@@ -29,6 +31,33 @@
 
 :global(.swiper .swiper-wrapper) {
   height: 334px;
+}
+
+:global(.swiper .swiper-wrapper .swiper-slide) {
+  height: 377px;
+  width: 377px;
+}
+
+@include tablet {
+  :global(.swiper .swiper-wrapper .swiper-slide) {
+    height: 361px;
+    width: 344px;
+  }
+
+  .list {
+    margin-top: 88px;
+  }
+}
+
+@include desktop {
+  :global(.swiper .swiper-wrapper .swiper-slide) {
+    height: 344px;
+    width: 344px;
+  }
+
+  .list {
+    margin-top: 154px;
+  }
 }
 
 :global(.swiper-horizontal > .swiper-wrapper + .swiper-scrollbar) {
