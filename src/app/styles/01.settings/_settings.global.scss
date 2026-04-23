@@ -18,10 +18,6 @@ $fs-root: 16px;
 $ff-body: Helvetica, Arial, sans-serif;
 
 $fw-small: 300;
-$fw-normal: 400;
-$fw-medium: 500;
-$fw-semibold: 600;
-$fw-bold: 700;
 
 // Convert px to rem based on the root font-size
 @function rem($size) {
@@ -31,3 +27,13 @@ $fw-bold: 700;
 // Breakpoints (mobile-first)
 $bp-tablet: 834px;
 $bp-desktop: 1920px;
+
+// Product card dimensions
+$productCard-width-mobile: 361px;
+$productCard-height-mobile: 344px;
+
+$productCard-width-tablet: 377px;
+$productCard-height-tablet: 377px;
+
+$productCard-width-desktop: 344px;
+$productCard-height-desktop: 344px;

@@ -2,8 +2,8 @@
 
 .card {
   padding: 15px;
-  height: 377px;
-  width: 377px;
+  width: $productCard-width-mobile;
+  height: $productCard-height-mobile;
 }
 
 .imageWrapper {
@@ -35,14 +35,14 @@
 
 @include tablet {
   .card {
-    height: 377px;
-    width: 377px;
+    width: $productCard-width-tablet;
+    height: $productCard-height-tablet;
   }
 }
 
 @include desktop {
-  card {
-    height: 344px;
-    width: 344px;
+  .card {
+    width: $productCard-width-desktop;
+    height: $productCard-height-desktop;
   }
 }

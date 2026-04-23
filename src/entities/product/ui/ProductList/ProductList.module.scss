@@ -2,16 +2,16 @@
 
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 361px);
+  grid-template-columns: repeat(1, $productCard-width-mobile);
   justify-content: center;
   margin: 24px 0 80px 0;
 }
 
 .item {
-  width: 361px;
-  height: 344px;
-  padding: 16px;
   border: 1px solid $co-black;
+  box-sizing: border-box;
+  margin: -0.5px;
+  position: relative;
 }
 
 .link {
@@ -20,24 +20,14 @@
 
 @include tablet {
   .list {
-    grid-template-columns: repeat(auto-fill, 377px);
+    grid-template-columns: repeat(2, $productCard-width-tablet);
     margin: 48px 0 80px 0;
-  }
-
-  .item {
-    width: 377px;
-    height: 377px;
   }
 }
 
 @include desktop {
   .list {
-    grid-template-columns: repeat(auto-fill, 344px);
+    grid-template-columns: repeat(5, $productCard-width-desktop);
     margin: 48px 0 147px 0;
-  }
-
-  .item {
-    width: 344px;
-    height: 344px;
   }
 }
