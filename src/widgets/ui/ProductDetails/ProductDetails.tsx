@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { getProductById } from '../../entities/product/api/productApi';
-import type { ProductDetail } from '../../entities/product/model/product';
-import { ProductSpecifications } from '../../entities/product/ui/ProductSpecifications/ProductSpecifications';
-import { ProductPurchasePanel } from './ProductPurchasePanel/ProductPurchasePanel';
-import { SimilarProducts } from './SimilarProducts/SimilarProducts';
-import { useLoading } from '../../app/loading/useLoading';
+import { getProductById } from '../../../entities/product/api/productApi';
+import type { ProductDetail } from '../../../entities/product/model/product';
+import { ProductSpecifications } from '../../../entities/product/ui/ProductSpecifications/ProductSpecifications';
+import { ProductPurchasePanel } from '../ProductPurchasePanel/ProductPurchasePanel';
+import { SimilarProducts } from '../SimilarProducts/SimilarProducts';
+import { useLoading } from '../../../app/loading/useLoading';
+import styles from './ProductDetails.module.scss';
 
 interface ProductDetailsProps {
   id: string;
@@ -36,10 +37,10 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ id }) => {
   if (error) return <p role="alert">{error}</p>;
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <ProductPurchasePanel product={productDetail} />
       <ProductSpecifications productDetail={productDetail} />
       <SimilarProducts products={productDetail.similarProducts} />
-    </>
+    </div>
   );
 };

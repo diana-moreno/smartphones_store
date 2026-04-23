@@ -20,6 +20,21 @@
 }
 
 .selectedName {
-  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
+  @include font($fs: rem(10px), $fw: $fw-small, $co: $co-black, $lh: rem(10px));
   margin-top: 8px;
+  height: 10px;
+}
+
+@include tablet {
+  .selectedName {
+    @include font($fs: rem(12px), $lh: rem(12px));
+    height: 12px;
+  }
+}
+
+@include desktop {
+  .selectedName {
+    @include font($fs: rem(10px), $lh: rem(10px));
+    height: 10px;
+  }
 }

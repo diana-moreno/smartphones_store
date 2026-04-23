@@ -4,39 +4,83 @@
   display: block;
 }
 
+.imageWrapper {
+  width: 260px;
+  height: 273px;
+}
+
 .image {
   width: 100%;
-  height: auto;
   object-fit: contain;
 }
 
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 380px;
+}
+
 .title {
-  @include font($fs: rem(24px), $fw: $fw-small, $co: $co-black, $lh: rem(24px));
+  @include font($fs: rem(20px), $fw: $fw-small, $co: $co-black, $lh: rem(20px));
   text-transform: uppercase;
   margin-bottom: 11px;
 }
 
 .price {
-  @include font($fs: rem(20px), $fw: $fw-small, $co: $co-black, $lh: rem(20px));
-  margin-bottom: 64px;
+  @include font($fs: rem(14px), $fw: $fw-small, $co: $co-black, $lh: rem(14px));
+  margin-bottom: 40px;
+}
+
+.storageWrapper {
+  margin-bottom: 32px;
+}
+
+.colorWrapper {
+  margin-bottom: 41px;
 }
 
 @include tablet {
+  .imageWrapper {
+    width: 336px;
+    height: 414px;
+  }
+
   .panel {
     display: flex;
+    justify-content: space-between;
   }
 
-  .title {
-    @include font($fs: rem(20px), $lh: rem(20px));
+  .imageWrapper {
+    max-width: 530px;
   }
 
-  .price {
-    @include font($fs: rem(14px), $lh: rem(14px));
-    margin-bottom: 40px;
+  .colorWrapper {
+    margin-bottom: 20px;
   }
 }
 
 @include desktop {
-  .panel {
+  .imageWrapper {
+    width: 510px;
+    height: 630px;
+  }
+
+  .title {
+    @include font($fs: rem(24px), $lh: rem(24px));
+    margin-bottom: 11px;
+  }
+
+  .price {
+    @include font($fs: rem(20px), $lh: rem(20px));
+    margin-bottom: 64px;
+  }
+
+  .storageWrapper {
+    margin-bottom: 40px;
+  }
+
+  .colorWrapper {
+    margin-bottom: 41px;
   }
 }

@@ -32,28 +32,34 @@ export const ProductPurchasePanel: React.FC<ProductPurchasePanelProps> = ({
 
   return (
     <section className={styles.panel}>
-      <img
-        src={displayImageUrl}
-        alt={`${product.brand} ${product.name}`}
-        className={styles.image}
-      />
-      <div>
+      <div className={styles.imageWrapper}>
+        <img
+          src={displayImageUrl}
+          alt={`${product.brand} ${product.name}`}
+          className={styles.image}
+        />
+      </div>
+      <div className={styles.textWrapper}>
         <h1 className={styles.title}>{product.name}</h1>
         <p className={styles.price}>
           {isComplete ? `${selectedStorage.price} EUR` : `From ${minPrice} EUR`}
         </p>
-        <StorageSelector
-          options={product.storageOptions}
-          selected={selectedCapacity}
-          onChange={setSelectedCapacity}
-          label="Storage. How much space do you need?"
-        />
-        <ColorSelector
-          options={product.colorOptions}
-          selected={selectedColorName}
-          onChange={setSelectedColorName}
-          label="Color. Pick your favourite."
-        />
+        <div className={styles.storageWrapper}>
+          <StorageSelector
+            options={product.storageOptions}
+            selected={selectedCapacity}
+            onChange={setSelectedCapacity}
+            label="Storage. How much space do you need?"
+          />
+        </div>
+        <div className={styles.colorWrapper}>
+          <ColorSelector
+            options={product.colorOptions}
+            selected={selectedColorName}
+            onChange={setSelectedColorName}
+            label="Color. Pick your favourite."
+          />
+        </div>
         <AddToCartButton
           product={product}
           selectedColor={selectedColor}
