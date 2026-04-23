@@ -1,6 +1,6 @@
 @use '../../../app/styles/modules.scss' as *;
 
-.header {
+.navBar {
   margin: 28px 0;
   display: flex;
   justify-content: space-between;
@@ -16,4 +16,28 @@
 .cartCount {
   margin-left: 6px;
   @include font($fs: rem(16px), $fw: $fw-small, $co: $co-black, $lh: rem(16px));
+}
+
+.goBackLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.goBackText {
+  padding: 12px 0;
+  text-transform: uppercase;
+  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
+}
+
+@include tablet {
+  .goBackText {
+    padding: 14px 0;
+  }
+}
+
+@include desktop {
+  .goBackText {
+    padding: 12px 0;
+  }
 }
