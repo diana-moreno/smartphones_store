@@ -1,9 +1,17 @@
 @use '../../../../app/styles/modules' as *;
 
+.card {
+  padding: 15px;
+  height: 377px;
+  width: 377px;
+}
+
+.imageWrapper {
+  width: 100%;
+}
+
 .image {
   width: 100%;
-  max-width: 300px;
-  aspect-ratio: 312 / 257;
   object-fit: contain;
 }
 
@@ -23,4 +31,18 @@
 .price {
   @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
   text-transform: uppercase;
+}
+
+@include tablet {
+  .card {
+    height: 377px;
+    width: 377px;
+  }
+}
+
+@include desktop {
+  card {
+    height: 344px;
+    width: 344px;
+  }
 }
