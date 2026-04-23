@@ -21,8 +21,8 @@ export const ProductGrid: React.FC = () => {
       setLoading(true);
       setError(null);
       try {
-        const data = await getProducts(search, controller.signal);
-        setProducts(data.slice(0, MAX_PRODUCTS));
+        const data = await getProducts(search, MAX_PRODUCTS, controller.signal);
+        setProducts(data);
       } catch (e) {
         setError(e instanceof Error ? e.message : 'Error inesperado');
       } finally {
