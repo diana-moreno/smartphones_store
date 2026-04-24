@@ -25,19 +25,18 @@ describe('ProductList', () => {
     it('should render a link for each product', () => {
       renderWithProviders(<ProductList products={products} />);
       expect(
-        screen.getByRole('link', { name: /iphone 15/i })
+        screen.getByRole('link', { name: 'Go to product iPhone 15 details' })
       ).toBeInTheDocument();
       expect(
-        screen.getByRole('link', { name: /galaxy s24/i })
+        screen.getByRole('link', { name: 'Go to product Galaxy S24 details' })
       ).toBeInTheDocument();
     });
 
     it('should link to the correct product detail URL', () => {
       renderWithProviders(<ProductList products={products} />);
-      expect(screen.getByRole('link', { name: /iphone 15/i })).toHaveAttribute(
-        'href',
-        '/products/p1'
-      );
+      expect(
+        screen.getByRole('link', { name: 'Go to product iPhone 15 details' })
+      ).toHaveAttribute('href', '/products/p1');
     });
 
     it('should render an empty list when products is empty', () => {

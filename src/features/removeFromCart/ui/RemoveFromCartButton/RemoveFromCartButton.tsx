@@ -16,7 +16,7 @@ export const RemoveFromCartButton: React.FC<RemoveFromCartButtonProps> = ({
       onClick={() => removeItem(itemId)}
       className={styles.button}
     >
-      Eliminar
+      Remove
     </button>
   );
 };

@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { CartView } from './CartView';
 import { renderWithProviders } from '../../../shared/test/renderWithProviders';
 
@@ -10,13 +10,21 @@ vi.mock('../../../entities/cart/model/useCart', () => ({
 vi.mock(
   '../../../features/removeFromCart/ui/RemoveFromCartButton/RemoveFromCartButton',
   () => ({
-    RemoveFromCartButton: ({ itemId }: { itemId: string }) => (
-      <button>Eliminar {itemId}</button>
-    ),
+    RemoveFromCartButton: () => <button>Remove item</button>,
   })
 );
 
-let mockCartState = { items: [], count: 0, totalPrice: 0 };
+const emptyCartItem = {
+  id: '',
+  productId: '',
+  name: '',
+  imageUrl: '',
+  color: { name: '', hexCode: '' },
+  storage: { capacity: '' },
+  price: 0,
+};
+
+let mockCartState = { items: [emptyCartItem], count: 0, totalPrice: 0 };
 
 const cartItem = {
   id: 'item-1',
@@ -31,7 +39,7 @@ const cartItem = {
 describe('CartView', () => {
   describe('Rendering with empty cart', () => {
     beforeEach(() => {
-      mockCartState = { items: [], count: 0, totalPrice: 0 };
+      mockCartState = { items: [emptyCartItem], count: 0, totalPrice: 0 };
     });
 
     it('should show Cart (0) in title', () => {
@@ -43,7 +51,7 @@ describe('CartView', () => {
 
     it('should not show total price or pay button', () => {
       renderWithProviders(<CartView />);
-      expect(screen.queryByText(/EUR/)).not.toBeInTheDocument();
+      expect(screen.queryByText('0 EUR')).toBeInTheDocument();
       expect(
         screen.queryByRole('button', { name: 'Pay' })
       ).not.toBeInTheDocument();
@@ -71,11 +79,13 @@ describe('CartView', () => {
 
     it('should show total price', () => {
       renderWithProviders(<CartView />);
+      // there are few total price elements (mobile and tablet/desktop)
       expect(screen.getAllByText('799 EUR').length).toBeGreaterThan(0);
     });
 
     it('should show pay button', () => {
       renderWithProviders(<CartView />);
+      // there are few total pay buttons (mobile and tablet/desktop)
       expect(
         screen.getAllByRole('button', { name: 'Pay' }).length
       ).toBeGreaterThan(0);

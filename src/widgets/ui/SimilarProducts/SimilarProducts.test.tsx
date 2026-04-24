@@ -49,13 +49,11 @@ describe('SimilarProducts', () => {
 
   it('should render a link for each product', () => {
     renderWithProviders(<SimilarProducts products={products} />);
-    expect(screen.getByRole('link', { name: /iphone 15/i })).toHaveAttribute(
-      'href',
-      '/products/p1'
-    );
-    expect(screen.getByRole('link', { name: /galaxy s24/i })).toHaveAttribute(
-      'href',
-      '/products/p2'
-    );
+    expect(
+      screen.getByRole('link', { name: 'Go to iPhone 15 detail' })
+    ).toHaveAttribute('href', '/products/p1');
+    expect(
+      screen.getByRole('link', { name: 'Go to Galaxy S24 detail' })
+    ).toHaveAttribute('href', '/products/p2');
   });
 });

@@ -17,21 +17,21 @@ describe('Header', () => {
     it('should render the cart link with item count', () => {
       renderWithProviders(<Header />);
       expect(
-        screen.getByRole('link', { name: /carrito/i })
+        screen.getByRole('link', { name: 'Cart, 0 products' })
       ).toBeInTheDocument();
     });
 
     it('should not show back link on home page', () => {
       renderWithProviders(<Header />, { initialPath: '/' });
       expect(
-        screen.queryByRole('link', { name: /go back/i })
+        screen.queryByRole('link', { name: 'Go back to home' })
       ).not.toBeInTheDocument();
     });
 
-    it('should show back link on product detail page', () => {
+    it('should show Go back to home link on product detail page', () => {
       renderWithProviders(<Header />, { initialPath: '/products/abc123' });
       expect(
-        screen.getByRole('link', { name: /go back/i })
+        screen.getByRole('link', { name: 'Go back to home' })
       ).toBeInTheDocument();
     });
   });

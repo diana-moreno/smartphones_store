@@ -25,7 +25,7 @@ describe('CartItem', () => {
     render(<CartItem item={item} />);
 
     expect(
-      screen.getByRole('img', { name: 'iPhone 15 en color Black' })
+      screen.getByRole('img', { name: 'iPhone 15 color Black' })
     ).toHaveAttribute('src', 'iphone.jpg');
   });
 

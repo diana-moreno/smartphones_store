@@ -25,7 +25,16 @@ const product = {
   description: '',
   basePrice: 799,
   rating: 4.5,
-  specs: {} as never,
+  specs: {
+    screen: '',
+    resolution: '',
+    processor: '',
+    mainCamera: '',
+    selfieCamera: '',
+    battery: '',
+    os: '',
+    screenRefreshRate: '',
+  },
   colorOptions: [],
   storageOptions: [],
   similarProducts: [],
@@ -54,7 +63,7 @@ describe('AddToCartButton', () => {
         <AddToCartButton product={product} selectedStorage={selectedStorage} />
       );
 
-      expect(screen.getByRole('button', { name: 'Añadir' })).toBeDisabled();
+      expect(screen.getByRole('button', { name: 'Add' })).toBeDisabled();
     });
 
     it('should be disabled when selectedStorage is missing', () => {
@@ -62,7 +71,7 @@ describe('AddToCartButton', () => {
         <AddToCartButton product={product} selectedColor={selectedColor} />
       );
 
-      expect(screen.getByRole('button', { name: 'Añadir' })).toBeDisabled();
+      expect(screen.getByRole('button', { name: 'Add' })).toBeDisabled();
     });
 
     it('should be enabled when both color and storage are selected', () => {
@@ -74,7 +83,7 @@ describe('AddToCartButton', () => {
         />
       );
 
-      expect(screen.getByRole('button', { name: 'Añadir' })).toBeEnabled();
+      expect(screen.getByRole('button', { name: 'Add' })).toBeEnabled();
     });
   });
 
@@ -89,7 +98,7 @@ describe('AddToCartButton', () => {
         />
       );
 
-      await user.click(screen.getByRole('button', { name: 'Añadir' }));
+      await user.click(screen.getByRole('button', { name: 'Add' }));
 
       expect(mockAddItem).toHaveBeenCalledWith({
         id: 'test-uuid',
@@ -112,7 +121,7 @@ describe('AddToCartButton', () => {
         />
       );
 
-      await user.click(screen.getByRole('button', { name: 'Añadir' }));
+      await user.click(screen.getByRole('button', { name: 'Add' }));
 
       expect(mockNavigate).toHaveBeenCalledWith('/cart');
     });

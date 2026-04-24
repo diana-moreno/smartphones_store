@@ -6,7 +6,7 @@ import { ProductPurchasePanel } from './ProductPurchasePanel';
 vi.mock(
   '../../../features/addToCart/ui/AddToCartButton/AddToCartButton',
   () => ({
-    AddToCartButton: () => <button>Añadir</button>,
+    AddToCartButton: () => <button>Add</button>,
   })
 );
 

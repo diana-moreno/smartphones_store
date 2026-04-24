@@ -12,7 +12,11 @@ export const ProductList: React.FC<ProductListProps> = ({ products }) => {
     <ul className={styles.list}>
       {products.map((product) => (
         <li key={product.id} className={styles.item}>
-          <Link to={`/products/${product.id}`} className={styles.link}>
+          <Link
+            to={`/products/${product.id}`}
+            aria-label={`Go to product ${product.name} details`}
+            className={styles.link}
+          >
             <ProductCard product={product} />
           </Link>
         </li>
