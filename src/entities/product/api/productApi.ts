@@ -7,11 +7,12 @@ const GENERIC_ERROR =
 export const getProducts = async (
   search: string,
   limit: number,
+  offset: number = 0,
   signal?: AbortSignal
 ): Promise<ProductSummary[]> => {
   try {
     return await get<ProductSummary[]>(
-      `/products?search=${search}&limit=${limit}`,
+      `/products?search=${search}&limit=${limit}&offset=${offset}`,
       signal
     );
   } catch (e) {
