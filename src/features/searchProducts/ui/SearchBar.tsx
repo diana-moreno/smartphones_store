@@ -37,7 +37,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           </button>
         )}
       </form>
-      {totalResults > 0 && (
+      {(totalResults > 0 || value) && (
         <p className={styles.results}>{totalResults} results</p>
       )}
     </>
