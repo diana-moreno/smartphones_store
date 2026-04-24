@@ -24,7 +24,10 @@ export const CartView: React.FC = () => {
       </ul>
 
       <footer className={styles.footer}>
-        <Link to="/" className={styles.continueLink}>
+        <Link
+          to="/"
+          className={`${styles.continueLink} ${!count ? styles.noPay : ''}`}
+        >
           Continue shopping
         </Link>
         {count > 0 && (
