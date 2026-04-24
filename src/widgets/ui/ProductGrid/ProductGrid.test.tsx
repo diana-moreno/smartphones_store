@@ -7,33 +7,6 @@ vi.mock('../../../entities/product/api/productApi', () => ({
   getProducts: vi.fn(),
 }));
 
-vi.mock('../../../features/searchProducts/ui/SearchBar/SearchBar', () => ({
-  SearchBar: ({
-    value,
-    onChange,
-  }: {
-    value: string;
-    onChange: (v: string) => void;
-    totalResults: number;
-  }) => (
-    <input
-      aria-label="search"
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    />
-  ),
-}));
-
-vi.mock('../../../entities/product/ui/ProductList/ProductList', () => ({
-  ProductList: ({ products }: { products: { name: string }[] }) => (
-    <ul>
-      {products.map((p) => (
-        <li key={p.name}>{p.name}</li>
-      ))}
-    </ul>
-  ),
-}));
-
 import { getProducts } from '../../../entities/product/api/productApi';
 
 const mockGetProducts = vi.mocked(getProducts);
@@ -80,15 +53,18 @@ describe('ProductGrid', () => {
     renderWithProviders(<ProductGrid />);
     await act(() => vi.advanceTimersByTimeAsync(300));
 
-    fireEvent.change(screen.getByRole('textbox', { name: 'search' }), {
-      target: { value: 'samsung' },
-    });
+    fireEvent.change(
+      screen.getByPlaceholderText('Search for a smartphone...'),
+      {
+        target: { value: 'samsung' },
+      }
+    );
     await act(() => vi.advanceTimersByTimeAsync(300));
 
     expect(mockGetProducts).toHaveBeenCalledWith(
       'samsung',
-      expect.anything(),
-      expect.anything(),
+      20,
+      0,
       expect.anything()
     );
   });
