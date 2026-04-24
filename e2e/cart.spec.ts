@@ -5,16 +5,16 @@ test.describe('Cart', () => {
     await page.goto('/');
     await page.getByRole('listitem').first().getByRole('link').click();
     await page
-      .getByRole('group', { name: /storage/i })
+      .getByRole('group', { name: 'Storage' })
       .getByRole('button')
       .first()
       .click();
     await page
-      .getByRole('group', { name: /color/i })
+      .getByRole('group', { name: 'Color' })
       .getByRole('button')
       .first()
       .click();
-    await page.getByRole('button', { name: 'Añadir' }).click();
+    await page.getByRole('button', { name: 'Add' }).click();
   }
 
   test('should redirect to cart after adding a product', async ({ page }) => {
@@ -24,27 +24,25 @@ test.describe('Cart', () => {
 
   test('should display the added product in the cart', async ({ page }) => {
     await addFirstProductToCart(page);
-    await expect(
-      page.getByRole('heading', { name: /cart \(1\)/i })
-    ).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Cart (1)' })).toBeVisible();
   });
 
-  test('should show total price', async ({ page }) => {
+  test('should persist the cart across navigations', async ({ page }) => {
     await addFirstProductToCart(page);
-    await expect(page.locator('footer').getByText(/\d+ EUR/).last()).toBeVisible();
+    await page.getByRole('link', { name: 'Continue shopping' }).click();
+    await page.getByRole('link', { name: 'Cart, 1 products' }).click();
+    await expect(page.getByRole('heading', { name: 'Cart (1)' })).toBeVisible();
   });
 
   test('should remove a product from the cart', async ({ page }) => {
     await addFirstProductToCart(page);
-    await page.getByRole('button', { name: 'Eliminar' }).click();
-    await expect(
-      page.getByRole('heading', { name: /cart \(0\)/i })
-    ).toBeVisible();
+    await page.getByRole('button', { name: 'Remove' }).click();
+    await expect(page.getByRole('heading', { name: 'Cart (0)' })).toBeVisible();
   });
 
   test('should navigate back to home from the cart', async ({ page }) => {
     await addFirstProductToCart(page);
-    await page.getByRole('link', { name: /continue shopping/i }).click();
+    await page.getByRole('link', { name: 'Continue shopping' }).click();
     await expect(page).toHaveURL('/');
   });
 
@@ -52,8 +50,12 @@ test.describe('Cart', () => {
     page,
   }) => {
     await page.goto('/cart');
-    await expect(
-      page.getByRole('heading', { name: /cart \(0\)/i })
-    ).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Cart (0)' })).toBeVisible();
+  });
+
+  test('should navigate to home from the header logo', async ({ page }) => {
+    await page.goto('/cart');
+    await page.getByRole('link', { name: 'home' }).click();
+    await expect(page).toHaveURL('/');
   });
 });

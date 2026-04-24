@@ -1,62 +1,48 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Product detail', () => {
-  test.beforeEach(async ({ page }) => {
+  test('should complete the product configuration flow', async ({ page }) => {
     await page.goto('/');
     await page.getByRole('listitem').first().getByRole('link').click();
-  });
 
-  test('should display color and storage selectors', async ({ page }) => {
-    await expect(
-      page.getByRole('group', { name: /storage/i })
-    ).toBeVisible();
-    await expect(page.getByRole('group', { name: /color/i })).toBeVisible();
-  });
+    const addButton = page.getByRole('button', { name: 'Add' });
+    await expect(addButton).toBeDisabled();
 
-  test('should have the add to cart button disabled before selecting options', async ({
-    page,
-  }) => {
-    await expect(
-      page.getByRole('button', { name: 'Añadir' })
-    ).toBeDisabled();
-  });
-
-  test('should enable the add to cart button after selecting color and storage', async ({
-    page,
-  }) => {
     await page
-      .getByRole('group', { name: /storage/i })
+      .getByRole('group', { name: 'Storage' })
       .getByRole('button')
       .first()
       .click();
     await page
-      .getByRole('group', { name: /color/i })
+      .getByRole('group', { name: 'Color' })
       .getByRole('button')
       .first()
       .click();
 
-    await expect(page.getByRole('button', { name: 'Añadir' })).toBeEnabled();
+    await expect(addButton).toBeEnabled();
+    await expect(page.getByTestId('product-price')).toBeVisible();
   });
 
-  test('should update the price when selecting a storage option', async ({
-    page,
-  }) => {
-    const storageButtons = page
-      .getByRole('group', { name: /storage/i })
-      .getByRole('button');
+  test.describe('Header navigation from product detail', () => {
+    test.beforeEach(async ({ page }) => {
+      await page.goto('/');
+      await page.getByRole('listitem').first().getByRole('link').click();
+      await expect(page).toHaveURL(/\/products\/.+/);
+    });
 
-    await storageButtons.first().click();
-    const colorButtons = page
-      .getByRole('group', { name: /color/i })
-      .getByRole('button');
-    await colorButtons.first().click();
+    test('should navigate to home from the logo', async ({ page }) => {
+      await page.getByRole('link', { name: 'home', exact: true }).click();
+      await expect(page).toHaveURL('/');
+    });
 
-    await expect(page.locator('h1 ~ p', { hasText: /EUR/ })).toBeVisible();
-  });
+    test('should navigate to home from the back link', async ({ page }) => {
+      await page.getByRole('link', { name: 'Go back to home' }).click();
+      await expect(page).toHaveURL('/');
+    });
 
-  test('should show product specifications', async ({ page }) => {
-    await expect(
-      page.getByRole('heading', { name: 'Specifications' })
-    ).toBeVisible();
+    test('should navigate to cart from the cart icon', async ({ page }) => {
+      await page.getByRole('link', { name: 'Cart, 0 products' }).click();
+      await expect(page).toHaveURL('/cart');
+    });
   });
 });

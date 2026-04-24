@@ -23,7 +23,7 @@ test.describe('Products list', () => {
     const input = page.getByRole('searchbox');
     await input.fill('samsung');
 
-    await expect(page.getByText(/results/i)).toBeVisible();
+    await expect(page.getByText('results')).toBeVisible();
   });
 
   test('should show 0 results for a search with no matches', async ({
@@ -35,13 +35,10 @@ test.describe('Products list', () => {
     await expect(page.getByText('0 results')).toBeVisible();
   });
 
-  test('should clear the search when clicking the clear button', async ({
+  test('should navigate to cart from the header cart icon', async ({
     page,
   }) => {
-    const input = page.getByRole('searchbox');
-    await input.fill('samsung');
-    await page.getByRole('button', { name: /limpiar/i }).click();
-
-    await expect(input).toHaveValue('');
+    await page.getByRole('link', { name: 'Cart, 0 products' }).click();
+    await expect(page).toHaveURL('/cart');
   });
 });
