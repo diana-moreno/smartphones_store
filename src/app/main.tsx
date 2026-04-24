@@ -6,7 +6,7 @@ import './styles/app.scss';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter basename="/smartphones_store">
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </StrictMode>
