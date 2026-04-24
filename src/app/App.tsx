@@ -1,5 +1,5 @@
 import AppRoutes from './routes';
-import { CartProvider } from '../entities/cart/model/CartProvider';
+import { CartProvider } from '../entities/cart';
 import { LoadingProvider } from './loading/LoadingProvider';
 
 const App = () => {

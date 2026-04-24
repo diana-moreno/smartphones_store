@@ -1,5 +1,5 @@
 import type { ColorOption } from '../../model/product';
-import { OptionGroup } from '../../../../shared/ui/OptionGroup/OptionGroup';
+import { OptionGroup } from '../../../../shared/ui';
 import styles from './ColorSelector.module.scss';
 
 interface ColorSelectorProps {

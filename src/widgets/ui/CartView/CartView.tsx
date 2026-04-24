@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useCart } from '../../../entities/cart/model/useCart';
-import { CartItem } from '../../../entities/cart/ui/CartItem';
-import { RemoveFromCartButton } from '../../../features/removeFromCart/ui/RemoveFromCartButton/RemoveFromCartButton';
-import { Button } from '../../../shared/ui/Button/Button';
+import { useCart, CartItemComponent as CartItem } from '../../../entities/cart';
+import { RemoveFromCartButton } from '../../../features/removeFromCart';
+import { Button } from '../../../shared/ui';
 import styles from './CartView.module.scss';
 
 export const CartView: React.FC = () => {

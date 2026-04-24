@@ -1,5 +1,5 @@
 import type { StorageOption } from '../../model/product';
-import { OptionGroup } from '../../../../shared/ui/OptionGroup/OptionGroup';
+import { OptionGroup } from '../../../../shared/ui';
 import styles from './StorageSelector.module.scss';
 
 interface StorageSelectorProps {

@@ -1,4 +1,4 @@
-import { useCart } from '../../../../entities/cart/model/useCart';
+import { useCart } from '../../../../entities/cart';
 import styles from './RemoveFromCartButton.module.scss';
 
 interface RemoveFromCartButtonProps {

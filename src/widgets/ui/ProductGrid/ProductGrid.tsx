@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { getProducts } from '../../entities/product/api/productApi';
-import type { ProductSummary } from '../../entities/product/model/product';
-import { ProductList } from '../../entities/product/ui/ProductList/ProductList';
-import { SearchBar } from '../../features/searchProducts/ui/SearchBar';
-import { useLoading } from '../../app/loading/useLoading';
+import { getProducts } from '../../../entities/product';
+import type { ProductSummary } from '../../../entities/product';
+import { ProductList } from '../../../entities/product';
+import { SearchBar } from '../../../features/searchProducts';
+import { useLoading } from '../../../app/loading/useLoading';
 import styles from './ProductGrid.module.scss';
 
 const DEBOUNCE_MS = 300;
