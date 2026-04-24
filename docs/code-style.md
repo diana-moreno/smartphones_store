@@ -10,7 +10,7 @@ No añadas reglas de estilo a ESLint — Prettier y ESLint no deben solaparse.
 
 ## Linting
 
-**ESLint** con Flat Config. Presets: `@eslint/js` + `typescript-eslint` recommended + `react-hooks` + `react-refresh`. Sin type-aware linting.
+**ESLint** con Flat Config. Presets: `@eslint/js` + `typescript-eslint` recommended + `react-hooks`. Sin type-aware linting.
 
 ## Comentarios
 
@@ -18,7 +18,7 @@ Por defecto, sin comentarios. Solo cuando el _por qué_ no es obvio: una restric
 
 ## Imports
 
-Los imports entre slices van a través del barrel (`index.ts`) del slice de destino. Los imports dentro del mismo slice usan rutas relativas directas.
+Ver [architecture.md](architecture.md) para las reglas de imports entre slices y barrels.
 
 ## Editor
 

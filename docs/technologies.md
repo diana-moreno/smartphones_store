@@ -12,10 +12,11 @@
 
 ## Testing
 
-| Tecnología                            | Propósito                        |
-| ------------------------------------- | -------------------------------- |
-| [Vitest](https://vitest.dev/)         | Tests unitarios e de integración |
-| [Playwright](https://playwright.dev/) | Tests end-to-end                 |
+| Tecnología                                                                       | Propósito                             |
+| -------------------------------------------------------------------------------- | ------------------------------------- |
+| [Vitest](https://vitest.dev/)                                                    | Runner de tests unitarios             |
+| [Testing Library](https://testing-library.com/docs/react-testing-library/intro/) | Render y queries de componentes React |
+| [Playwright](https://playwright.dev/)                                            | Tests end-to-end                      |
 
 ## Linting y formateo
 
@@ -23,19 +24,6 @@
 | -------------------------------- | --------------------------- |
 | [ESLint](https://eslint.org/)    | Análisis estático de código |
 | [Prettier](https://prettier.io/) | Formateo de código          |
-
-## Scripts
-
-```bash
-npm run dev              # Inicia el servidor de desarrollo
-npm run build            # Comprobación de tipos + build de producción
-npm run lint             # Comprueba formateo y linting
-npm run format           # Corrige el formateo automáticamente
-npm run test             # Ejecuta todos los tests (unitarios + e2e)
-npm run test:unit        # Ejecuta los tests unitarios una vez
-npm run test:unit:watch  # Ejecuta los tests unitarios en modo watch
-npm run test:e2e         # Ejecuta los tests e2e
-```
 
 ## Variables de entorno
 

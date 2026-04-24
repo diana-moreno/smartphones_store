@@ -10,7 +10,7 @@ type(scope): comment
 
 - **type**: obligatorio, uno de los valores indicados abajo
 - **scope**: opcional, indica el módulo o contexto afectado
-- **comment**: descripción breve y clara del cambio realizado
+- **comment**: descripción breve y clara del cambio realizado, **en inglés**
 
 ## Tipos
 
@@ -30,5 +30,5 @@ type(scope): comment
 ## Ejemplo
 
 ```bash
-git commit -m "feat(users): implementar el login"
+git commit -m "feat(users): implement login"
 ```
