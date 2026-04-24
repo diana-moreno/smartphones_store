@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../../../entities/cart/model/useCart';
 import type {
@@ -26,7 +27,7 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   const handleClick = () => {
     if (!selectedColor || !selectedStorage) return;
     addItem({
-      id: `${product.id}-${selectedColor.name}-${selectedStorage.capacity}`,
+      id: uuidv4(),
       productId: product.id,
       name: product.name,
       imageUrl: selectedColor.imageUrl,
