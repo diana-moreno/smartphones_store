@@ -33,7 +33,12 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ id }) => {
     })();
   }, [id, setLoading]);
 
-  if (error) return <div className={styles.error}><p role="alert">{error}</p></div>;
+  if (error)
+    return (
+      <div className={styles.error}>
+        <p role="alert">{error}</p>
+      </div>
+    );
   if (isLoading || !productDetail) return null;
 
   return (
