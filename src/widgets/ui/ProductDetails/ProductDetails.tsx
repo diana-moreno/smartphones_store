@@ -26,15 +26,15 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ id }) => {
         const data = await getProductById(id);
         setProductDetail(data);
       } catch (e) {
-        setError(e instanceof Error ? e.message : 'Error inesperado');
+        setError(e instanceof Error ? e.message : 'Unexpected error');
       } finally {
         setLoading(false);
       }
     })();
   }, [id, setLoading]);
 
+  if (error) return <div className={styles.error}><p role="alert">{error}</p></div>;
   if (isLoading || !productDetail) return null;
-  if (error) return <p role="alert">{error}</p>;
 
   return (
     <div className={styles.wrapper}>
