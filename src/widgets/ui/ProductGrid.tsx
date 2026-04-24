@@ -4,6 +4,7 @@ import type { ProductSummary } from '../../entities/product/model/product';
 import { ProductList } from '../../entities/product/ui/ProductList/ProductList';
 import { SearchBar } from '../../features/searchProducts/ui/SearchBar';
 import { useLoading } from '../../app/loading/useLoading';
+import styles from './ProductGrid.module.scss';
 
 const DEBOUNCE_MS = 300;
 const MAX_PRODUCTS = 20;
@@ -38,7 +39,9 @@ export const ProductGrid: React.FC = () => {
 
   return (
     <section>
-      <SearchBar value={search} onChange={setSearch} totalResults={products.length} />
+      <div className={styles.searchWrapper}>
+        <SearchBar value={search} onChange={setSearch} totalResults={products.length} />
+      </div>
       {error && <p role="alert">{error}</p>}
       {!isLoading && !error && <ProductList products={products} />}
     </section>

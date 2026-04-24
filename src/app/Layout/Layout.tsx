@@ -6,8 +6,10 @@ import styles from './Layout.module.scss';
 export const Layout: React.FC = () => {
   return (
     <div className={styles.container}>
-      <Header />
-      <LoadingBar />
+      <div className={styles.header}>
+        <Header />
+        <LoadingBar />
+      </div>
       <main className={styles.main}>
         <Outlet />
       </main>

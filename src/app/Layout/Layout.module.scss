@@ -1,27 +1,44 @@
 @use '../styles/modules' as *;
 
+// Fixed viewport height + flex:
+// - header stays fixed at top
+// - main fills remaining space (no floating content)
+// - scroll happens inside main
+
 .container {
-  position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 0 16px;
+}
+
+.main {
+  flex: 1;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   padding: 0 16px 40px 16px;
 }
 
-.main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
 @include tablet {
-  .container {
+  .header {
+    padding: 0 40px;
+  }
+
+  .main {
     padding: 0 40px 40px 40px;
   }
 }
 
 @include desktop {
-  .container {
+  .header {
+    padding: 0 100px;
+  }
+
+  .main {
     padding: 0 100px 40px 100px;
   }
 }
