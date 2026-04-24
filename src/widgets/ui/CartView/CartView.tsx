@@ -28,13 +28,15 @@ export const CartView: React.FC = () => {
           Continue shopping
         </Link>
         {count > 0 && (
-          <>
+          <div className={styles.payWrapper}>
             <p className={styles.total}>
               <span>Total</span>
               <span>{totalPrice} EUR</span>
             </p>
-            <Button onClick={() => {}}>Pay</Button>
-          </>
+            <div className={styles.pay}>
+              <Button onClick={() => {}}>Pay</Button>
+            </div>
+          </div>
         )}
       </footer>
     </section>

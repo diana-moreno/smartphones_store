@@ -3,7 +3,7 @@
 .button {
   @include font($fs: rem(12px), $fw: $fw-small, $co: $co-white, $lh: rem(16px));
   width: 100%;
-  padding: 20px 0;
+  padding: 16px 0;
   letter-spacing: 8%;
   background: $co-black;
   border: 0;

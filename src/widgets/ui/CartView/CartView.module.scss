@@ -1,26 +1,14 @@
 @use '../../../app/styles/modules' as *;
 
-.cart {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
 .title {
   @include font($fs: rem(20px), $fw: $fw-small, $co: $co-black, $lh: rem(20px));
   text-transform: uppercase;
-  margin-bottom: 32px;
-}
-
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 
 .footer {
-  margin-top: auto;
+  margin-top: 24px;
+  padding-top: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,14 +19,72 @@
   @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(16px));
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 8%;
-  padding: 20px 32px;
   border: 1px solid $co-black;
-  background: $co-white;
+  width: 200px;
+  padding: 16px 0;
+  text-align: center;
 }
 
 .total {
-  @include font($fs: rem(14px), $fw: $fw-small, $co: $co-black, $lh: rem(16px));
+  @include font($fs: rem(14px), $fw: $fw-small, $co: $co-black, $lh: rem(14px));
   display: flex;
-  gap: 16px;
+  gap: 24px;
+}
+
+.pay {
+}
+
+@include tablet {
+  .title {
+    margin-bottom: 48px;
+  }
+
+  .footer {
+    padding-top: 24px;
+  }
+
+  .continueLink {
+    width: 200px;
+  }
+
+  .payWrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .pay {
+    width: 260px;
+  }
+
+  .total {
+    margin-right: 56px;
+  }
+}
+
+@include desktop {
+  .title {
+    @include font(
+      $fs: rem(24px),
+      $fw: $fw-small,
+      $co: $co-black,
+      $lh: rem(24px)
+    );
+    margin-bottom: 60px;
+  }
+
+  .continueLink {
+    width: 260px;
+  }
+
+  .pay {
+    width: 260px;
+  }
+
+  .total {
+    margin-right: 80px;
+  }
+
+  .footer {
+    padding-top: 24px;
+  }
 }

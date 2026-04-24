@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import type { CartItem as CartItemModel } from '../model/cartItem';
+import styles from './CartItem.module.scss';
 
 interface CartItemProps {
   item: CartItemModel;
@@ -8,21 +9,20 @@ interface CartItemProps {
 
 export const CartItem: React.FC<CartItemProps> = ({ item, action }) => {
   return (
-    <article>
+    <article className={styles.item}>
       <img
         src={item.imageUrl}
         alt={`${item.name} en color ${item.color.name}`}
+        className={styles.image}
       />
       <div>
-        <h3>{item.name}</h3>
-        <p>
-          <span>{item.storage.capacity}</span>
-          <span> | </span>
-          <span>{item.color.name}</span>
+        <h3 className={styles.name}>{item.name}</h3>
+        <p className={styles.specs}>
+          {item.storage.capacity} | {item.color.name}
         </p>
-        <p>{item.price} EUR</p>
+        <p className={styles.price}>{item.price} EUR</p>
+        {action}
       </div>
-      {action}
     </article>
   );
 };
