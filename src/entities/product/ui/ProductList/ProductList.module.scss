@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: repeat(1, $productCard-width-mobile);
   justify-content: center;
-  margin: 24px 0 80px 0;
+  padding: 48px 0 80px 0;
 }
 
 .item {
@@ -21,13 +21,13 @@
 @include tablet {
   .list {
     grid-template-columns: repeat(2, $productCard-width-tablet);
-    margin: 48px 0 80px 0;
+    padding: 48px 0 80px 0;
   }
 }
 
 @include desktop {
   .list {
     grid-template-columns: repeat(5, $productCard-width-desktop);
-    margin: 48px 0 147px 0;
+    margin: 48px 0 0 0;
   }
 }

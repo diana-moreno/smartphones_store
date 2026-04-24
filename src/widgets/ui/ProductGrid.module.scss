@@ -1,0 +1,9 @@
+@use '../../app/styles/modules' as *;
+
+.searchWrapper {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: $co-white;
+  padding-bottom: 16px;
+}

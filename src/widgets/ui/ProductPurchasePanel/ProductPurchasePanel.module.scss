@@ -48,6 +48,7 @@
 
 @include tablet {
   .imageWrapper {
+    display: flex;
     width: 336px;
     height: 414px;
   }
@@ -60,11 +61,6 @@
     display: flex;
     justify-content: space-between;
     margin-top: 60px;
-  }
-
-  .imageWrapper {
-    max-width: 530px;
-    margin-bottom: 0px;
   }
 
   .colorWrapper {
