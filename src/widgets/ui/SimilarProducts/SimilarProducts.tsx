@@ -29,12 +29,14 @@ export const SimilarProducts: React.FC<SimilarProductsProps> = ({
         slidesPerView={'auto'}
       >
         {products.map((product) => (
-          <SwiperSlide>
-            <li key={product.id} className={styles.item}>
-              <Link to={`/products/${product.id}`} className={styles.link}>
-                <ProductCard product={product} />
-              </Link>
-            </li>
+          <SwiperSlide key={product.id} className={styles.item}>
+            <Link
+              aria-label={`Go to ${product.name} detail`}
+              to={`/products/${product.id}`}
+              className={styles.link}
+            >
+              <ProductCard product={product} />
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

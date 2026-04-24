@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
         </Link>
         <Link
           to="/cart"
-          aria-label={`Carrito, ${count} productos`}
+          aria-label={`Cart, ${count} products`}
           className={styles.cartLink}
         >
           <img src={hasItems ? bagIconActive : bagIconInactive} alt="" />

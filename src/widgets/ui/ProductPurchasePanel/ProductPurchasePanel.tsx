@@ -40,7 +40,7 @@ export const ProductPurchasePanel: React.FC<ProductPurchasePanelProps> = ({
       </div>
       <div className={styles.textWrapper}>
         <h1 className={styles.title}>{product.name}</h1>
-        <p className={styles.price}>
+        <p className={styles.price} data-testid="product-price">
           {isComplete ? `${selectedStorage.price} EUR` : `From ${minPrice} EUR`}
         </p>
         <div className={styles.storageWrapper}>
