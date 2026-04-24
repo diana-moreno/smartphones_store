@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { getProductById } from '../../../entities/product/api/productApi';
-import type { ProductDetail } from '../../../entities/product/model/product';
-import { ProductSpecifications } from '../../../entities/product/ui/ProductSpecifications/ProductSpecifications';
+import { getProductById } from '../../../entities/product';
+import type { ProductDetail } from '../../../entities/product';
+import { ProductSpecifications } from '../../../entities/product';
 import { ProductPurchasePanel } from '../ProductPurchasePanel/ProductPurchasePanel';
 import { SimilarProducts } from '../SimilarProducts/SimilarProducts';
 import { useLoading } from '../../../app/loading/useLoading';

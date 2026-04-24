@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import type { ProductDetail } from '../../../entities/product/model/product';
-import { ColorSelector } from '../../../entities/product/ui/ColorSelector/ColorSelector';
-import { StorageSelector } from '../../../entities/product/ui/StorageSelector/StorageSelector';
-import { AddToCartButton } from '../../../features/addToCart/ui/AddToCartButton/AddToCartButton';
+import type { ProductDetail } from '../../../entities/product';
+import { ColorSelector, StorageSelector } from '../../../entities/product';
+import { AddToCartButton } from '../../../features/addToCart';
 import styles from './ProductPurchasePanel.module.scss';
 
 interface ProductPurchasePanelProps {

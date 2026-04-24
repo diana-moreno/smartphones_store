@@ -1,4 +1,4 @@
-import { ProductGrid } from '../widgets/ui/ProductGrid/ProductGrid';
+import { ProductGrid } from '../widgets/ui';
 
 export const ProductsListPage: React.FC = () => {
   return <ProductGrid />;

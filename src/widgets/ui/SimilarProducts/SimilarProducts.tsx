@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import type { ProductSummary } from '../../../entities/product/model/product';
-import { ProductCard } from '../../../entities/product/ui/ProductCard/ProductCard';
+import type { ProductSummary } from '../../../entities/product';
+import { ProductCard } from '../../../entities/product';
 import styles from './SimilarProducts.module.scss';
 
 import { Swiper, SwiperSlide } from 'swiper/react';

@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useCart } from '../../../entities/cart/model/useCart';
+import { useCart } from '../../../entities/cart';
 import logo from '../../assets/logo.svg';
 import bagIconInactive from '../../assets/bagIconInactive.svg';
 import bagIconActive from '../../assets/bagIconActive.svg';
