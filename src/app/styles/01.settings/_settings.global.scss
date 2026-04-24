@@ -18,6 +18,7 @@ $fs-root: 16px;
 $ff-body: Helvetica, Arial, sans-serif;
 
 $fw-small: 300;
+$fw-medium: 400;
 
 // Convert px to rem based on the root font-size
 @function rem($size) {

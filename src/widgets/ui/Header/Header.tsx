@@ -16,7 +16,7 @@ export const Header: React.FC = () => {
   return (
     <header>
       <nav className={styles.navBar}>
-        <Link to="/" aria-label="home">
+        <Link to="/" aria-label="home" className={styles.logoLink}>
           <img src={logo} alt="Smartphones store" />
         </Link>
         <Link

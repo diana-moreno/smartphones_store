@@ -1,0 +1,45 @@
+@use '../../../app/styles/modules' as *;
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.image {
+  width: 160px;
+  height: 198px;
+  object-fit: contain;
+}
+
+.name {
+  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.specs {
+  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.price {
+  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(12px));
+  margin-bottom: 34px;
+}
+
+@include tablet {
+  .image {
+    width: 262px;
+    height: 324px;
+  }
+
+  .price {
+    margin-bottom: 80px;
+  }
+
+  .item {
+    gap: 40px;
+  }
+}

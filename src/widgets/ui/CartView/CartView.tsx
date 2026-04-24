@@ -24,16 +24,38 @@ export const CartView: React.FC = () => {
       </ul>
 
       <footer className={styles.footer}>
-        <Link to="/" className={styles.continueLink}>
+        {/* mobile */}
+        {count > 0 && (
+          <p className={styles.totalMobile}>
+            <span>Total</span>
+            <span>{totalPrice} EUR</span>
+          </p>
+        )}
+
+        <Link
+          to="/"
+          className={`${styles.continueLink} ${!count ? styles.noPay : ''}`}
+        >
           Continue shopping
         </Link>
+
         {count > 0 && (
           <>
-            <p className={styles.total}>
-              <span>Total</span>
-              <span>{totalPrice} EUR</span>
-            </p>
-            <Button onClick={() => {}}>Pay</Button>
+            {/* mobile */}
+            <div className={styles.pay}>
+              <Button onClick={() => {}}>Pay</Button>
+            </div>
+
+            {/* tablet + desktop */}
+            <div className={styles.payWrapper}>
+              <p className={styles.totalDesktop}>
+                <span>Total</span>
+                <span>{totalPrice} EUR</span>
+              </p>
+              <div className={styles.payDesktop}>
+                <Button onClick={() => {}}>Pay</Button>
+              </div>
+            </div>
           </>
         )}
       </footer>
