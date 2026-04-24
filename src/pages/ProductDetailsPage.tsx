@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { ProductDetails } from '../widgets/ui/ProductDetails/ProductDetails';
+import { ProductDetails } from '../widgets/ui';
 
 export const ProductDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
