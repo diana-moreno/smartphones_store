@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../../../entities/cart/model/useCart';
 import type {
   ColorOption,
@@ -17,6 +18,8 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   selectedColor,
   selectedStorage,
 }) => {
+  const navigate = useNavigate();
+
   const { addItem } = useCart();
   const disabled = !selectedColor || !selectedStorage;
 
@@ -31,6 +34,7 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
       storage: { capacity: selectedStorage.capacity },
       price: selectedStorage.price,
     });
+    navigate('/cart');
   };
 
   return (
