@@ -1,8 +1,7 @@
 import { get } from '../../../shared/api/client';
 import type { ProductSummary, ProductDetail } from '../model/product';
 
-const GENERIC_ERROR =
-  'No ha sido posible cargar los datos. Inténtalo de nuevo más tarde.';
+const GENERIC_ERROR = 'The data could not be loaded. Please try again later.';
 
 export const getProducts = async (
   search: string,
@@ -18,7 +17,7 @@ export const getProducts = async (
   } catch (e) {
     const status = (e as { status?: number }).status;
     if (status === 401) {
-      throw new Error('No estás autorizado para acceder al catálogo.');
+      throw new Error('You are not authorized to access the catalog.');
     }
     throw new Error(GENERIC_ERROR);
   }
@@ -30,10 +29,10 @@ export const getProductById = async (id: string): Promise<ProductDetail> => {
   } catch (e) {
     const status = (e as { status?: number }).status;
     if (status === 401) {
-      throw new Error('No estás autorizado para acceder a este producto.');
+      throw new Error('You are not authorized to access this product.');
     }
     if (status === 404) {
-      throw new Error('El producto que buscas no existe.');
+      throw new Error('The product you are looking for does not exist.');
     }
     throw new Error(GENERIC_ERROR);
   }

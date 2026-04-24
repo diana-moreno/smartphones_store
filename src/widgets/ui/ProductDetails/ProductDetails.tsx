@@ -26,7 +26,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ id }) => {
         const data = await getProductById(id);
         setProductDetail(data);
       } catch (e) {
-        setError(e instanceof Error ? e.message : 'Error inesperado');
+        setError(e instanceof Error ? e.message : 'Unexpected error');
       } finally {
         setLoading(false);
       }

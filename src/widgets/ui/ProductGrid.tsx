@@ -56,7 +56,7 @@ export const ProductGrid: React.FC = () => {
           setProducts(uniqueProducts);
         }
       } catch (e) {
-        setError(e instanceof Error ? e.message : 'Error inesperado');
+        setError(e instanceof Error ? e.message : 'Unexpected error');
       } finally {
         setLoading(false);
       }
