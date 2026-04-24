@@ -21,9 +21,40 @@ export const ProductGrid: React.FC = () => {
     const timeoutId = setTimeout(async () => {
       setLoading(true);
       setError(null);
+
       try {
-        const data = await getProducts(search, MAX_PRODUCTS, controller.signal);
-        setProducts(data);
+        const uniqueIds: string[] = [];
+        const removeDuplicates = (products: ProductSummary[]) =>
+          products.filter((p) => {
+            if (uniqueIds.includes(p.id)) return false;
+            uniqueIds.push(p.id);
+            return true;
+          });
+
+        const firstResult = await getProducts(
+          search,
+          MAX_PRODUCTS,
+          0,
+          controller.signal
+        );
+        const uniqueProducts = removeDuplicates(firstResult);
+
+        if (uniqueProducts.length < MAX_PRODUCTS) {
+          const secondResult = await getProducts(
+            search,
+            0,
+            MAX_PRODUCTS,
+            controller.signal
+          );
+          setProducts(
+            [...uniqueProducts, ...removeDuplicates(secondResult)].slice(
+              0,
+              MAX_PRODUCTS
+            )
+          );
+        } else {
+          setProducts(uniqueProducts);
+        }
       } catch (e) {
         setError(e instanceof Error ? e.message : 'Error inesperado');
       } finally {
@@ -40,7 +71,11 @@ export const ProductGrid: React.FC = () => {
   return (
     <section>
       <div className={styles.searchWrapper}>
-        <SearchBar value={search} onChange={setSearch} totalResults={products.length} />
+        <SearchBar
+          value={search}
+          onChange={setSearch}
+          totalResults={products.length}
+        />
       </div>
       {error && <p role="alert">{error}</p>}
       {!isLoading && !error && <ProductList products={products} />}
