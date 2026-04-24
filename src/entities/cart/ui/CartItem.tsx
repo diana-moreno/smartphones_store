@@ -12,7 +12,7 @@ export const CartItem: React.FC<CartItemProps> = ({ item, action }) => {
     <article className={styles.item}>
       <img
         src={item.imageUrl}
-        alt={`${item.name} en color ${item.color.name}`}
+        alt={`${item.name} color ${item.color.name}`}
         className={styles.image}
       />
       <div>
