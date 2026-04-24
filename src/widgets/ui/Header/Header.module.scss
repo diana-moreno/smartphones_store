@@ -7,9 +7,13 @@
   align-items: center;
 }
 
+.logoLink {
+  display: flex;
+}
+
 .cartLink {
   display: flex;
-  align-items: end;
+  align-items: center;
   text-decoration: none;
 }
 
