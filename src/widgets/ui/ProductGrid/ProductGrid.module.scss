@@ -7,3 +7,8 @@
   background: $co-white;
   padding-bottom: 16px;
 }
+
+.error {
+  margin-top: 20px;
+  @include font($fs: rem(16px), $fw: $fw-small, $co: $co-red, $lh: rem(16px));
+}

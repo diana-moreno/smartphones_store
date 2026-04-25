@@ -77,7 +77,11 @@ export const ProductGrid: React.FC = () => {
           totalResults={products.length}
         />
       </div>
-      {error && <p role="alert">{error}</p>}
+      {error && (
+        <p role="alert" className={styles.error}>
+          {error}
+        </p>
+      )}
       {!isLoading && !error && <ProductList products={products} />}
     </section>
   );
