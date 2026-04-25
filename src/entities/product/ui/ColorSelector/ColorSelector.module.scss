@@ -10,7 +10,14 @@
   outline-offset: 2px;
 
   &:hover {
+    outline: 1px solid $co-black;
+    outline-offset: 2px;
     cursor: pointer;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $co-black;
+    outline-offset: 4px;
   }
 }
 

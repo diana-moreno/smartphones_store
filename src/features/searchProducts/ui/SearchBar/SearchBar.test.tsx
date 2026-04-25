@@ -32,7 +32,7 @@ describe('SearchBar', () => {
     it('should not show clear button when value is empty', () => {
       render(<SearchBar value="" onChange={mockOnChange} totalResults={0} />);
       expect(
-        screen.queryByRole('button', { name: 'Clean search' })
+        screen.queryByRole('button', { name: 'Clear search' })
       ).not.toBeInTheDocument();
     });
 
@@ -41,7 +41,7 @@ describe('SearchBar', () => {
         <SearchBar value="iphone" onChange={mockOnChange} totalResults={5} />
       );
       expect(
-        screen.getByRole('button', { name: 'Clean search' })
+        screen.getByRole('button', { name: 'Clear search' })
       ).toBeInTheDocument();
     });
   });
@@ -64,7 +64,7 @@ describe('SearchBar', () => {
         <SearchBar value="iphone" onChange={mockOnChange} totalResults={3} />
       );
 
-      await user.click(screen.getByRole('button', { name: 'Clean search' }));
+      await user.click(screen.getByRole('button', { name: 'Clear search' }));
 
       expect(mockOnChange).toHaveBeenCalledWith('');
     });

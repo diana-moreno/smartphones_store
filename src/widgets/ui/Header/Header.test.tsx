@@ -11,13 +11,15 @@ describe('Header', () => {
   describe('Rendering', () => {
     it('should render the home link', () => {
       renderWithProviders(<Header />);
-      expect(screen.getByRole('link', { name: 'home' })).toBeInTheDocument();
+      expect(
+        screen.getByRole('link', { name: 'Go to home' })
+      ).toBeInTheDocument();
     });
 
     it('should render the cart link with item count', () => {
       renderWithProviders(<Header />);
       expect(
-        screen.getByRole('link', { name: 'Cart, 0 products' })
+        screen.getByRole('link', { name: 'Go to cart, 0 products' })
       ).toBeInTheDocument();
     });
 

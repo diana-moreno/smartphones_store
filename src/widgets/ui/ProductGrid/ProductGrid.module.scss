@@ -2,7 +2,7 @@
 
 .searchWrapper {
   position: sticky;
-  top: 0;
+  top: $header-height;
   z-index: 5;
   background: $co-white;
   padding-bottom: 16px;

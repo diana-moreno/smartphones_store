@@ -18,7 +18,7 @@ describe('RemoveFromCartButton', () => {
     it('should render a button', () => {
       render(<RemoveFromCartButton itemId="item-1" />);
       expect(
-        screen.getByRole('button', { name: 'Remove' })
+        screen.getByRole('button', { name: 'Remove from cart' })
       ).toBeInTheDocument();
     });
   });
@@ -29,7 +29,7 @@ describe('RemoveFromCartButton', () => {
 
       render(<RemoveFromCartButton itemId="item-1" />);
 
-      await user.click(screen.getByRole('button', { name: 'Remove' }));
+      await user.click(screen.getByRole('button', { name: 'Remove from cart' }));
 
       expect(mockRemoveItem).toHaveBeenCalledWith('item-1');
     });

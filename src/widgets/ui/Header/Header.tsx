@@ -16,12 +16,12 @@ export const Header: React.FC = () => {
   return (
     <header>
       <nav className={styles.navBar}>
-        <Link to="/" aria-label="home" className={styles.logoLink}>
-          <img src={logo} alt="Smartphones store" />
+        <Link to="/" aria-label="Go to home" className={styles.logoLink}>
+          <img src={logo} alt="Smartphone store" />
         </Link>
         <Link
           to="/cart"
-          aria-label={`Cart, ${count} products`}
+          aria-label={`Go to cart, ${count} products`}
           className={styles.cartLink}
         >
           <img src={hasItems ? bagIconActive : bagIconInactive} alt="" />
@@ -32,11 +32,7 @@ export const Header: React.FC = () => {
       </nav>
 
       {showBack && (
-        <Link
-          to="/"
-          aria-label={`Go back to home`}
-          className={styles.goBackLink}
-        >
+        <Link to="/" aria-label="Go back to home" className={styles.goBackLink}>
           <img src={backArrow} alt="" />
           <span aria-hidden="true" className={styles.goBackText}>
             Back

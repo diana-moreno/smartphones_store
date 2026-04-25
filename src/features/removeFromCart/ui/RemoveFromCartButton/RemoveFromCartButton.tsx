@@ -13,6 +13,7 @@ export const RemoveFromCartButton: React.FC<RemoveFromCartButtonProps> = ({
   return (
     <button
       type="button"
+      aria-label="Remove from cart"
       onClick={() => removeItem(itemId)}
       className={styles.button}
     >

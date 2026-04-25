@@ -31,7 +31,7 @@ test.describe('Product detail', () => {
     });
 
     test('should navigate to home from the logo', async ({ page }) => {
-      await page.getByRole('link', { name: 'home', exact: true }).click();
+      await page.getByRole('link', { name: 'Go to home' }).click();
       await expect(page).toHaveURL('/');
     });
 
@@ -41,7 +41,7 @@ test.describe('Product detail', () => {
     });
 
     test('should navigate to cart from the cart icon', async ({ page }) => {
-      await page.getByRole('link', { name: 'Cart, 0 products' }).click();
+      await page.getByRole('link', { name: 'Go to cart, 0 products' }).click();
       await expect(page).toHaveURL('/cart');
     });
   });

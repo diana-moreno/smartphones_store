@@ -15,11 +15,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   return (
     <>
       <form role="search" className={styles.form}>
-        <label htmlFor="product-search" className={styles.label}>
-          Search for a smartphone...
-        </label>
         <input
-          id="product-search"
+          aria-label="Search for a smartphone..."
           type="search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -30,10 +27,10 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           <button
             type="button"
             onClick={() => onChange('')}
-            aria-label="Clean search"
+            aria-label="Clear search"
             className={styles.clear}
           >
-            <img src={shape} alt="" />
+            <img src={shape} alt="Clear search icon" />
           </button>
         )}
       </form>

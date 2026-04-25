@@ -15,7 +15,7 @@ test.describe('Not found', () => {
 
   test('should navigate to home through logo link', async ({ page }) => {
     await page.goto('/this-route-doesNotExist');
-    await page.getByLabel('home').click();
+    await page.getByLabel('Go to home').click();
     await expect(page).toHaveURL('/');
   });
 });

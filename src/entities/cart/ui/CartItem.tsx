@@ -16,7 +16,7 @@ export const CartItem: React.FC<CartItemProps> = ({ item, action }) => {
         className={styles.image}
       />
       <div>
-        <h3 className={styles.name}>{item.name}</h3>
+        <p className={styles.name}>{item.name}</p>
         <p className={styles.specs}>
           {item.storage.capacity} | {item.color.name}
         </p>

@@ -38,7 +38,7 @@ test.describe('Products list', () => {
   test('should navigate to cart from the header cart icon', async ({
     page,
   }) => {
-    await page.getByRole('link', { name: 'Cart, 0 products' }).click();
+    await page.getByRole('link', { name: 'Go to cart, 0 products' }).click();
     await expect(page).toHaveURL('/cart');
   });
 });
