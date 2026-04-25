@@ -41,6 +41,7 @@ export const ProductGrid: React.FC = () => {
           );
           const uniqueProducts = removeDuplicates(firstResult);
 
+          // We only make a second call to the API instead of a while loop because the API with offset returns the rest of the catalog
           if (uniqueProducts.length < MAX_PRODUCTS) {
             const secondResult = await getProducts(
               search,
