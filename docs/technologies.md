@@ -35,3 +35,7 @@ Las variables se definen en `.env.local` (no commiteado). Usa `.env.example` com
 | `VITE_API_KEY`      | Clave enviada en el header `x-api-key` de cada petición |
 
 Nota: Vite inlinea las variables `VITE_*` en el bundle del cliente en build-time, por lo que son visibles en el JavaScript descargado. Esto es inherente a las SPA sin backend proxy.
+
+---
+
+[← Volver al README](../README.md)

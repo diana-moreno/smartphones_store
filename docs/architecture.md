@@ -2,7 +2,19 @@
 
 SPA construida con React y TypeScript, organizada siguiendo **Feature-Sliced Design (FSD)**.
 
-## Estructura de carpetas
+### Capas y dependencias
+
+Las capas solo pueden importar hacia abajo. Nunca al revés.
+
+```text
+app → pages → widgets → features → entities → shared
+```
+
+Cada slice expone un `index.ts` barrel como única API pública. Los imports entre slices van siempre a través del barrel del slice de destino. Los imports dentro del mismo slice usan rutas relativas directas.
+
+Cuando un nombre colisiona entre el tipo de modelo y el componente UI, el barrel usa un alias para distinguirlos (por ejemplo, `CartItem` el tipo y `CartItemComponent` el componente).
+
+### Estructura de carpetas
 
 ```text
 e2e/                              # Tests end-to-end (Playwright)
@@ -36,14 +48,14 @@ src/
 │   │   └── index.ts              # Barrel
 │   └── assets/                   # Imágenes y SVGs del widget
 │
-├── features/                     # Acciones del usuario
-│   ├── addToCart/
+├── features/                     # Acciones del usuario que modifican el estado
+│   ├── addToCart/                # Añade un producto al carrito y redirige a /cart
 │   │   ├── ui/AddToCartButton/
 │   │   └── index.ts
-│   ├── removeFromCart/
+│   ├── removeFromCart/           # Elimina un item del carrito
 │   │   ├── ui/RemoveFromCartButton/
 │   │   └── index.ts
-│   └── searchProducts/
+│   └── searchProducts/           # Filtra el catálogo por nombre con debounce
 │       ├── ui/SearchBar/
 │       └── index.ts
 │
@@ -64,43 +76,30 @@ src/
     └── test/                     # renderWithProviders, test-setup
 ```
 
-## Capas y dependencias
-
-Las capas solo pueden importar hacia abajo. Nunca al revés.
-
-```text
-app → pages → widgets → features → entities → shared
-```
-
-Cada slice expone un `index.ts` como única API pública. Los imports entre slices van siempre a través del barrel del slice de destino. Los imports dentro del mismo slice usan rutas relativas directas.
-
-Cuando un nombre colisiona entre el tipo de modelo y el componente UI, el barrel usa un alias para distinguirlos (por ejemplo, `CartItem` el tipo y `CartItemComponent` el componente).
-
 ## Rutas
 
-| Ruta            | Página               | Descripción                                        |
-| --------------- | -------------------- | -------------------------------------------------- |
-| `/`             | `ProductsListPage`   | Catálogo con buscador                              |
-| `/products/:id` | `ProductDetailsPage` | Detalle, selección de opciones y añadir al carrito |
-| `/cart`         | `CartPage`           | Carrito con resumen y eliminación de items         |
-| `*`             | `NotFoundPage`       | Página 404                                         |
+| Ruta            | Descripción                                        |
+| --------------- | -------------------------------------------------- |
+| `/`             | Catálogo con buscador                              |
+| `/products/:id` | Detalle, selección de opciones y añadir al carrito |
+| `/cart`         | Carrito con resumen y eliminación de items         |
+| `*`             | Página 404                                         |
 
-## Gestión de estado
+## Estado y datos
 
-Toda la gestión de estado se hace con React Context. No hay librería externa.
+- **Carrito**: React Context con persistencia en `localStorage`.
+- **Loading**: React Context para la barra de progreso global.
+- **Fetch**: peticiones directas con `fetch`.
 
-- **`CartProvider`** (`entities/cart`): almacena los items del carrito y expone `useCart`, que devuelve `items`, `count`, `totalPrice`, `addItem` y `removeItem`. Persiste en `localStorage` como snapshot completo en cada cambio.
-- **`LoadingProvider`** (`app/loading`): controla una barra de progreso global en el layout. Los widgets que hacen fetch activan y desactivan el loading a través de `useLoading`.
+## Tests
 
-## Obtención de datos
+- **Unitarios** (Vitest + Testing Library): verifican que cada componente funciona correctamente de forma aislada. Viven junto al fichero que testean siguiendo el principio de colocalización.
+- **E2e** (Playwright): simulan flujos reales de usuario navegando entre páginas contra la API real. No repiten lo que ya cubren los unitarios.
 
-Los widgets hacen peticiones directas a la API REST con `fetch`. Cada llamada usa `AbortController` para cancelar peticiones obsoletas cuando el componente se desmonta o el término de búsqueda cambia antes de que llegue la respuesta.
+## Accesibilidad
 
-`ProductGrid` aplica un debounce de 300ms sobre el buscador y realiza una segunda llamada con offset para deduplicar resultados cuando la API devuelve duplicados.
+La interfaz es navegable íntegramente con teclado y compatible con lectores de pantalla. Los elementos interactivos tienen nombres descriptivos, los elementos se han creado teniendo en cuenta su propia semántica y la jerarquía de encabezados es coherente en todas las páginas.
 
-## Testing
+---
 
-La estrategia separa claramente qué corresponde a cada nivel:
-
-- **Unitarios** (Vitest + Testing Library): cubren componentes con lógica propia. Los tests mockean las dependencias externas del componente y verifican comportamiento. Los componentes puramente display-only verifican que renderizan correctamente los datos recibidos por props. Los tests se colocalizan junto al fichero que testean.
-- **E2e** (Playwright): cubren flujos completos que atraviesan varias páginas, providers y la API real. No duplican casos ya cubiertos por los unitarios.
+[← Volver al README](../README.md)

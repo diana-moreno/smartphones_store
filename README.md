@@ -1,54 +1,65 @@
 # Smartphones Store
 
-SPA de una tienda de smartphones. Permite explorar el catálogo, buscar productos, ver el detalle de cada uno y añadirlos al carrito.
+SPA de una tienda de smartphones construida con React 19, TypeScript y Vite. Permite explorar el catálogo, buscar productos, ver el detalle de cada uno, seleccionar color y almacenamiento, añadirlos al carrito y eliminarlos.
 
-## Requisitos previos
+**Demo**: [smartphones-store.netlify.app](https://smartphones-store.netlify.app)
+
+## Puesta en marcha
+
+### Requisitos
 
 - Node.js 18+
-- npm 9+
-- Acceso a la API REST (URL y clave de API)
+- Acceso a la API REST (URL y clave)
 
-## Instalación
+### Instalación
 
 ```bash
 npm install
 ```
 
-Crea un fichero `.env.local` con las variables de entorno (ver `.env.example`):
+Crea un fichero `.env.local` en el root (usa `.env.example` como plantilla):
 
 ```env
 VITE_API_BASE_URL=https://...
 VITE_API_KEY=tu-clave
 ```
 
+```bash
+npm run dev   # http://localhost:5173
+```
+
 ## Scripts
 
 ```bash
-npm run dev              # Servidor de desarrollo en http://localhost:5173
-npm run build            # Comprobación de tipos + build de producción
-npm run preview          # Previsualización del build de producción
-
-npm run lint             # Comprueba formateo (Prettier) y linting (ESLint)
-npm run format           # Corrige el formateo automáticamente
-
+npm run dev              # Servidor de desarrollo
+npm run build            # Build de producción (tsc + vite)
+npm run lint             # Prettier + ESLint
+npm run format           # Corrige el formateo
 npm run test             # Todos los tests (unitarios + e2e)
-npm run test:unit        # Tests unitarios (Vitest, una sola ejecución)
+npm run test:unit        # Tests unitarios (Vitest)
 npm run test:unit:watch  # Tests unitarios en modo watch
-npm run test:e2e         # Tests e2e (Playwright, arranca el dev server automáticamente)
+npm run test:e2e         # Tests e2e (Playwright)
 ```
 
-## Arquitectura y estructura
+## Documentación
 
-Ver [docs/architecture.md](docs/architecture.md).
+- [Arquitectura](docs/architecture.md) — Feature-Sliced Design, estructura de carpetas, rutas, estado, tests y accesibilidad
+- [Tecnologías](docs/technologies.md) — stack completo con versiones
+- [Estilo de código](docs/code-style.md) — formateo, linting y configuración del editor
+- [Convenciones de commits](docs/commit-conventions.md) — formato y tipos permitidos
 
-## Tecnologías
+## Notas y decisiones
 
-Ver [docs/technologies.md](docs/technologies.md).
+- **Arquitectura FSD**: Feature-Sliced Design va más allá de lo que este proyecto requiere, pero la elección ha sido consciente: el proyecto ha servido como contexto real para aprenderla en profundidad. Es una arquitectura pensada para proyectos grandes, equipos, ideal ecommerce grandes.
 
-## Estilo de código
+  _Ventajas_: separación clara de responsabilidades, límites explícitos entre capas, fácil de escalar y de incorporar nuevos desarrolladores, cada pieza tiene un lugar predecible, su mantenimiento es más fácil y es mas dificil que queden componentes colgados sin utilizar o se dupliquen.
 
-Ver [docs/code-style.md](docs/code-style.md).
+  _Desventajas_: overkill para proyectos pequeños, más ficheros y carpetas de los necesarios, y los barrels (`index.ts`) introducen una penalización de rendimiento en el proceso de resolución de módulos. En proyectos de esta escala no es perceptible, pero en proyectos mayores es mejor mirar alternativas.
 
-## Convenciones de commits
+- **Manejo de errores y página 404**: no eran requisitos del proyecto, pero se han añadido porque forman parte de una experiencia de usuario mínimamente completa. La app distingue entre errores de la API (producto no encontrado, error de permisos) y rutas desconocidas, y los gestiona de forma diferenciada.
 
-Ver [docs/commit-conventions.md](docs/commit-conventions.md).
+- **Limitación observada en la API**: los parámetros `limit` y `offset` no son compatibles entre sí — cuando se usa `offset`, el `limit` se ignora, sería algo bueno para documentar en Swagger.
+
+- **Carrito simplificado**: el carrito guarda un snapshot completo de cada producto en `localStorage`. Es una solución sencilla y suficiente para el alcance del proyecto. En una versión más completa, lo ideal sería contrastar los datos del carrito con el backend en cada sesión para detectar cambios de precio o productos descatalogados y avisar al usuario.
+
+- **Uso de IA**: se ha utilizado IA como compañero de código y generador de documentación, no como sustituto. Todas las decisiones técnicas y de diseño han sido tomadas de forma consciente, definiendo el comportamiento del asistente a través del fichero [CLAUDE](/CLAUDE.md) y de la propia documentación del proyecto.
