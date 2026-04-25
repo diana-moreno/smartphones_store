@@ -7,14 +7,16 @@ interface CartProviderProps {
   children: ReactNode;
 }
 
+const LS_KEY = 'cart';
+
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
-  const stored = localStorage.getItem('cart');
+  const stored = localStorage.getItem(LS_KEY);
   const [items, setItems] = useState<CartItem[]>(
     stored ? JSON.parse(stored) : []
   );
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(items));
+    localStorage.setItem(LS_KEY, JSON.stringify(items));
   }, [items]);
 
   const addItem = (item: CartItem) => {
