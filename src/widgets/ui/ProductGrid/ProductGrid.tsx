@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getProducts } from '../../../entities/product';
 import type { ProductSummary } from '../../../entities/product';
 import { ProductList } from '../../../entities/product';
@@ -14,53 +14,60 @@ export const ProductGrid: React.FC = () => {
   const [products, setProducts] = useState<ProductSummary[]>([]);
   const [error, setError] = useState<string | null>(null);
   const { isLoading, setLoading } = useLoading();
+  const initial = useRef(true);
 
   useEffect(() => {
     const controller = new AbortController();
 
-    const timeoutId = setTimeout(async () => {
-      setLoading(true);
-      setError(null);
+    const timeoutId = setTimeout(
+      async () => {
+        setLoading(true);
+        setError(null);
 
-      try {
-        const uniqueIds: string[] = [];
-        const removeDuplicates = (products: ProductSummary[]) =>
-          products.filter((p) => {
-            if (uniqueIds.includes(p.id)) return false;
-            uniqueIds.push(p.id);
-            return true;
-          });
+        try {
+          const uniqueIds: string[] = [];
+          const removeDuplicates = (products: ProductSummary[]) =>
+            products.filter((p) => {
+              if (uniqueIds.includes(p.id)) return false;
+              uniqueIds.push(p.id);
+              return true;
+            });
 
-        const firstResult = await getProducts(
-          search,
-          MAX_PRODUCTS,
-          0,
-          controller.signal
-        );
-        const uniqueProducts = removeDuplicates(firstResult);
-
-        if (uniqueProducts.length < MAX_PRODUCTS) {
-          const secondResult = await getProducts(
+          const firstResult = await getProducts(
             search,
-            0,
             MAX_PRODUCTS,
+            0,
             controller.signal
           );
-          setProducts(
-            [...uniqueProducts, ...removeDuplicates(secondResult)].slice(
+          const uniqueProducts = removeDuplicates(firstResult);
+
+          if (uniqueProducts.length < MAX_PRODUCTS) {
+            const secondResult = await getProducts(
+              search,
               0,
-              MAX_PRODUCTS
-            )
-          );
-        } else {
-          setProducts(uniqueProducts);
+              MAX_PRODUCTS,
+              controller.signal
+            );
+            setProducts(
+              [...uniqueProducts, ...removeDuplicates(secondResult)].slice(
+                0,
+                MAX_PRODUCTS
+              )
+            );
+          } else {
+            setProducts(uniqueProducts);
+          }
+        } catch (e) {
+          if (e instanceof DOMException && e.name === 'AbortError') return;
+          setError(e instanceof Error ? e.message : 'Unexpected error');
+        } finally {
+          setLoading(false);
+          initial.current = false;
         }
-      } catch (e) {
-        setError(e instanceof Error ? e.message : 'Unexpected error');
-      } finally {
-        setLoading(false);
-      }
-    }, DEBOUNCE_MS);
+      },
+      // Skip debounce on first load
+      initial.current ? 0 : DEBOUNCE_MS
+    );
 
     return () => {
       clearTimeout(timeoutId);
