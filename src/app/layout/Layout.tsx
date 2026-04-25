@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from '../../widgets/ui';
+import { Header } from '../../widgets/Header';
 import { LoadingBar } from './LoadingBar';
 import styles from './Layout.module.scss';
 

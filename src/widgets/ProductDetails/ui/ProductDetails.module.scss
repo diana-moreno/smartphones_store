@@ -11,5 +11,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  @include font($fs: rem(16px), $fw: $fw-small, $co: $co-black, $lh: rem(16px));
+  @include font($fs: rem(16px), $fw: $fw-small, $co: $co-red, $lh: rem(16px));
 }

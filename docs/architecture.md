@@ -1,20 +1,26 @@
 # Arquitectura
 
-SPA construida con React y TypeScript, organizada siguiendo **Feature-Sliced Design (FSD)**.
+SPA construida con React y TypeScript, organizada siguiendo [**Feature-Sliced Design (FSD)**](https://feature-sliced.design/).
 
-### Capas y dependencias
+## Capas, slices y segments
 
-Las capas solo pueden importar hacia abajo. Nunca al revés.
+FSD organiza el código en tres niveles jerárquicos: **layer → slice → segment**.
 
-```text
-app → pages → widgets → features → entities → shared
-```
+- **Layers** (capas): la división de más alto nivel. Hay seis: `app`, `pages`, `widgets`, `features`, `entities`, `shared`. Las capas solo pueden importar hacia abajo, nunca al revés.
 
-Cada slice expone un `index.ts` barrel como única API pública. Los imports entre slices van siempre a través del barrel del slice de destino. Los imports dentro del mismo slice usan rutas relativas directas.
+  ```text
+  app → pages → widgets → features → entities → shared
+  ```
+
+- **Slices**: subdivisiones temáticas dentro de una capa. Cada slice agrupa todo lo relacionado con un concepto concreto (por ejemplo, `product` o `cart` dentro de `entities`, o `Header` y `ProductGrid` dentro de `widgets`). Cada slice es autocontenido: tiene su propia lógica, UI y tipos, y no conoce los slices que lo usan. Las capas `app` y `shared` no se subdividen en slices porque son técnicas y globales, no tienen concepto de negocio.
+
+- **Segments**: la división interna de cada slice por tipo técnico. Los más comunes son `ui/` (componentes), `model/` (estado, tipos, lógica de dominio), `api/` (llamadas externas), `lib/` (utilidades) y `assets/` (imágenes, SVGs).
+
+Cada slice expone un `index.ts` (barrel) como única API pública. Los imports entre slices van siempre a través del barrel del slice de destino. Los imports dentro del mismo slice usan rutas relativas directas.
 
 Cuando un nombre colisiona entre el tipo de modelo y el componente UI, el barrel usa un alias para distinguirlos (por ejemplo, `CartItem` el tipo y `CartItemComponent` el componente).
 
-### Estructura de carpetas
+## Estructura de carpetas
 
 ```text
 e2e/                              # Tests end-to-end (Playwright)
@@ -28,6 +34,7 @@ src/
 │   ├── Layout/                   # Layout raíz con barra de progreso
 │   ├── loading/                  # Context y hook de loading global
 │   ├── styles/                   # Estilos base (reset, tipografía, variables)
+│   ├── App.tsx                   # Componente raíz con providers y router
 │   ├── routes.tsx                # Definición de rutas
 │   └── main.tsx                  # Punto de entrada
 │
@@ -38,15 +45,25 @@ src/
 │   └── NotFoundPage.tsx
 │
 ├── widgets/                      # Bloques de UI completos y autocontenidos
-│   ├── ui/
-│   │   ├── Header/
-│   │   ├── ProductGrid/          # Catálogo con buscador y paginación
-│   │   ├── ProductDetails/       # Composición del detalle de producto
-│   │   ├── ProductPurchasePanel/ # Selección de opciones y precio
-│   │   ├── SimilarProducts/      # Carrusel de productos relacionados
-│   │   ├── CartView/             # Vista completa del carrito
-│   │   └── index.ts              # Barrel
-│   └── assets/                   # Imágenes y SVGs del widget
+│   ├── Header/                   # Cabecera con logo, carrito y volver
+│   │   ├── ui/                   # Header.tsx + estilos + test
+│   │   ├── assets/               # logo, iconos de bolsa, flecha
+│   │   └── index.ts              # Barrel del slice
+│   ├── ProductGrid/              # Catálogo con buscador y paginación
+│   │   ├── ui/
+│   │   └── index.ts
+│   ├── ProductDetails/           # Composición del detalle de producto
+│   │   ├── ui/
+│   │   └── index.ts
+│   ├── ProductPurchasePanel/     # Selección de opciones y precio
+│   │   ├── ui/
+│   │   └── index.ts
+│   ├── SimilarProducts/          # Carrusel de productos relacionados
+│   │   ├── ui/
+│   │   └── index.ts
+│   └── CartView/                 # Vista completa del carrito
+│       ├── ui/
+│       └── index.ts
 │
 ├── features/                     # Acciones del usuario que modifican el estado
 │   ├── addToCart/                # Añade un producto al carrito y redirige a /cart
@@ -76,6 +93,26 @@ src/
     └── test/                     # renderWithProviders, test-setup
 ```
 
+## Estilos globales
+
+Los estilos base siguen el patrón [**ITCSS** Inverted Triangle CSS](https://developer.helpscout.com/seed/glossary/itcss/), que organiza el CSS de más genérico a más específico, siguiendo la forma de un triángulo invertido:
+
+```text
+styles/
+├── 01.settings/   # Variables globales (colores, tipografía, espaciado)
+├── 02.tools/      # Mixins y funciones Sass reutilizables
+├── 03.generic/    # Reset y normalize — mínima especificidad
+└── 04.elements/   # Estilos base para etiquetas HTML (h1, a, p…)
+```
+
+Cada capa tiene menos alcance y más especificidad que la anterior. Las reglas que afectan a todo el proyecto van arriba; las que afectan a elementos concretos, abajo. Los estilos específicos de componente viven en sus propios CSS Modules, fuera de esta jerarquía.
+
+**Ventajas**:
+
+- **Sin conflictos de especificidad**: al ordenar de menos a más específico, las reglas se sobreescriben de forma predecible y nunca se necesitan `!important`.
+- **Fácil de mantener**: se sabe exactamente dónde buscar o añadir cada tipo de regla.
+- **Escalable**: añadir nuevas capas o reglas no rompe lo existente.
+
 ## Rutas
 
 | Ruta            | Descripción                                        |
@@ -90,15 +127,6 @@ src/
 - **Carrito**: React Context con persistencia en `localStorage`.
 - **Loading**: React Context para la barra de progreso global.
 - **Fetch**: peticiones directas con `fetch`.
-
-## Tests
-
-- **Unitarios** (Vitest + Testing Library): verifican que cada componente funciona correctamente de forma aislada. Viven junto al fichero que testean siguiendo el principio de colocalización.
-- **E2e** (Playwright): simulan flujos reales de usuario navegando entre páginas contra la API real. No repiten lo que ya cubren los unitarios.
-
-## Accesibilidad
-
-La interfaz es navegable íntegramente con teclado y compatible con lectores de pantalla. Los elementos interactivos tienen nombres descriptivos, los elementos se han creado teniendo en cuenta su propia semántica y la jerarquía de encabezados es coherente en todas las páginas.
 
 ---
 
