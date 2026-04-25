@@ -45,7 +45,7 @@ npm run test:e2e         # Tests e2e (Playwright)
 
 - [Arquitectura](docs/architecture.md) — Feature-Sliced Design, estructura de carpetas, rutas, estado, tests y accesibilidad
 - [Tecnologías](docs/technologies.md) — stack completo con versiones
-- [Estilo de código](docs/code-style.md) — formateo, linting y configuración del editor
+- [Estilo de código](docs/code-style.md) — formateo, linting, configuración del editor y pre-commit
 - [Convenciones de commits](docs/commit-conventions.md) — formato y tipos permitidos
 
 ## Notas y decisiones
@@ -61,5 +61,7 @@ npm run test:e2e         # Tests e2e (Playwright)
 - **Limitación observada en la API**: los parámetros `limit` y `offset` no son compatibles entre sí — cuando se usa `offset`, el `limit` se ignora, sería algo bueno para documentar en Swagger.
 
 - **Carrito simplificado**: el carrito guarda un snapshot completo de cada producto en `localStorage`. Es una solución sencilla y suficiente para el alcance del proyecto. En una versión más completa, lo ideal sería contrastar los datos del carrito con el backend en cada sesión para detectar cambios de precio o productos descatalogados y avisar al usuario.
+
+- **Diseño pixel-perfect**: el diseño se ha seguido pixel perfecto, con una excepción: las imágenes de producto que sirve la API no están recortadas de forma consistente — algunas incluyen espacios y otras no, lo que hace que no tengan el mismo tamaño al renderizarse y en algunos casos el efecto de cortina negro no funciona correctamente. La solución ideal viene desde el backend, que es quien debe servir imágenes con dimensiones homogéneas. Recortarlas en el frontend con Canvas sería posible pero aumentaría considerablemente los tiempos de carga.
 
 - **Uso de IA**: se ha utilizado IA como compañero de código y generador de documentación, no como sustituto. Todas las decisiones técnicas y de diseño han sido tomadas de forma consciente, definiendo el comportamiento del asistente a través del fichero [CLAUDE](/CLAUDE.md) y de la propia documentación del proyecto.

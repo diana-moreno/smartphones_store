@@ -1,10 +1,12 @@
 @use '../../../../app/styles/modules' as *;
 
 .button {
-  all: unset;
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 1px;
   width: 20px;
   height: 20px;
-  padding: 1px;
   margin-right: 16px;
   outline: 1px solid $co-gray-300;
   outline-offset: 2px;
@@ -13,11 +15,6 @@
     outline: 1px solid $co-black;
     outline-offset: 2px;
     cursor: pointer;
-  }
-
-  &:focus-visible {
-    outline: 2px solid $co-black;
-    outline-offset: 4px;
   }
 }
 
