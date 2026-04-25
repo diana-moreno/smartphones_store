@@ -17,7 +17,7 @@ export const Header: React.FC = () => {
     <header>
       <nav className={styles.navBar}>
         <Link to="/" aria-label="Go to home" className={styles.logoLink}>
-          <img src={logo} alt="Smartphones store" />
+          <img src={logo} alt="Smartphone store" />
         </Link>
         <Link
           to="/cart"
