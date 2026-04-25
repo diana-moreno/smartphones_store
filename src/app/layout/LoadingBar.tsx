@@ -1,4 +1,4 @@
-import { useLoading } from '../loading/useLoading';
+import { useLoading } from '../model/useLoading';
 import styles from './LoadingBar.module.scss';
 
 export const LoadingBar: React.FC = () => {

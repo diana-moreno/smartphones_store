@@ -2,17 +2,21 @@
 
 SPA construida con React y TypeScript, organizada siguiendo [**Feature-Sliced Design (FSD)**](https://feature-sliced.design/).
 
-## Capas y dependencias
+## Capas, slices y segments
 
-FSD organiza el código en **capas** (app, pages, widgets, features, entities, shared). Las capas intermedias se subdividen en **slices** — unidades independientes que agrupan todo lo relacionado con un concepto concreto (por ejemplo, `product` o `cart` dentro de `entities`). Cada slice es autocontenido: tiene su propia lógica, UI y tipos, y no conoce los slices que lo usan.
+FSD organiza el código en tres niveles jerárquicos: **layer → slice → segment**.
 
-Las capas solo pueden importar hacia abajo. Nunca al revés.
+- **Layers** (capas): la división de más alto nivel. Hay seis: `app`, `pages`, `widgets`, `features`, `entities`, `shared`. Las capas solo pueden importar hacia abajo, nunca al revés.
 
-```text
-app → pages → widgets → features → entities → shared
-```
+  ```text
+  app → pages → widgets → features → entities → shared
+  ```
 
-Cada slice expone un `index.ts` fichero barrel como única API pública. Los imports entre slices van siempre a través del barrel del slice de destino. Los imports dentro del mismo slice usan rutas relativas directas.
+- **Slices**: subdivisiones temáticas dentro de una capa. Cada slice agrupa todo lo relacionado con un concepto concreto (por ejemplo, `product` o `cart` dentro de `entities`, o `Header` y `ProductGrid` dentro de `widgets`). Cada slice es autocontenido: tiene su propia lógica, UI y tipos, y no conoce los slices que lo usan. Las capas `app` y `shared` no se subdividen en slices porque son técnicas y globales, no tienen concepto de negocio.
+
+- **Segments**: la división interna de cada slice por tipo técnico. Los más comunes son `ui/` (componentes), `model/` (estado, tipos, lógica de dominio), `api/` (llamadas externas), `lib/` (utilidades) y `assets/` (imágenes, SVGs).
+
+Cada slice expone un `index.ts` (barrel) como única API pública. Los imports entre slices van siempre a través del barrel del slice de destino. Los imports dentro del mismo slice usan rutas relativas directas.
 
 Cuando un nombre colisiona entre el tipo de modelo y el componente UI, el barrel usa un alias para distinguirlos (por ejemplo, `CartItem` el tipo y `CartItemComponent` el componente).
 
@@ -41,15 +45,25 @@ src/
 │   └── NotFoundPage.tsx
 │
 ├── widgets/                      # Bloques de UI completos y autocontenidos
-│   ├── ui/
-│   │   ├── Header/
-│   │   ├── ProductGrid/          # Catálogo con buscador y paginación
-│   │   ├── ProductDetails/       # Composición del detalle de producto
-│   │   ├── ProductPurchasePanel/ # Selección de opciones y precio
-│   │   ├── SimilarProducts/      # Carrusel de productos relacionados
-│   │   ├── CartView/             # Vista completa del carrito
-│   │   └── index.ts              # Barrel
-│   └── assets/                   # Imágenes y SVGs del widget
+│   ├── Header/                   # Cabecera con logo, carrito y volver
+│   │   ├── ui/                   # Header.tsx + estilos + test
+│   │   ├── assets/               # logo, iconos de bolsa, flecha
+│   │   └── index.ts              # Barrel del slice
+│   ├── ProductGrid/              # Catálogo con buscador y paginación
+│   │   ├── ui/
+│   │   └── index.ts
+│   ├── ProductDetails/           # Composición del detalle de producto
+│   │   ├── ui/
+│   │   └── index.ts
+│   ├── ProductPurchasePanel/     # Selección de opciones y precio
+│   │   ├── ui/
+│   │   └── index.ts
+│   ├── SimilarProducts/          # Carrusel de productos relacionados
+│   │   ├── ui/
+│   │   └── index.ts
+│   └── CartView/                 # Vista completa del carrito
+│       ├── ui/
+│       └── index.ts
 │
 ├── features/                     # Acciones del usuario que modifican el estado
 │   ├── addToCart/                # Añade un producto al carrito y redirige a /cart

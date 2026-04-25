@@ -1,9 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../../../entities/cart';
-import logo from '../../assets/logo.svg';
-import bagIconInactive from '../../assets/bagIconInactive.svg';
-import bagIconActive from '../../assets/bagIconActive.svg';
-import backArrow from '../../assets/backArrow.svg';
+import logo from '../assets/logo.svg';
+import bagIconInactive from '../assets/bagIconInactive.svg';
+import bagIconActive from '../assets/bagIconActive.svg';
+import backArrow from '../assets/backArrow.svg';
 import styles from './Header.module.scss';
 
 export const Header: React.FC = () => {

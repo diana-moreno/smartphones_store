@@ -1,6 +1,6 @@
 import AppRoutes from './routes';
 import { CartProvider } from '../entities/cart';
-import { LoadingProvider } from './loading/LoadingProvider';
+import { LoadingProvider } from './model/LoadingProvider';
 
 const App = () => {
   return (

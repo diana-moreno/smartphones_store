@@ -7,7 +7,7 @@ vi.mock('../../../entities/product/api/productApi', () => ({
   getProductById: vi.fn(),
 }));
 
-vi.mock('../ProductPurchasePanel/ProductPurchasePanel', () => ({
+vi.mock('../../ProductPurchasePanel', () => ({
   ProductPurchasePanel: () => <div>ProductPurchasePanel</div>,
 }));
 
@@ -18,7 +18,7 @@ vi.mock(
   })
 );
 
-vi.mock('../SimilarProducts/SimilarProducts', () => ({
+vi.mock('../../SimilarProducts', () => ({
   SimilarProducts: () => <div>SimilarProducts</div>,
 }));
 

@@ -3,7 +3,7 @@ import { getProducts } from '../../../entities/product';
 import type { ProductSummary } from '../../../entities/product';
 import { ProductList } from '../../../entities/product';
 import { SearchBar } from '../../../features/searchProducts';
-import { useLoading } from '../../../app/loading/useLoading';
+import { useLoading } from '../../../app/model/useLoading';
 import styles from './ProductGrid.module.scss';
 
 const DEBOUNCE_MS = 300;
