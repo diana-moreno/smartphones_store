@@ -30,6 +30,7 @@ src/
 │   ├── Layout/                   # Layout raíz con barra de progreso
 │   ├── loading/                  # Context y hook de loading global
 │   ├── styles/                   # Estilos base (reset, tipografía, variables)
+│   ├── App.tsx                   # Componente raíz con providers y router
 │   ├── routes.tsx                # Definición de rutas
 │   └── main.tsx                  # Punto de entrada
 │
@@ -78,6 +79,26 @@ src/
     └── test/                     # renderWithProviders, test-setup
 ```
 
+## Estilos globales
+
+Los estilos base siguen el patrón [**ITCSS** Inverted Triangle CSS](https://developer.helpscout.com/seed/glossary/itcss/), que organiza el CSS de más genérico a más específico, siguiendo la forma de un triángulo invertido:
+
+```text
+styles/
+├── 01.settings/   # Variables globales (colores, tipografía, espaciado)
+├── 02.tools/      # Mixins y funciones Sass reutilizables
+├── 03.generic/    # Reset y normalize — mínima especificidad
+└── 04.elements/   # Estilos base para etiquetas HTML (h1, a, p…)
+```
+
+Cada capa tiene menos alcance y más especificidad que la anterior. Las reglas que afectan a todo el proyecto van arriba; las que afectan a elementos concretos, abajo. Los estilos específicos de componente viven en sus propios CSS Modules, fuera de esta jerarquía.
+
+**Ventajas**:
+
+- **Sin conflictos de especificidad**: al ordenar de menos a más específico, las reglas se sobreescriben de forma predecible y nunca se necesitan `!important`.
+- **Fácil de mantener**: se sabe exactamente dónde buscar o añadir cada tipo de regla.
+- **Escalable**: añadir nuevas capas o reglas no rompe lo existente.
+
 ## Rutas
 
 | Ruta            | Descripción                                        |
@@ -92,15 +113,6 @@ src/
 - **Carrito**: React Context con persistencia en `localStorage`.
 - **Loading**: React Context para la barra de progreso global.
 - **Fetch**: peticiones directas con `fetch`.
-
-## Tests
-
-- **Unitarios** (Vitest + Testing Library): verifican que cada componente funciona correctamente de forma aislada. Viven junto al fichero que testean siguiendo el principio de colocalización.
-- **E2e** (Playwright): simulan flujos reales de usuario navegando entre páginas contra la API real. No repiten lo que ya cubren los unitarios.
-
-## Accesibilidad
-
-La interfaz es navegable íntegramente con teclado y compatible con lectores de pantalla. Los elementos interactivos tienen nombres descriptivos, los elementos se han creado teniendo en cuenta su propia semántica y la jerarquía de encabezados es coherente en todas las páginas.
 
 ---
 

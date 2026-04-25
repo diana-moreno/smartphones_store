@@ -43,7 +43,7 @@ npx playwright test -g "nombre del test"
 - **Build**: Vite 8 con `@vitejs/plugin-react` (usa Oxc). React Compiler **no** está habilitado.
 - **TypeScript**: config con project references — `tsconfig.json` raíz referencia `tsconfig.app.json` (código de `src/`) y `tsconfig.node.json` (ficheros de config). `tsconfig.app.json` activa `noUnusedLocals`, `noUnusedParameters`, `erasableSyntaxOnly` y `verbatimModuleSyntax`.
 - **Estructura**: Feature-Sliced Design — `app` → `pages` → `widgets` → `features` → `entities` → `shared`. Las capas solo importan hacia abajo, nunca al revés.
-- **Routing**: React Router v7, configurado en `src/app/router/`. Rutas: `/`, `/products/:id`, `/cart`, `*` (404).
+- **Routing**: React Router v7, configurado en `src/app/routes.tsx`. Rutas: `/`, `/products/:id`, `/cart`, `*` (404).
 - **Estado**: React Context para el carrito (`CartProvider`) y loading global (`LoadingProvider`). Sin librería externa. El carrito persiste en `localStorage` como snapshot completo.
 - **Tests unitarios** (Vitest): entorno `jsdom`, `globals: true`. Setup en `src/shared/test/test-setup.ts`. Helper `renderWithProviders` en `src/shared/test/renderWithProviders.tsx` — envuelve con `MemoryRouter`, `LoadingProvider` y `CartProvider`.
 - **Tests e2e** (Playwright): carpeta `e2e/`, solo Chromium. `webServer` arranca `npm run dev` automáticamente. Los tests e2e cubren flujos completos entre páginas; los casos atómicos van en unitarios.

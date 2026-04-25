@@ -43,7 +43,8 @@ npm run test:e2e         # Tests e2e (Playwright)
 
 ## Documentación
 
-- [Arquitectura](docs/architecture.md) — Feature-Sliced Design, estructura de carpetas, rutas, estado, tests y accesibilidad
+- [Arquitectura](docs/architecture.md) — Feature-Sliced Design, estructura de carpetas, rutas y estado
+- [Calidad de código](docs/quality.md) — accesibilidad, testing, rendimiento y principios de diseño
 - [Tecnologías](docs/technologies.md) — stack completo con versiones
 - [Estilo de código](docs/code-style.md) — formateo, linting, configuración del editor y pre-commit
 - [Convenciones de commits](docs/commit-conventions.md) — formato y tipos permitidos
