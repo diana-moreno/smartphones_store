@@ -39,7 +39,7 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   };
 
   return (
-    <Button onClick={handleClick} disabled={disabled}>
+    <Button ariaLabel="Add to cart" onClick={handleClick} disabled={disabled}>
       Add
     </Button>
   );

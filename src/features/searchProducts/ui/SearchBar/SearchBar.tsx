@@ -30,10 +30,10 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           <button
             type="button"
             onClick={() => onChange('')}
-            aria-label="Clean search"
+            aria-label="Clear search"
             className={styles.clear}
           >
-            <img src={shape} alt="" />
+            <img src={shape} alt="Clear search icon" />
           </button>
         )}
       </form>

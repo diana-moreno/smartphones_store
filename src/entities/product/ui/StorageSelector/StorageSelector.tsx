@@ -22,6 +22,7 @@ export const StorageSelector: React.FC<StorageSelectorProps> = ({
         <li key={option.capacity}>
           <button
             type="button"
+            aria-label={option.capacity}
             aria-pressed={isSelected}
             onClick={() => onChange(option.capacity)}
             className={`${styles.button} ${isSelected ? styles.selected : ''}`}
