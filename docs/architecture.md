@@ -1,8 +1,10 @@
 # Arquitectura
 
-SPA construida con React y TypeScript, organizada siguiendo **Feature-Sliced Design (FSD)**.
+SPA construida con React y TypeScript, organizada siguiendo [**Feature-Sliced Design (FSD)**](https://feature-sliced.design/).
 
-### Capas y dependencias
+## Capas y dependencias
+
+FSD organiza el código en **capas** (app, pages, widgets, features, entities, shared). Las capas intermedias se subdividen en **slices** — unidades independientes que agrupan todo lo relacionado con un concepto concreto (por ejemplo, `product` o `cart` dentro de `entities`). Cada slice es autocontenido: tiene su propia lógica, UI y tipos, y no conoce los slices que lo usan.
 
 Las capas solo pueden importar hacia abajo. Nunca al revés.
 
@@ -10,11 +12,11 @@ Las capas solo pueden importar hacia abajo. Nunca al revés.
 app → pages → widgets → features → entities → shared
 ```
 
-Cada slice expone un `index.ts` barrel como única API pública. Los imports entre slices van siempre a través del barrel del slice de destino. Los imports dentro del mismo slice usan rutas relativas directas.
+Cada slice expone un `index.ts` fichero barrel como única API pública. Los imports entre slices van siempre a través del barrel del slice de destino. Los imports dentro del mismo slice usan rutas relativas directas.
 
 Cuando un nombre colisiona entre el tipo de modelo y el componente UI, el barrel usa un alias para distinguirlos (por ejemplo, `CartItem` el tipo y `CartItemComponent` el componente).
 
-### Estructura de carpetas
+## Estructura de carpetas
 
 ```text
 e2e/                              # Tests end-to-end (Playwright)

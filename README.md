@@ -2,7 +2,7 @@
 
 SPA de una tienda de smartphones construida con React 19, TypeScript y Vite. Permite explorar el catálogo, buscar productos, ver el detalle de cada uno, seleccionar color y almacenamiento, añadirlos al carrito y eliminarlos.
 
-**Demo**: [smartphones-store.netlify.app](https://smartphones-store.netlify.app)
+**Demo**: [my-smartphone-store.netlify.app](https://my-smartphone-store.netlify.app)
 
 ## Puesta en marcha
 
@@ -50,18 +50,18 @@ npm run test:e2e         # Tests e2e (Playwright)
 
 ## Notas y decisiones
 
-- **Arquitectura FSD**: Feature-Sliced Design va más allá de lo que este proyecto requiere, pero la elección ha sido consciente: el proyecto ha servido como contexto real para aprenderla en profundidad. Es una arquitectura pensada para proyectos grandes, equipos, ideal ecommerce grandes.
+- **Arquitectura FSD**: [Feature-Sliced Design](https://feature-sliced.design/) va más allá de lo que este proyecto requiere, pero la elección ha sido consciente: el proyecto ha servido como contexto real para aprenderla en profundidad. Es una arquitectura pensada para proyectos grandes, equipos, ideal ecommerce grandes.
 
   _Ventajas_: separación clara de responsabilidades, límites explícitos entre capas, fácil de escalar y de incorporar nuevos desarrolladores, cada pieza tiene un lugar predecible, su mantenimiento es más fácil y es mas dificil que queden componentes colgados sin utilizar o se dupliquen.
 
   _Desventajas_: overkill para proyectos pequeños, mayor curva de aprendizaje, más ficheros y carpetas de los necesarios, y los barrels (`index.ts`) introducen una penalización de rendimiento en el proceso de resolución de módulos. En proyectos de esta escala no es perceptible, pero en proyectos mayores es mejor mirar alternativas.
 
-- **Manejo de errores y página 404**: no eran requisitos del proyecto, pero se han añadido porque forman parte de una experiencia de usuario mínimamente completa. La app distingue entre errores de la API (producto no encontrado, error de permisos) y rutas desconocidas, y los gestiona de forma diferenciada.
+- **Manejo de errores y página 404**: no eran requisitos del proyecto, pero se han añadido porque forman parte de una experiencia de usuario mínimamente completa. La app distingue entre errores de la API (producto no encontrado, error de permisos) y rutas desconocidas, y los gestiona de forma diferenciada. También se han añadido algunos errores para ayudar al desarrollador (ej utilizar contexto sin estar dentro del Provider).
 
 - **Limitación observada en la API**: los parámetros `limit` y `offset` no son compatibles entre sí — cuando se usa `offset`, el `limit` se ignora, sería algo bueno para documentar en Swagger.
 
-- **Carrito simplificado**: el carrito guarda un snapshot completo de cada producto en `localStorage`. Es una solución sencilla y suficiente para el alcance del proyecto. En una versión más completa, lo ideal sería contrastar los datos del carrito con el backend en cada sesión para detectar cambios de precio o productos descatalogados y avisar al usuario.
+- **Carrito simplificado**: el carrito guarda un snapshot completo de cada producto en `localStorage`. Es una solución sencilla y suficiente para el alcance del proyecto. En una versión más completa, lo ideal sería contrastar los datos del carrito con el backend en cada sesión para detectar cambios de precio o productos descatalogados y avisar al usuario. Además, se podría implementar un control de cantidades.
 
-- **Diseño pixel-perfect**: el diseño se ha seguido pixel perfecto, con una excepción: las imágenes de producto que sirve la API no están recortadas de forma consistente — algunas incluyen espacios y otras no, lo que hace que no tengan el mismo tamaño al renderizarse y en algunos casos el efecto de cortina negro no funciona correctamente. Se implementó una solución en frontend usando Canvas para normalizar las imágenes, pero los tiempos de carga aumentaban significativamente y la experiencia de usuario empeoraba de forma notable. La solución óptima es que el backend sirva imágenes con dimensiones homogéneas.
+- **Diseño pixel-perfect**: el diseño se ha seguido pixel perfecto, al igual que la experiencia de usuario, con una excepción: las imágenes de producto que sirve la API no están recortadas de forma consistente — algunas incluyen espacios y otras no, lo que hace que no tengan el mismo tamaño al renderizarse y en algunos casos el efecto de cortina negro no funciona correctamente. Se implementó una solución en frontend usando Canvas para normalizar las imágenes, pero los tiempos de carga aumentaban significativamente y la experiencia de usuario empeoraba de forma notable y se descartó. La solución óptima es que el backend sirva imágenes con dimensiones homogéneas.
 
 - **Uso de IA**: se ha utilizado IA como compañero de código y generador de documentación, no como sustituto. Todas las decisiones técnicas y de diseño han sido tomadas de forma consciente, definiendo el comportamiento del asistente a través del fichero [CLAUDE](/CLAUDE.md) y de la propia documentación del proyecto.
