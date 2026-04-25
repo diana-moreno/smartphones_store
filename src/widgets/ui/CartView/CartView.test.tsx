@@ -3,9 +3,11 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { CartView } from './CartView';
 import { renderWithProviders } from '../../../shared/test/renderWithProviders';
 
-vi.mock('../../../entities/cart/model/useCart', () => ({
-  useCart: () => mockCartState,
-}));
+vi.mock('../../../entities/cart', async (importOriginal) => {
+  const actual =
+    await importOriginal<typeof import('../../../entities/cart')>();
+  return { ...actual, useCart: () => mockCartState };
+});
 
 vi.mock(
   '../../../features/removeFromCart/ui/RemoveFromCartButton/RemoveFromCartButton',
@@ -18,7 +20,7 @@ const emptyCartItem = {
   id: '',
   productId: '',
   name: '',
-  imageUrl: '',
+  imageUrl: 'img.jpg',
   color: { name: '', hexCode: '' },
   storage: { capacity: '' },
   price: 0,
@@ -53,7 +55,7 @@ describe('CartView', () => {
       renderWithProviders(<CartView />);
       expect(screen.queryByText('0 EUR')).toBeInTheDocument();
       expect(
-        screen.queryByRole('button', { name: 'Pay' })
+        screen.queryByRole('button', { name: 'Pay for your order' })
       ).not.toBeInTheDocument();
     });
 
@@ -87,7 +89,7 @@ describe('CartView', () => {
       renderWithProviders(<CartView />);
       // there are few total pay buttons (mobile and tablet/desktop)
       expect(
-        screen.getAllByRole('button', { name: 'Pay' }).length
+        screen.getAllByRole('button', { name: 'Pay for your order' }).length
       ).toBeGreaterThan(0);
     });
 

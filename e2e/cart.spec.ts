@@ -30,7 +30,7 @@ test.describe('Cart', () => {
   test('should persist the cart across navigations', async ({ page }) => {
     await addFirstProductToCart(page);
     await page.getByRole('link', { name: 'Continue shopping' }).click();
-    await page.getByRole('link', { name: 'Cart, 1 products' }).click();
+    await page.getByRole('link', { name: 'Go to cart, 1 products' }).click();
     await expect(page.getByRole('heading', { name: 'Cart (1)' })).toBeVisible();
   });
 
@@ -55,7 +55,7 @@ test.describe('Cart', () => {
 
   test('should navigate to home from the header logo', async ({ page }) => {
     await page.goto('/cart');
-    await page.getByRole('link', { name: 'home' }).click();
+    await page.getByRole('link', { name: 'Go to home' }).click();
     await expect(page).toHaveURL('/');
   });
 });

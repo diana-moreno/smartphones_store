@@ -8,13 +8,6 @@
   border-bottom: 1px solid $co-black;
 }
 
-.label {
-  visibility: hidden;
-  width: 0;
-  height: 0;
-  display: block;
-}
-
 .searcher {
   @include font(
     $fs: rem(16px),

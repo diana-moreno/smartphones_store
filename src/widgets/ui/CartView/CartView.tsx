@@ -42,7 +42,7 @@ export const CartView: React.FC = () => {
           <>
             {/* mobile */}
             <div className={styles.pay}>
-              <Button ariaLabel="Go to pay" onClick={() => {}}>
+              <Button ariaLabel="Pay for your order" onClick={() => {}}>
                 Pay
               </Button>
             </div>
@@ -54,7 +54,7 @@ export const CartView: React.FC = () => {
                 <span>{totalPrice} EUR</span>
               </p>
               <div className={styles.payDesktop}>
-                <Button ariaLabel="Go to pay" onClick={() => {}}>
+                <Button ariaLabel="Pay for your order" onClick={() => {}}>
                   Pay
                 </Button>
               </div>

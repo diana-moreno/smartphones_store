@@ -63,7 +63,7 @@ describe('AddToCartButton', () => {
         <AddToCartButton product={product} selectedStorage={selectedStorage} />
       );
 
-      expect(screen.getByRole('button', { name: 'Add' })).toBeDisabled();
+      expect(screen.getByRole('button', { name: 'Add to cart' })).toBeDisabled();
     });
 
     it('should be disabled when selectedStorage is missing', () => {
@@ -71,7 +71,7 @@ describe('AddToCartButton', () => {
         <AddToCartButton product={product} selectedColor={selectedColor} />
       );
 
-      expect(screen.getByRole('button', { name: 'Add' })).toBeDisabled();
+      expect(screen.getByRole('button', { name: 'Add to cart' })).toBeDisabled();
     });
 
     it('should be enabled when both color and storage are selected', () => {
@@ -83,7 +83,7 @@ describe('AddToCartButton', () => {
         />
       );
 
-      expect(screen.getByRole('button', { name: 'Add' })).toBeEnabled();
+      expect(screen.getByRole('button', { name: 'Add to cart' })).toBeEnabled();
     });
   });
 
@@ -98,7 +98,7 @@ describe('AddToCartButton', () => {
         />
       );
 
-      await user.click(screen.getByRole('button', { name: 'Add' }));
+      await user.click(screen.getByRole('button', { name: 'Add to cart' }));
 
       expect(mockAddItem).toHaveBeenCalledWith({
         id: 'test-uuid',
@@ -121,7 +121,7 @@ describe('AddToCartButton', () => {
         />
       );
 
-      await user.click(screen.getByRole('button', { name: 'Add' }));
+      await user.click(screen.getByRole('button', { name: 'Add to cart' }));
 
       expect(mockNavigate).toHaveBeenCalledWith('/cart');
     });
