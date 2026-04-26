@@ -12,7 +12,7 @@ export const ProductListPage: React.FC = () => {
   const { error, isLoading, products } = useFetchProducts(search);
 
   return (
-    <section>
+    <section className={styles.section}>
       <div className={styles.searchWrapper}>
         <SearchBar
           value={search}

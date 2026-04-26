@@ -1,5 +1,9 @@
 @use '../../../../app/styles/modules' as *;
 
+.section {
+  margin-top: 24px;
+}
+
 .searchWrapper {
   position: sticky;
   top: $header-height;
@@ -11,4 +15,10 @@
 .error {
   margin-top: 20px;
   @include font($fs: rem(16px), $fw: $fw-small, $co: $co-red, $lh: rem(16px));
+}
+
+@include tablet {
+  .section {
+    margin-top: 48px;
+  }
 }

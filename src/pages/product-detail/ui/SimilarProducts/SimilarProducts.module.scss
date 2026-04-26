@@ -35,9 +35,7 @@
 // Overwriting the default styles of Swiper (scrollBar customization and slide size)
 
 :global(.swiper-slide:first-child) {
-  .item {
-    border-left: 1px solid $co-black;
-  }
+  border-left: 1px solid $co-black;
 }
 
 :global(.swiper .swiper-wrapper) {
