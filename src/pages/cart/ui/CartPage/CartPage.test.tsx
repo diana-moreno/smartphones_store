@@ -3,10 +3,11 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { CartPage } from './CartPage';
 import { renderWithProviders } from '../../../../shared/test/renderWithProviders';
 
-vi.mock('../../../../entities/cart', async (importOriginal) => {
-  const actual =
-    await importOriginal<typeof import('../../../../entities/cart')>();
-  return { ...actual, useCart: () => mockCartState };
+vi.mock('../../../../entities/cart', async () => {
+  return {
+    ...(await vi.importActual('../../../../entities/cart')),
+    useCart: () => mockCartState,
+  };
 });
 
 vi.mock('../../../../features/remove-from-cart', () => ({

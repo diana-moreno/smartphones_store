@@ -8,10 +8,12 @@ vi.mock('../../api/productsApi', () => ({
 
 import { getProductById } from '../../api/productsApi';
 
-vi.mock('react-router-dom', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('react-router-dom')>()),
-  useParams: () => ({ id: 'p1' }),
-}));
+vi.mock('react-router-dom', async () => {
+  return {
+    ...(await vi.importActual('react-router-dom')),
+    useParams: () => ({ id: 'p1' }),
+  };
+});
 
 vi.mock('../ProductPurchasePanel/ProductPurchasePanel', () => ({
   ProductPurchasePanel: () => <div>ProductPurchasePanel</div>,
