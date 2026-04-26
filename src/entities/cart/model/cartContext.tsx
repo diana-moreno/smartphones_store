@@ -1,11 +1,9 @@
 import { createContext } from 'react';
-import type { CartItem } from './cartItem';
+import type { Cart } from './cartItem';
+import type { ItemInCart } from '../../product/@x/cart';
 
-export interface CartContextValue {
-  items: CartItem[];
-  count: number;
-  totalPrice: number;
-  addItem: (item: CartItem) => void;
+export interface CartContextValue extends Cart {
+  addItem: (item: ItemInCart) => void;
   removeItem: (id: string) => void;
 }
 

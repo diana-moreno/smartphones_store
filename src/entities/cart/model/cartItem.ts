@@ -1,9 +1,7 @@
-export type CartItem = {
-  id: string;
-  productId: string;
-  name: string;
-  imageUrl: string;
-  color: { name: string; hexCode: string };
-  storage: { capacity: string };
-  price: number;
+import type { ItemInCart } from '../../product/@x/cart';
+
+export type Cart = {
+  items: ItemInCart[];
+  count: number;
+  totalPrice: number;
 };

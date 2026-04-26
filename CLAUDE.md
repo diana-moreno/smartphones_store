@@ -42,9 +42,9 @@ npx playwright test -g "nombre del test"
 
 - **Build**: Vite 8 con `@vitejs/plugin-react` (usa Oxc). React Compiler **no** está habilitado.
 - **TypeScript**: config con project references — `tsconfig.json` raíz referencia `tsconfig.app.json` (código de `src/`) y `tsconfig.node.json` (ficheros de config). `tsconfig.app.json` activa `noUnusedLocals`, `noUnusedParameters`, `erasableSyntaxOnly` y `verbatimModuleSyntax`.
-- **Estructura**: Feature-Sliced Design — `app` → `pages` → `widgets` → `features` → `entities` → `shared`. Las capas solo importan hacia abajo, nunca al revés.
+- **Estructura**: Feature-Sliced Design v2 — `app` → `pages` → `widgets` → `features` → `entities` → `shared`. Las capas solo importan hacia abajo, nunca al revés. Las dependencias cruzadas entre entidades del mismo nivel se declaran explícitamente mediante ficheros `@x/` (p.ej. `entities/product/@x/cart.ts`).
 - **Routing**: React Router v7, configurado en `src/app/routes.tsx`. Rutas: `/`, `/products/:id`, `/cart`, `*` (404).
-- **Estado**: React Context para el carrito (`CartProvider`) y loading global (`LoadingProvider`). Sin librería externa. El carrito persiste en `localStorage` como snapshot completo.
+- **Estado**: React Context para el carrito (`CartProvider` en `entities/cart`) y loading global (`LoadingProvider` en `app/model`). Sin librería externa. El carrito persiste en `localStorage` como snapshot completo.
 - **Tests unitarios** (Vitest): entorno `jsdom`, `globals: true`. Setup en `src/shared/test/test-setup.ts`. Helper `renderWithProviders` en `src/shared/test/renderWithProviders.tsx` — envuelve con `MemoryRouter`, `LoadingProvider` y `CartProvider`.
 - **Tests e2e** (Playwright): carpeta `e2e/`, solo Chromium. `webServer` arranca `npm run dev` automáticamente. Los tests e2e cubren flujos completos entre páginas; los casos atómicos van en unitarios.
 - **Styling**: CSS Modules + Sass. Un fichero de módulo por componente, colocalizados.
@@ -71,13 +71,21 @@ Cada slice expone un `index.ts` como única API pública. Las reglas son:
 - **Alias de nombre en el barrel**: cuando un nombre colisiona entre la entidad de modelo y el componente UI, usar alias en el barrel.
 
   ```ts
-  export { CartItem as CartItemComponent } from './ui/CartItem'; // evita colisión con el tipo CartItem
+  export { CartItem as CartItemComponent } from './ui/CartItem/CartItem'; // evita colisión con el tipo CartItem
+  ```
+
+- **Cross-references entre entidades (`@x/`)**: cuando un slice de `entities` necesita un tipo de otro slice del mismo nivel, no se importa del barrel general sino de un fichero `@x/<destino>.ts` dentro del slice origen. Esto hace la dependencia explícita y auditable.
+
+  ```ts
+  // entities/cart/ui/CartItem/CartItem.tsx
+  import type { ItemInCart } from '../../../product/@x/cart'; // ✅ cross-reference explícita
+  import type { ItemInCart } from '../../../product';          // ❌ barrel general
   ```
 
 ## Principios de diseño
 
 - **KISS** (Keep It Simple, Stupid): la solución más simple que funcione. Sin abstracciones prematuras, sin patrones por adelantado, sin código defensivo para casos que no ocurren.
-- **Single Responsibility**: cada pieza tiene una sola razón para cambiar. Las páginas no tienen lógica, los widgets componen sin saber de rutas, los slices de `entities` no conocen las features que los usan.
+- **Single Responsibility**: cada pieza tiene una sola razón para cambiar. Cada slice de `pages` orquesta su propia ruta (fetch, estado, composición de UI); los widgets componen sin saber de rutas; los slices de `entities` no conocen las features que los usan.
 - **Colocation**: cada fichero vive junto a lo que le da sentido. Tests al lado del componente que testean, estilos al lado del componente que los usa, assets dentro del slice que los necesita.
 - **DRY**: no repetir lógica ni setup. El cliente HTTP centraliza el fetch y los headers; `renderWithProviders` centraliza el contexto de tests.
 
@@ -94,6 +102,7 @@ Reglas detalladas en [docs/code-style.md](docs/code-style.md). Puntos clave:
 
 - Los tests unitarios se colocalizan junto al fichero que testean (`Component.test.tsx` al lado de `Component.tsx`).
 - Los componentes con lógica se testean con mocks de sus dependencias externas. Los display-only verifican que renderizan los datos recibidos por props.
+- El path de `vi.mock()` debe coincidir exactamente con el import del componente bajo test. Si el componente importa desde el barrel (`'../../../entities/product'`), el mock también debe apuntar al barrel — no a la ruta interna.
 - Para fake timers con debounce: `vi.useFakeTimers()` + `await act(() => vi.advanceTimersByTimeAsync(N))`. Usar `fireEvent` en lugar de `userEvent` cuando los timers están congelados.
 - Los tests e2e no duplican cobertura unitaria: solo flujos que atraviesan varias páginas, providers o la API real.
 

@@ -1,0 +1,91 @@
+@use '../../../../app/styles/modules' as *;
+
+.list {
+  margin-bottom: 40px;
+  max-width: 92vw;
+  margin-top: 80px;
+}
+
+.title {
+  @include font($fs: rem(20px), $fw: $fw-small, $co: $co-black, $lh: rem(20px));
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.item {
+  border: 1px solid $co-black;
+  border-left: 0;
+}
+
+@include tablet {
+  .list {
+    margin-top: 88px;
+  }
+}
+
+@include desktop {
+  .list {
+    margin-top: 154px;
+  }
+}
+
+// Overwriting the default styles of Swiper (scrollBar customization and slide size)
+
+:global(.swiper-slide:first-child) {
+  .item {
+    border-left: 1px solid $co-black;
+  }
+}
+
+:global(.swiper .swiper-wrapper) {
+  height: calc(#{$productCard-height-mobile} + 40px);
+}
+
+:global(.swiper-horizontal > .swiper-wrapper + .swiper-scrollbar) {
+  background-color: $co-gray-300;
+  height: 1px;
+  width: 100%;
+  border-radius: 0;
+  left: 1px;
+}
+:global(.swiper-horizontal > .swiper-wrapper + .swiper-scrollbar-drag) {
+  background-color: $co-black;
+  border-radius: 0;
+}
+
+:global(.swiper .swiper-wrapper .swiper-slide),
+:global(.swiper .swiper-wrapper .swiper-slide-active),
+.item {
+  height: $productCard-height-mobile;
+  width: $productCard-width-mobile;
+}
+
+@include tablet {
+  :global(.swiper .swiper-wrapper) {
+    height: calc(#{$productCard-height-tablet} + 40px);
+  }
+
+  :global(.swiper .swiper-wrapper .swiper-slide),
+  :global(.swiper .swiper-wrapper .swiper-slide-active),
+  .item {
+    height: $productCard-height-tablet;
+    width: $productCard-width-tablet;
+  }
+}
+
+@include desktop {
+  :global(.swiper .swiper-wrapper) {
+    height: calc(#{$productCard-height-desktop} + 40px);
+  }
+
+  :global(.swiper .swiper-wrapper .swiper-slide),
+  :global(.swiper .swiper-wrapper .swiper-slide-active),
+  .item {
+    height: $productCard-height-desktop;
+    width: $productCard-width-desktop;
+  }
+}

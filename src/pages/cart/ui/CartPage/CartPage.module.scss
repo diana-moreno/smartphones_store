@@ -1,0 +1,150 @@
+@use '../../../../app/styles/modules' as *;
+
+.cart {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  @include font($fs: rem(20px), $fw: $fw-small, $co: $co-black, $lh: rem(20px));
+  text-transform: uppercase;
+  margin: 48px 0 24px 0;
+}
+
+.list {
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.totalMobile {
+  @include font(
+    $fs: rem(14px),
+    $fw: $fw-medium,
+    $co: $co-black,
+    $lh: rem(14px)
+  );
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.continueLink {
+  @include font($fs: rem(12px), $fw: $fw-small, $co: $co-black, $lh: rem(16px));
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 8%;
+  border: 1px solid $co-black;
+  background: $co-white;
+  flex: 1;
+  padding: 16px 0;
+  text-align: center;
+}
+
+.pay {
+  flex: 1;
+}
+
+.noPay {
+  width: 100%;
+  flex: none;
+}
+
+.totalDesktop {
+  display: none;
+}
+
+.payWrapper {
+  display: none;
+}
+
+.payDesktop {
+  display: none;
+}
+
+@include tablet {
+  .title {
+    margin: 48px 0 60px 0;
+  }
+
+  .footer {
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 24px;
+    gap: 0;
+  }
+
+  .totalMobile {
+    display: none;
+  }
+
+  .continueLink {
+    width: 200px;
+    flex: none;
+  }
+
+  .pay {
+    display: none;
+  }
+
+  .noPay {
+    width: 260px;
+  }
+
+  .payWrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .totalDesktop {
+    @include font(
+      $fs: rem(14px),
+      $fw: $fw-medium,
+      $co: $co-black,
+      $lh: rem(14px)
+    );
+    display: flex;
+    gap: 24px;
+    text-transform: uppercase;
+    margin-right: 56px;
+  }
+
+  .payDesktop {
+    display: block;
+    width: 260px;
+  }
+}
+
+@include desktop {
+  .title {
+    @include font(
+      $fs: rem(24px),
+      $fw: $fw-small,
+      $co: $co-black,
+      $lh: rem(24px)
+    );
+    margin-bottom: 60px;
+  }
+
+  .continueLink {
+    width: 260px;
+  }
+
+  .payDesktop {
+    width: 260px;
+  }
+
+  .totalDesktop {
+    margin-right: 80px;
+  }
+}

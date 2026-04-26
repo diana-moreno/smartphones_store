@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 import { CartContext } from './cartContext';
-import type { CartItem } from './cartItem';
+import type { ItemInCart } from '../../product/@x/cart';
 
 interface CartProviderProps {
   children: ReactNode;
@@ -11,7 +11,7 @@ const LS_KEY = 'cart';
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const stored = localStorage.getItem(LS_KEY);
-  const [items, setItems] = useState<CartItem[]>(
+  const [items, setItems] = useState<ItemInCart[]>(
     stored ? JSON.parse(stored) : []
   );
 
@@ -19,7 +19,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     localStorage.setItem(LS_KEY, JSON.stringify(items));
   }, [items]);
 
-  const addItem = (item: CartItem) => {
+  const addItem = (item: ItemInCart) => {
     setItems([...items, item]);
   };
 
