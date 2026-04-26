@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import type { ProductDetail } from '../../../../entities/product';
-import styles from './ProductPurchasePanel.module.scss';
+import { AddToCartButton } from '../../../../features/add-to-cart';
 import { ColorSelector } from '../ColorSelector/ColorSelector';
 import { StorageSelector } from '../StorageSelector/StorageSelector';
-import { AddToCartButton } from '../../../../features/add-to-cart';
+import styles from './ProductPurchasePanel.module.scss';
 
 interface ProductPurchasePanelProps {
   product: ProductDetail;

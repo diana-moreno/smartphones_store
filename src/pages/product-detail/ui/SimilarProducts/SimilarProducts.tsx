@@ -3,10 +3,10 @@ import type { ProductSummary } from '../../../../entities/product';
 import { ProductCard } from '../../../../entities/product';
 import styles from './SimilarProducts.module.scss';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 import { Scrollbar } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 interface SimilarProductsProps {
   products: ProductSummary[];
@@ -18,10 +18,8 @@ export const SimilarProducts: React.FC<SimilarProductsProps> = ({
   if (products.length === 0) return null;
 
   return (
-    <section aria-labelledby="similar-heading" className={styles.list}>
-      <h2 id="similar-heading" className={styles.title}>
-        Similar items
-      </h2>
+    <section className={styles.list}>
+      <h2 className={styles.title}>Similar items</h2>
       <Swiper
         modules={[Scrollbar]}
         spaceBetween={0}

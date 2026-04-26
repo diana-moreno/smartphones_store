@@ -1,5 +1,5 @@
-import styles from './SearchBar.module.scss';
 import shape from '../../assets/shape.svg';
+import styles from './SearchBar.module.scss';
 
 interface SearchBarProps {
   value: string;

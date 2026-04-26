@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { AddToCartButton } from './AddToCartButton';
 
 const mockAddItem = vi.fn();
@@ -63,7 +63,9 @@ describe('AddToCartButton', () => {
         <AddToCartButton product={product} selectedStorage={selectedStorage} />
       );
 
-      expect(screen.getByRole('button', { name: 'Add to cart' })).toBeDisabled();
+      expect(
+        screen.getByRole('button', { name: 'Add to cart' })
+      ).toBeDisabled();
     });
 
     it('should be disabled when selectedStorage is missing', () => {
@@ -71,7 +73,9 @@ describe('AddToCartButton', () => {
         <AddToCartButton product={product} selectedColor={selectedColor} />
       );
 
-      expect(screen.getByRole('button', { name: 'Add to cart' })).toBeDisabled();
+      expect(
+        screen.getByRole('button', { name: 'Add to cart' })
+      ).toBeDisabled();
     });
 
     it('should be enabled when both color and storage are selected', () => {

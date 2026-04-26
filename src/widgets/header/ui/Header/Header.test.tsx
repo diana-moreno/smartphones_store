@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+import { renderWithProviders } from '../../../../shared/test';
 import { Header } from './Header';
-import { renderWithProviders } from '../../../../shared/test/renderWithProviders';
 
 vi.mock('../../../entities/cart/model/useCart', () => ({
   useCart: () => ({ count: 0 }),

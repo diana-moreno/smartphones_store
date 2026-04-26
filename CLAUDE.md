@@ -79,7 +79,7 @@ Cada slice expone un `index.ts` como única API pública. Las reglas son:
   ```ts
   // entities/cart/ui/CartItem/CartItem.tsx
   import type { ItemInCart } from '../../../product/@x/cart'; // ✅ cross-reference explícita
-  import type { ItemInCart } from '../../../product';          // ❌ barrel general
+  import type { ItemInCart } from '../../../product'; // ❌ barrel general
   ```
 
 ## Principios de diseño

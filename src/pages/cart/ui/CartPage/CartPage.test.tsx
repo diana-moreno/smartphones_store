@@ -1,12 +1,13 @@
 import { screen } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { renderWithProviders } from '../../../../shared/test';
 import { CartPage } from './CartPage';
-import { renderWithProviders } from '../../../../shared/test/renderWithProviders';
 
-vi.mock('../../../../entities/cart', async (importOriginal) => {
-  const actual =
-    await importOriginal<typeof import('../../../../entities/cart')>();
-  return { ...actual, useCart: () => mockCartState };
+vi.mock('../../../../entities/cart', async () => {
+  return {
+    ...(await vi.importActual('../../../../entities/cart')),
+    useCart: () => mockCartState,
+  };
 });
 
 vi.mock('../../../../features/remove-from-cart', () => ({
@@ -14,6 +15,7 @@ vi.mock('../../../../features/remove-from-cart', () => ({
 }));
 
 const emptyCartItem = {
+  id: 'empty-1',
   productId: '',
   name: '',
   imageUrl: 'img.jpg',

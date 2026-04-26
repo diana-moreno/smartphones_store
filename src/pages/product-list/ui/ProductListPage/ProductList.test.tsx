@@ -1,7 +1,7 @@
-import { screen, act, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { act, fireEvent, screen } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { renderWithProviders } from '../../../../shared/test';
 import { ProductListPage } from './ProductListPage';
-import { renderWithProviders } from '../../../../shared/test/renderWithProviders';
 vi.mock('../../api/productsApi', () => ({
   getProducts: vi.fn(),
 }));

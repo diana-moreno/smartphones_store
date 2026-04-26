@@ -51,7 +51,7 @@ npm run test:e2e         # Tests e2e (Playwright)
 
 ## Notas y decisiones
 
-- **Arquitectura FSD**: [Feature-Sliced Design](https://feature-sliced.design/) va más allá de lo que este proyecto requiere, pero la elección ha sido consciente: el proyecto ha servido como contexto real para aprenderla en profundidad. Es una arquitectura pensada para proyectos grandes, equipos, ideal ecommerce grandes.
+- **Arquitectura FSD**: [Feature-Sliced Design](https://feature-sliced.design/) está sobredimensionada para un proyecto de esta escala pero la elección ha sido consciente, el proyecto ha servido como contexto para aprender una arquitectura robusta y escalable y poder evaluar sus ventajas y desventajas. Esta arquitectura está pensada para proyectos medio-grandes con equipos, ideal para ecommerce.
 
   _Ventajas_: separación clara de responsabilidades, límites explícitos entre capas, fácil de escalar y de incorporar nuevos desarrolladores, cada pieza tiene un lugar predecible, su mantenimiento es más fácil y es mas dificil que queden componentes colgados sin utilizar o se dupliquen.
 
