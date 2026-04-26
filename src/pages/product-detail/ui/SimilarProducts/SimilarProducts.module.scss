@@ -1,7 +1,6 @@
 @use '../../../../app/styles/modules' as *;
 
 .list {
-  margin-bottom: 40px;
   max-width: 92vw;
   margin-top: 80px;
 }
@@ -36,9 +35,7 @@
 // Overwriting the default styles of Swiper (scrollBar customization and slide size)
 
 :global(.swiper-slide:first-child) {
-  .item {
-    border-left: 1px solid $co-black;
-  }
+  border-left: 1px solid $co-black;
 }
 
 :global(.swiper .swiper-wrapper) {

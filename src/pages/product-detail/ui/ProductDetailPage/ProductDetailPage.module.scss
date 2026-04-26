@@ -1,9 +1,8 @@
 @use '../../../../app/styles/modules' as *;
 
 .wrapper {
-  margin-top: 110px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 50px auto 80px auto;
 }
 
 .error {
@@ -12,4 +11,16 @@
   align-items: center;
   justify-content: center;
   @include font($fs: rem(16px), $fw: $fw-small, $co: $co-red, $lh: rem(16px));
+}
+
+@include tablet {
+  .wrapper {
+    margin: 50px auto 80x auto;
+  }
+}
+
+@include desktop {
+  .wrapper {
+    margin: 110px auto 147px auto;
+  }
 }

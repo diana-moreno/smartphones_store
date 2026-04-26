@@ -2,7 +2,6 @@
 
 .panel {
   display: block;
-  margin-top: 5px;
 }
 
 .imageWrapper {
@@ -51,6 +50,7 @@
     display: flex;
     width: 336px;
     height: 414px;
+    margin-bottom: 0;
   }
 
   .textWrapper {
@@ -60,7 +60,6 @@
   .panel {
     display: flex;
     justify-content: space-between;
-    margin-top: 60px;
   }
 
   .colorWrapper {
@@ -76,7 +75,6 @@
   .panel {
     display: flex;
     justify-content: space-between;
-    margin-top: 110px;
   }
 
   .textWrapper {
