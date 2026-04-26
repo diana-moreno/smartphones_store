@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom';
-import {
-  CartItemComponent as CartItem,
-  useCart,
-} from '../../../../entities/cart';
+import { CartItem, useCart } from '../../../../entities/cart';
 import { RemoveFromCartButton } from '../../../../features/remove-from-cart';
 import { Button } from '../../../../shared/ui';
 import styles from './CartPage.module.scss';
