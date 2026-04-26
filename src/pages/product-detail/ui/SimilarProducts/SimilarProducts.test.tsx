@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import { SimilarProducts } from './SimilarProducts';
+import { describe, expect, it, vi } from 'vitest';
 import { renderWithProviders } from '../../../../shared/test/renderWithProviders';
+import { SimilarProducts } from './SimilarProducts';
 
 vi.mock('swiper/react', () => ({
   Swiper: ({ children }: { children: React.ReactNode }) => (

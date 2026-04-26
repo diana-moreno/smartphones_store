@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import { ProductDetailPage } from './ProductDetailPage';
+import { describe, expect, it, vi } from 'vitest';
 import { renderWithProviders } from '../../../../shared/test/renderWithProviders';
+import { ProductDetailPage } from './ProductDetailPage';
 vi.mock('../../api/productsApi', () => ({
   getProductById: vi.fn(),
 }));

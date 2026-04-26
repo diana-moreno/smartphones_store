@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { CartProvider } from '../../entities/cart';
 import { LoadingProvider } from '../../app/model/LoadingProvider';
+import { CartProvider } from '../../entities/cart';
 
 export function renderWithProviders(
   ui: React.ReactElement,

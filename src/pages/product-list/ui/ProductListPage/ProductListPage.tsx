@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { SearchBar } from '../../../../features/search-products';
 
-import styles from './ProductList.module.scss';
 import { ProductGrid } from '../ProductGrid/ProductGrid';
+import styles from './ProductList.module.scss';
 
 import { useFetchProducts } from '../../models/useFetchProducts';
 

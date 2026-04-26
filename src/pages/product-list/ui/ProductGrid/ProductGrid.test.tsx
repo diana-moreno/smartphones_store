@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
-import { ProductGrid } from './ProductGrid';
+import { describe, expect, it } from 'vitest';
 import { renderWithProviders } from '../../../../shared/test/renderWithProviders';
+import { ProductGrid } from './ProductGrid';
 
 const products = [
   {

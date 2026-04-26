@@ -11,7 +11,6 @@ export const RemoveFromCartButton: React.FC<RemoveFromCartButtonProps> = ({
   const { removeItem } = useCart();
 
   return (
-    // TODO button o Button¿?
     <button
       type="button"
       aria-label="Remove from cart"

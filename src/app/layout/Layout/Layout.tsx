@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
-import styles from './Layout.module.scss';
 import { Header } from '../../../widgets/header';
 import { LoadingBar } from '../LoadingBar/LoadingBar';
+import styles from './Layout.module.scss';
 
 export const Layout: React.FC = () => {
   return (

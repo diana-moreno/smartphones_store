@@ -3,10 +3,10 @@ import type { ProductSummary } from '../../../../entities/product';
 import { ProductCard } from '../../../../entities/product';
 import styles from './SimilarProducts.module.scss';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 import { Scrollbar } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 interface SimilarProductsProps {
   products: ProductSummary[];

@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import {
-  useCart,
   CartItemComponent as CartItem,
+  useCart,
 } from '../../../../entities/cart';
+import { RemoveFromCartButton } from '../../../../features/remove-from-cart';
 import { Button } from '../../../../shared/ui';
 import styles from './CartPage.module.scss';
-import { RemoveFromCartButton } from '../../../../features/remove-from-cart';
 
 export const CartPage: React.FC = () => {
   const { items, count, totalPrice } = useCart();

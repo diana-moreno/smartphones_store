@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { CartPage } from './CartPage';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderWithProviders } from '../../../../shared/test/renderWithProviders';
+import { CartPage } from './CartPage';
 
 vi.mock('../../../../entities/cart', async () => {
   return {
