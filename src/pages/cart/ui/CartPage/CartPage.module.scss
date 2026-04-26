@@ -4,12 +4,13 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  margin: 24px 0 24px 0;
 }
 
 .title {
   @include font($fs: rem(20px), $fw: $fw-small, $co: $co-black, $lh: rem(20px));
   text-transform: uppercase;
-  margin: 48px 0 24px 0;
+  margin-bottom: 24px;
 }
 
 .list {
@@ -73,7 +74,7 @@
 
 @include tablet {
   .title {
-    margin: 48px 0 60px 0;
+    margin-bottom: 60px;
   }
 
   .footer {
@@ -123,6 +124,9 @@
     display: block;
     width: 260px;
   }
+  .cart {
+    margin: 47px 0 40px 0;
+  }
 }
 
 @include desktop {
@@ -133,7 +137,6 @@
       $co: $co-black,
       $lh: rem(24px)
     );
-    margin-bottom: 60px;
   }
 
   .continueLink {
@@ -146,5 +149,9 @@
 
   .totalDesktop {
     margin-right: 80px;
+  }
+
+  .cart {
+    margin: 47px 0 56px 0;
   }
 }

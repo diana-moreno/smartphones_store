@@ -15,12 +15,12 @@
   background: $co-white;
   padding: 0 16px;
 }
-
 .main {
+  // padding bottom is different in every page by design
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: $header-height 16px 40px 16px;
+  padding: $header-height 16px 0 16px;
 }
 
 @include tablet {
@@ -29,7 +29,7 @@
   }
 
   .main {
-    padding: $header-height 40px 40px 40px;
+    padding: $header-height 40px 0 40px;
   }
 }
 
@@ -39,6 +39,6 @@
   }
 
   .main {
-    padding: $header-height 100px 40px 100px;
+    padding: $header-height 100px 0 100px;
   }
 }
