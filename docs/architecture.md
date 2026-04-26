@@ -18,6 +18,10 @@ FSD organiza el código en tres niveles jerárquicos: **layer → slice → segm
 
 Cada slice expone un `index.ts` (barrel) como única API pública. Los imports entre slices van siempre a través del barrel del slice de destino. Los imports dentro del mismo slice usan rutas relativas directas.
 
+### Decisión de estructura
+
+FSD permite colocar bloques de UI autocontenidos tanto en `widgets/` como dentro del propio slice de `pages/`, y la elección depende del proyecto. En esta aplicación, componentes como `ProductPurchasePanel`, `ProductSpecifications`, `SimilarProducts` o `ProductGrid` viven dentro de su slice de página de forma deliberada: están acoplados a una sola ruta, no existe ni está prevista su reutilización en otro contexto, y extraerlos a `widgets/` añadiría una capa de indirección sin beneficio real. La única excepción es `Header`, que sí es transversal a todas las rutas y por eso reside en `widgets/`.
+
 ## Estructura de carpetas
 
 ```text
