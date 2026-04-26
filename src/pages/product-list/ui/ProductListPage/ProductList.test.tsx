@@ -1,6 +1,6 @@
 import { act, fireEvent, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { renderWithProviders } from '../../../../shared/test/renderWithProviders';
+import { renderWithProviders } from '../../../../shared/test';
 import { ProductListPage } from './ProductListPage';
 vi.mock('../../api/productsApi', () => ({
   getProducts: vi.fn(),

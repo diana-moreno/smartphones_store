@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { renderWithProviders } from '../../../../shared/test/renderWithProviders';
+import { renderWithProviders } from '../../../../shared/test';
 import { ProductGrid } from './ProductGrid';
 
 const products = [
