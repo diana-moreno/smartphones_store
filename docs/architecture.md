@@ -179,6 +179,8 @@ styles/
 
 Cada capa tiene menos alcance y más especificidad que la anterior. Las reglas que afectan a todo el proyecto van arriba; las que afectan a elementos concretos, abajo. Los estilos específicos de componente viven en sus propios CSS Modules, fuera de esta jerarquía.
 
+En este proyecto se han utilizado varias variables de [CSS](../src/app/styles/01.settings/_settings.global.scss) y [mixins](../src/app/styles/02.tools/_tools.mixins.scss)
+
 **Ventajas**:
 
 - **Sin conflictos de especificidad**: al ordenar de menos a más específico, las reglas se sobreescriben de forma predecible y nunca se necesitan `!important`.
