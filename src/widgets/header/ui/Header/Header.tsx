@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useCart } from '../../../../entities/cart';
+import { useCart } from '@/entities/cart';
 import backArrow from '../../assets/backArrow.svg';
 import bagIconActive from '../../assets/bagIconActive.svg';
 import bagIconInactive from '../../assets/bagIconInactive.svg';

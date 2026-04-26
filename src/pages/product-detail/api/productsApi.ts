@@ -1,5 +1,5 @@
-import type { ProductDetail } from '../../../entities/product';
-import { get } from '../../../shared/api';
+import type { ProductDetail } from '@/entities/product';
+import { get } from '@/shared/api';
 
 export const getProductById = async (id: string): Promise<ProductDetail> => {
   try {

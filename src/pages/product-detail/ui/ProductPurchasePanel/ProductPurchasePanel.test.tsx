@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { ProductPurchasePanel } from './ProductPurchasePanel';
 
-vi.mock('../../../../features/add-to-cart', () => ({
+vi.mock('@/features/add-to-cart', () => ({
   AddToCartButton: () => <button>Add</button>,
 }));
 

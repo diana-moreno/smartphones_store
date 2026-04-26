@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useLoading } from '../../../app/model/useLoading';
-import type { ProductDetail } from '../../../entities/product';
+import { useLoading } from '@/app/model/useLoading';
+import type { ProductDetail } from '@/entities/product';
 import { getProductById } from '../api/productsApi';
 
 export const useFetchProduct = (id?: string) => {

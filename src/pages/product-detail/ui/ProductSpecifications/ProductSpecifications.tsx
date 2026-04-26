@@ -1,4 +1,4 @@
-import type { ProductDetail } from '../../../../entities/product';
+import type { ProductDetail } from '@/entities/product';
 import styles from './ProductSpecifications.module.scss';
 
 interface ProductSpecificationsProps {

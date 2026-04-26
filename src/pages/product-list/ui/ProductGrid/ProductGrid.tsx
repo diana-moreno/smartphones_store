@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import type { ProductSummary } from '../../../../entities/product';
-import { ProductCard } from '../../../../entities/product';
+import type { ProductSummary } from '@/entities/product';
+import { ProductCard } from '@/entities/product';
 import styles from './ProductGrid.module.scss';
 
 interface ProductGridProps {
