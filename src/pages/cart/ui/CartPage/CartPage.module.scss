@@ -4,7 +4,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin: 24px 0 24px 0;
+  padding: 24px 0 24px 0;
 }
 
 .title {
@@ -125,7 +125,7 @@
     width: 260px;
   }
   .cart {
-    margin: 48px 0 40px 0;
+    padding: 48px 0 40px 0;
   }
 }
 
@@ -152,6 +152,6 @@
   }
 
   .cart {
-    margin: 48px 0 56px 0;
+    padding: 48px 0 56px 0;
   }
 }
