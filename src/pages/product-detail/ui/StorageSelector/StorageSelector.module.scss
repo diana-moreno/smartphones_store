@@ -1,15 +1,22 @@
 @use '../../../../app/styles/modules' as *;
 
+// Remove left border on all buttons to avoid double borders between adjacent items,
+// then restore it only on the first one.
 .button {
   height: 65px;
   width: 95px;
   @include font($fs: rem(14px), $fw: $fw-small, $co: $co-black, $lh: rem(14px));
   background-color: $co-white;
   border: 1px solid $co-gray-300;
+  border-left: 0;
 
   &:hover {
     cursor: pointer;
   }
+}
+
+li:first-child .button {
+  border-left: 1px solid $co-gray-300;
 }
 
 .selected {

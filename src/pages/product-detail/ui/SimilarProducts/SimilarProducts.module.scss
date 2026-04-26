@@ -1,8 +1,12 @@
 @use '../../../../app/styles/modules' as *;
 
+// contain: layout isolates this element's layout from the rest of the document,
+// preventing the Swiper slides (which overflow visually via overflow: visible) from
+// contributing to the document dimensions and causing unexpected page height.
 .list {
   max-width: 92vw;
   margin-top: 80px;
+  contain: layout;
 }
 
 .title {

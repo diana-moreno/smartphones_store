@@ -7,6 +7,8 @@
   margin: 24px 0 80px 0;
 }
 
+// margin: -0.5px collapses the 1px borders between adjacent grid cells into a single
+// shared border, preventing double borders where items meet.
 .item {
   border: 1px solid $co-black;
   box-sizing: border-box;
