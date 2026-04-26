@@ -2,7 +2,7 @@
 
 ## Accesibilidad
 
-La interfaz es navegable íntegramente con teclado y compatible con lectores de pantalla. Los elementos interactivos tienen nombres descriptivos, la estructura de html se han creado teniendo en cuenta su propia semántica y la jerarquía de encabezados es coherente en todas las páginas.
+La interfaz es navegable íntegramente con teclado y compatible con lectores de pantalla. Los elementos interactivos tienen nombres descriptivos, los tags de html se han creado teniendo en cuenta su propia semántica y la jerarquía de encabezados es coherente en todas las páginas.
 
 ## Testing
 

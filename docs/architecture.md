@@ -33,7 +33,9 @@ e2e/                              # Tests end-to-end (Playwright)
 
 src/
 ├── app/                          # Configuración global
-│   ├── layout/                   # Layout raíz con barra de progreso
+│   ├── layout/
+│   │   ├── Layout/               # Layout raíz con Outlet
+│   │   └── LoadingBar/           # Barra de progreso global
 │   ├── model/                    # Context y hook de loading global
 │   ├── styles/                   # Estilos base (reset, tipografía, variables)
 │   ├── App.tsx                   # Componente raíz con providers y router
@@ -43,19 +45,21 @@ src/
 ├── pages/                        # Cada slice = una ruta y sus componentes
 │   ├── product-list/
 │   │   ├── api/                  # getProducts — lógica de fetch con errores
+│   │   ├── models/               # useFetchProducts
 │   │   ├── ui/
 │   │   │   ├── ProductListPage/  # Orquestador: debounce, estado, búsqueda
 │   │   │   └── ProductGrid/      # Lista de tarjetas con enlace a detalle
 │   │   └── index.ts
 │   ├── product-detail/
 │   │   ├── api/                  # getProductById — lógica de fetch con errores
+│   │   ├── model/                # useFetchProduct
 │   │   ├── ui/
-│   │   │   ├── ProductDetailPage/   # Orquestador: fetch, loading, error
+│   │   │   ├── ProductDetailPage/    # Orquestador: fetch, loading, error
 │   │   │   ├── ProductPurchasePanel/ # Selección de opciones y precio
 │   │   │   ├── ProductSpecifications/ # Tabla de especificaciones técnicas
-│   │   │   ├── SimilarProducts/     # Carrusel de productos relacionados
-│   │   │   ├── ColorSelector/       # Selector de color
-│   │   │   └── StorageSelector/     # Selector de almacenamiento
+│   │   │   ├── SimilarProducts/      # Carrusel de productos relacionados
+│   │   │   ├── ColorSelector/        # Selector de color
+│   │   │   └── StorageSelector/      # Selector de almacenamiento
 │   │   └── index.ts
 │   ├── cart/
 │   │   ├── ui/CartPage/          # Vista completa del carrito
@@ -78,6 +82,7 @@ src/
 │   │   ├── ui/RemoveFromCartButton/
 │   │   └── index.ts
 │   └── search-products/          # Filtra el catálogo por nombre con debounce
+│       ├── assets/
 │       ├── ui/SearchBar/
 │       └── index.ts
 │
@@ -96,6 +101,68 @@ src/
     ├── api/                      # Cliente HTTP base
     ├── ui/                       # Button, OptionGroup
     └── test/                     # renderWithProviders, test-setup
+```
+
+## Composición de páginas
+
+El árbol de carpetas muestra dónde vive cada componente. Estos diagramas muestran cómo se compone cada ruta: qué componentes incluye y a qué capa FSD pertenece cada uno.
+
+Etiquetas:
+
+- `(page)` — orquestador de ruta en `pages/<slice>/ui/`
+- `(page-component)` — componente intra-slice dentro de la propia página
+- `(widget)` — slice de `widgets/`
+- `(feature)` — slice de `features/`
+- `(entity)` — slice de `entities/`
+- `(shared)` — componente reutilizable de `shared/ui/`
+
+### Layout (envuelve todas las rutas)
+
+```text
+LAYOUT
+├── Header (widget)
+└── LoadingBar (app/layout)
+```
+
+### ProductListPage (`/`)
+
+```text
+PRODUCTLISTPAGE (page)
+├── SearchBar (feature: search-products)
+└── ProductGrid (page-component)
+    └── ProductCard (entity: product)
+```
+
+### ProductDetailPage (`/products/:id`)
+
+```text
+PRODUCTDETAILPAGE (page)
+├── ProductPurchasePanel (page-component)
+│   ├── StorageSelector (page-component)
+│   │   └── OptionGroup (shared)
+│   ├── ColorSelector (page-component)
+│   │   └── OptionGroup (shared)
+│   └── AddToCartButton (feature: add-to-cart)
+│       └── Button (shared)
+├── ProductSpecifications (page-component)
+└── SimilarProducts (page-component)
+    └── ProductCard (entity: product)
+```
+
+### CartPage (`/cart`)
+
+```text
+CARTPAGE (page)
+├── CartItem (entity: cart)
+│   └── RemoveFromCartButton (feature: remove-from-cart)
+└── Button (shared)
+```
+
+### NotFoundPage (`*`)
+
+```text
+NOTFOUNDPAGE (page)
+└── (sin composición — solo título)
 ```
 
 ## Estilos globales
