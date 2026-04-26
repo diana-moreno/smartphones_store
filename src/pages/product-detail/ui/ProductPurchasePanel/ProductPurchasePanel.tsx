@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import type { ProductDetail } from '../../../../entities/product';
-import { AddToCartButton } from '../../../../features/add-to-cart';
+import type { ProductDetail } from '@/entities/product';
+import { AddToCartButton } from '@/features/add-to-cart';
 import { ColorSelector } from '../ColorSelector/ColorSelector';
 import { StorageSelector } from '../StorageSelector/StorageSelector';
 import styles from './ProductPurchasePanel.module.scss';

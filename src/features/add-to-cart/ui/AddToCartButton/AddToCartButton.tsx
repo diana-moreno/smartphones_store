@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { useCart } from '../../../../entities/cart';
+import { useCart } from '@/entities/cart';
 import type {
   ColorOption,
   ProductDetail,
   StorageOption,
-} from '../../../../entities/product';
-import { Button } from '../../../../shared/ui';
+} from '@/entities/product';
+import { Button } from '@/shared/ui';
 
 interface AddToCartButtonProps {
   product: ProductDetail;

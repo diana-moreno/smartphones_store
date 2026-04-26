@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SearchBar } from '../../../../features/search-products';
+import { SearchBar } from '@/features/search-products';
 
 import { ProductGrid } from '../ProductGrid/ProductGrid';
 import styles from './ProductList.module.scss';

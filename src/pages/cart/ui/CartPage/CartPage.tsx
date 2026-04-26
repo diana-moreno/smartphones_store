@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { CartItem, useCart } from '../../../../entities/cart';
-import { RemoveFromCartButton } from '../../../../features/remove-from-cart';
-import { Button } from '../../../../shared/ui';
+import { CartItem, useCart } from '@/entities/cart';
+import { RemoveFromCartButton } from '@/features/remove-from-cart';
+import { Button } from '@/shared/ui';
 import styles from './CartPage.module.scss';
 
 export const CartPage: React.FC = () => {

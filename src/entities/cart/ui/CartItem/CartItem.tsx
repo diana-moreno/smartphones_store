@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import styles from './CartItem.module.scss';
-import type { ItemInCart } from '../../../product/@x/cart';
+import type { ItemInCart } from '@/entities/product/@x/cart';
 
 interface CartItemProps {
   item: ItemInCart;

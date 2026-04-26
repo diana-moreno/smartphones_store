@@ -1,5 +1,5 @@
-import type { ProductSummary } from '../../../entities/product';
-import { get } from '../../../shared/api';
+import type { ProductSummary } from '@/entities/product';
+import { get } from '@/shared/api';
 
 export const getProducts = async (
   search: string,

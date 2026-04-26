@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLoading } from '../../../app/model/useLoading';
-import type { ProductSummary } from '../../../entities/product';
+import { useLoading } from '@/app/model/useLoading';
+import type { ProductSummary } from '@/entities/product';
 import { getProducts } from '../api/productsApi';
 
 const DEBOUNCE_MS = 300;

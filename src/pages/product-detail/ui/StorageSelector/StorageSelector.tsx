@@ -1,5 +1,5 @@
-import type { StorageOption } from '../../../../entities/product';
-import { OptionGroup } from '../../../../shared/ui';
+import type { StorageOption } from '@/entities/product';
+import { OptionGroup } from '@/shared/ui';
 import styles from './StorageSelector.module.scss';
 
 interface StorageSelectorProps {
