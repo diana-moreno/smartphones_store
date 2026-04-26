@@ -34,6 +34,10 @@
 
 // Overwriting the default styles of Swiper (scrollBar customization and slide size)
 
+.list :global(.swiper) {
+  overflow: visible;
+}
+
 :global(.swiper-slide:first-child) {
   border-left: 1px solid $co-black;
 }
