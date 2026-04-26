@@ -15,6 +15,7 @@ vi.mock('../../../../features/remove-from-cart', () => ({
 }));
 
 const emptyCartItem = {
+  id: 'empty-1',
   productId: '',
   name: '',
   imageUrl: 'img.jpg',
