@@ -1,0 +1,112 @@
+@use '../../../../app/styles/modules' as *;
+
+.panel {
+  display: block;
+  margin-top: 5px;
+}
+
+.imageWrapper {
+  width: 260px;
+  height: 273px;
+  margin-bottom: 40px;
+}
+
+.image {
+  width: 100%;
+  object-fit: contain;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 361px;
+}
+
+.title {
+  @include font($fs: rem(20px), $fw: $fw-small, $co: $co-black, $lh: rem(20px));
+  text-transform: uppercase;
+  margin-bottom: 11px;
+}
+
+.price {
+  @include font($fs: rem(14px), $fw: $fw-small, $co: $co-black, $lh: rem(14px));
+  margin-bottom: 40px;
+}
+
+.storageWrapper {
+  margin-bottom: 32px;
+}
+
+.colorWrapper {
+  margin-bottom: 41px;
+}
+
+.addButton {
+  width: 100%;
+}
+
+@include tablet {
+  .imageWrapper {
+    display: flex;
+    width: 336px;
+    height: 414px;
+  }
+
+  .textWrapper {
+    width: 362px;
+  }
+
+  .panel {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+  }
+
+  .colorWrapper {
+    margin-bottom: 20px;
+  }
+
+  .addButton {
+    width: 260px;
+  }
+}
+
+@include desktop {
+  .panel {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 110px;
+  }
+
+  .textWrapper {
+    width: 380px;
+  }
+
+  .imageWrapper {
+    width: 510px;
+    height: 630px;
+  }
+
+  .title {
+    @include font($fs: rem(24px), $lh: rem(24px));
+    margin-bottom: 11px;
+  }
+
+  .price {
+    @include font($fs: rem(20px), $lh: rem(20px));
+    margin-bottom: 64px;
+  }
+
+  .storageWrapper {
+    margin-bottom: 40px;
+  }
+
+  .colorWrapper {
+    margin-bottom: 41px;
+  }
+
+  .addButton {
+    width: 100%;
+  }
+}

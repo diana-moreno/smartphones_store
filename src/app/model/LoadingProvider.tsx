@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { ReactNode } from 'react';
-import { LoadingContext } from './loadingContext';
+import { LoadingContext } from './LoadingContext';
 
 interface LoadingProviderProps {
   children: ReactNode;

@@ -12,13 +12,15 @@ FSD organiza el código en tres niveles jerárquicos: **layer → slice → segm
   app → pages → widgets → features → entities → shared
   ```
 
-- **Slices**: subdivisiones temáticas dentro de una capa. Cada slice agrupa todo lo relacionado con un concepto concreto (por ejemplo, `product` o `cart` dentro de `entities`, o `Header` y `ProductGrid` dentro de `widgets`). Cada slice es autocontenido: tiene su propia lógica, UI y tipos, y no conoce los slices que lo usan. Las capas `app` y `shared` no se subdividen en slices porque son técnicas y globales, no tienen concepto de negocio.
+- **Slices**: subdivisiones temáticas dentro de una capa. Cada slice agrupa todo lo relacionado con un concepto concreto. Cada slice es autocontenido: tiene su propia lógica, UI y tipos, y no conoce los slices que lo usan. Las capas `app` y `shared` no se subdividen en slices porque son técnicas y globales, no tienen concepto de negocio.
 
 - **Segments**: la división interna de cada slice por tipo técnico. Los más comunes son `ui/` (componentes), `model/` (estado, tipos, lógica de dominio), `api/` (llamadas externas), `lib/` (utilidades) y `assets/` (imágenes, SVGs).
 
 Cada slice expone un `index.ts` (barrel) como única API pública. Los imports entre slices van siempre a través del barrel del slice de destino. Los imports dentro del mismo slice usan rutas relativas directas.
 
-Cuando un nombre colisiona entre el tipo de modelo y el componente UI, el barrel usa un alias para distinguirlos (por ejemplo, `CartItem` el tipo y `CartItemComponent` el componente).
+### Decisión de estructura
+
+FSD permite colocar bloques de UI autocontenidos tanto en `widgets/` como dentro del propio slice de `pages/`, y la elección depende del proyecto. En esta aplicación, componentes como `ProductPurchasePanel`, `ProductSpecifications`, `SimilarProducts` o `ProductGrid` viven dentro de su slice de página de forma deliberada: están acoplados a una sola ruta, no existe ni está prevista su reutilización en otro contexto, y extraerlos a `widgets/` añadiría una capa de indirección sin beneficio real. La única excepción es `Header`, que sí es transversal a todas las rutas y por eso reside en `widgets/`.
 
 ## Estructura de carpetas
 
@@ -31,60 +33,63 @@ e2e/                              # Tests end-to-end (Playwright)
 
 src/
 ├── app/                          # Configuración global
-│   ├── Layout/                   # Layout raíz con barra de progreso
-│   ├── loading/                  # Context y hook de loading global
+│   ├── layout/                   # Layout raíz con barra de progreso
+│   ├── model/                    # Context y hook de loading global
 │   ├── styles/                   # Estilos base (reset, tipografía, variables)
 │   ├── App.tsx                   # Componente raíz con providers y router
 │   ├── routes.tsx                # Definición de rutas
 │   └── main.tsx                  # Punto de entrada
 │
-├── pages/                        # Un fichero por ruta, sin lógica propia
-│   ├── ProductsListPage.tsx
-│   ├── ProductDetailsPage.tsx
-│   ├── CartPage.tsx
-│   └── NotFoundPage.tsx
+├── pages/                        # Cada slice = una ruta y sus componentes
+│   ├── product-list/
+│   │   ├── api/                  # getProducts — lógica de fetch con errores
+│   │   ├── ui/
+│   │   │   ├── ProductListPage/  # Orquestador: debounce, estado, búsqueda
+│   │   │   └── ProductGrid/      # Lista de tarjetas con enlace a detalle
+│   │   └── index.ts
+│   ├── product-detail/
+│   │   ├── api/                  # getProductById — lógica de fetch con errores
+│   │   ├── ui/
+│   │   │   ├── ProductDetailPage/   # Orquestador: fetch, loading, error
+│   │   │   ├── ProductPurchasePanel/ # Selección de opciones y precio
+│   │   │   ├── ProductSpecifications/ # Tabla de especificaciones técnicas
+│   │   │   ├── SimilarProducts/     # Carrusel de productos relacionados
+│   │   │   ├── ColorSelector/       # Selector de color
+│   │   │   └── StorageSelector/     # Selector de almacenamiento
+│   │   └── index.ts
+│   ├── cart/
+│   │   ├── ui/CartPage/          # Vista completa del carrito
+│   │   └── index.ts
+│   └── not-found/
+│       ├── ui/NotFound/
+│       └── index.ts
 │
 ├── widgets/                      # Bloques de UI completos y autocontenidos
-│   ├── Header/                   # Cabecera con logo, carrito y volver
-│   │   ├── ui/                   # Header.tsx + estilos + test
-│   │   ├── assets/               # logo, iconos de bolsa, flecha
-│   │   └── index.ts              # Barrel del slice
-│   ├── ProductGrid/              # Catálogo con buscador y paginación
-│   │   ├── ui/
-│   │   └── index.ts
-│   ├── ProductDetails/           # Composición del detalle de producto
-│   │   ├── ui/
-│   │   └── index.ts
-│   ├── ProductPurchasePanel/     # Selección de opciones y precio
-│   │   ├── ui/
-│   │   └── index.ts
-│   ├── SimilarProducts/          # Carrusel de productos relacionados
-│   │   ├── ui/
-│   │   └── index.ts
-│   └── CartView/                 # Vista completa del carrito
-│       ├── ui/
+│   └── header/                   # Cabecera con logo, carrito y volver
+│       ├── ui/Header/            # Header.tsx + estilos + test
+│       ├── assets/               # logo, iconos de bolsa, flecha
 │       └── index.ts
 │
 ├── features/                     # Acciones del usuario que modifican el estado
-│   ├── addToCart/                # Añade un producto al carrito y redirige a /cart
+│   ├── add-to-cart/              # Añade un producto al carrito y redirige a /cart
 │   │   ├── ui/AddToCartButton/
 │   │   └── index.ts
-│   ├── removeFromCart/           # Elimina un item del carrito
+│   ├── remove-from-cart/         # Elimina un item del carrito
 │   │   ├── ui/RemoveFromCartButton/
 │   │   └── index.ts
-│   └── searchProducts/           # Filtra el catálogo por nombre con debounce
+│   └── search-products/          # Filtra el catálogo por nombre con debounce
 │       ├── ui/SearchBar/
 │       └── index.ts
 │
 ├── entities/                     # Modelos de dominio con su UI y lógica
 │   ├── product/
-│   │   ├── api/                  # Llamadas a la API REST
+│   │   ├── @x/cart.ts            # Cross-reference explícita hacia entities/cart
 │   │   ├── model/                # Tipos TypeScript
-│   │   ├── ui/                   # ProductCard, ColorSelector, StorageSelector…
+│   │   ├── ui/ProductCard/       # Tarjeta de producto
 │   │   └── index.ts              # Barrel
 │   └── cart/
 │       ├── model/                # CartProvider, useCart, tipos
-│       ├── ui/                   # CartItem
+│       ├── ui/CartItem/          # Item de carrito
 │       └── index.ts              # Barrel
 │
 └── shared/                       # Código genérico sin dependencias de dominio
