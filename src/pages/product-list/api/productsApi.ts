@@ -13,6 +13,8 @@ export const getProducts = async (
       signal
     );
   } catch (e) {
+    // Re-throw AbortError so the caller can distinguish cancellations from real failures
+    if (e instanceof DOMException && e.name === 'AbortError') throw e;
     const status = (e as { status?: number }).status;
     if (status === 401) {
       throw new Error('You are not authorized to access the catalog.');
