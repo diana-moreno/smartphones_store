@@ -20,6 +20,18 @@
   border-left: 0;
 }
 
+@include tablet {
+  .list {
+    margin-top: 88px;
+  }
+}
+
+@include desktop {
+  .list {
+    margin-top: 154px;
+  }
+}
+
 // Overwriting the default styles of Swiper (scrollBar customization and slide size)
 
 :global(.swiper-slide:first-child) {
