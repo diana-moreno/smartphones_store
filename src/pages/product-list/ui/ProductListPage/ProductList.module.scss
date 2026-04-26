@@ -1,14 +1,11 @@
 @use '../../../../app/styles/modules' as *;
 
-.section {
-  margin-top: 24px;
-}
-
 .searchWrapper {
   position: sticky;
   top: $header-height;
   z-index: 5;
   background: $co-white;
+  padding-top: 24px;
   padding-bottom: 16px;
 }
 
@@ -18,7 +15,7 @@
 }
 
 @include tablet {
-  .section {
-    margin-top: 48px;
+  .searchWrapper {
+    padding-top: 48px;
   }
 }
