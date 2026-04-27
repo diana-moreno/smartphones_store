@@ -17,6 +17,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       <form role="search" className={styles.form}>
         <input
           aria-label="Search for a smartphone..."
+          name="search"
           type="search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
